@@ -69,9 +69,42 @@ currentScene++;
 
 if(currentScene >= scenes.length){
 
-currentScene = 0;
+document.querySelector(".scene").innerHTML = `
+
+<div class="final-message">
+
+<h1>❤️</h1>
+
+<h2>
+
+شكراً لأنك كنتِ
+أجمل شيء حدث في هذه القصة
+
+</h2>
+
+<p>
+
+وما زالت أجمل الذكريات قادمة...
+
+</p>
+
+<a href="#" class="final-btn">
+
+✨ مفاجأة أخيرة ✨
+
+</a>
+
+</div>
+
+`;
+
+return;
 
 }
+
+movieScreen.classList.add("fade-out");
+
+setTimeout(()=>{
 
 movieImage.src =
 scenes[currentScene].image;
@@ -81,5 +114,9 @@ scenes[currentScene].title;
 
 sceneText.innerText =
 scenes[currentScene].text;
+
+movieScreen.classList.remove("fade-out");
+
+},400);
 
 });
