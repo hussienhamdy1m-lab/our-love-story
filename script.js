@@ -1,20 +1,28 @@
-const openers = document.querySelectorAll(
-'.envelope,.scroll,.book,.gift,.heart-box'
+const triggers =
+document.querySelectorAll(
+'.memory-trigger'
 );
 
-openers.forEach(item=>{
+triggers.forEach(trigger=>{
 
-item.addEventListener('click',()=>{
+trigger.addEventListener(
 
-const memory =
-item.parentElement.querySelector(
+'click',
+
+()=>{
+
+const content =
+trigger.parentElement
+.querySelector(
 '.memory-content'
 );
 
-item.style.display='none';
+trigger.style.display='none';
 
-memory.style.display='block';
+content.style.display='block';
 
-});
+}
+
+);
 
 });
