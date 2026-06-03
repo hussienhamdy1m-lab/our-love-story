@@ -1,31 +1,168 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<title>Our Love Story</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Our Love Story ❤️</title>
+
+<link rel="stylesheet"
+href="style.css">
+
 </head>
 
-<body style="
-margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4,#a18cd1);
-font-family:Arial;
-">
+<body>
 
-<h1 style="
-color:white;
-font-size:80px;
-text-align:center;
-">
+<div class="background-glow"></div>
+
+<section id="welcomeScreen">
+
+<div class="hero-box">
+
+<h1>
 
 Our Love Story ❤️
 
 </h1>
+
+<p>
+
+A collection of beautiful memories
+
+</p>
+
+<button id="startBtn">
+
+Begin Journey
+
+</button>
+
+</div>
+
+</section>
+
+<section id="memoryRoom">
+
+<h2>
+
+Memory Room
+
+</h2>
+
+<p class="subtitle">
+
+Choose a memory to open ❤️
+
+</p>
+
+<div class="memory-grid">
+
+<div class="memory-item"
+data-memory="1">
+
+<div class="camera">
+
+<div class="lens"></div>
+
+</div>
+
+<span>
+
+First Memory
+
+</span>
+
+</div>
+
+<div class="memory-item"
+data-memory="2">
+
+<div class="gift-box">
+
+<div class="gift-lid"></div>
+
+</div>
+
+<span>
+
+Second Memory
+
+</span>
+
+</div>
+
+<div class="memory-item"
+data-memory="3">
+
+<div class="frame">
+
+🖼
+
+</div>
+
+<span>
+
+Third Memory
+
+</span>
+
+</div>
+
+<div class="memory-item"
+data-memory="4">
+
+<div class="balloon">
+
+❤
+
+</div>
+
+<span>
+
+Fourth Memory
+
+</span>
+
+</div>
+
+<div class="memory-item"
+data-memory="5">
+
+<div class="book">
+
+MEMORIES
+
+</div>
+
+<span>
+
+Final Memory
+
+</span>
+
+</div>
+
+</div>
+
+<div id="viewer">
+
+<img id="viewerImage"
+src="">
+
+<h3 id="viewerTitle"></h3>
+
+<p id="viewerText"></p>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
 
 </body>
 
