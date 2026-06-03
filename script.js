@@ -1,54 +1,13 @@
-const revealBtn =
-document.getElementById(
-"revealBtn"
-);
+const button =
+document.getElementById("showMemory");
 
-const memoryView =
-document.getElementById(
-"memoryView"
-);
+const memory =
+document.getElementById("memory");
 
-revealBtn.addEventListener(
-"click",
-()=>{
+button.addEventListener("click",()=>{
 
-memoryView.style.display =
-"block";
+memory.style.display="block";
 
-setTimeout(()=>{
+button.style.display="none";
 
-memoryView.classList.add(
-"show"
-);
-
-},100);
-
-revealBtn.style.display =
-"none";
-
-}
-);
-
-window.addEventListener(
-"scroll",
-()=>{
-
-const scrollTop =
-window.scrollY;
-
-const docHeight =
-document.documentElement.scrollHeight
--------------------------------------
-
-window.innerHeight;
-
-const percent =
-(scrollTop/docHeight)*100;
-
-document.querySelector(
-".progress-bar"
-).style.width =
-percent + "%";
-
-}
-);
+});
