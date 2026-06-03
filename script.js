@@ -1,42 +1,36 @@
-const triggers =
-document.querySelectorAll(
-'.memory-trigger'
+const revealBtn =
+document.getElementById(
+'revealBtn'
 );
 
-triggers.forEach(trigger=>{
+const memoryView =
+document.getElementById(
+'memoryView'
+);
 
-trigger.addEventListener(
+revealBtn.addEventListener(
 
 'click',
 
 ()=>{
 
-const content =
-trigger.parentElement.querySelector(
-'.memory-content'
+memoryView.style.display =
+'block';
+
+setTimeout(()=>{
+
+memoryView.classList.add(
+'show'
 );
 
-if(
-content.style.display === 'block'
-){
+},100);
 
-content.style.display = 'none';
-
-trigger.style.opacity = '1';
-
-return;
-
-}
-
-content.style.display = 'block';
-
-trigger.style.opacity = '.4';
+revealBtn.style.display =
+'none';
 
 }
 
 );
-
-});
 
 window.addEventListener(
 
