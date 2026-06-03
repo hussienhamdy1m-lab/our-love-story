@@ -658,3 +658,42 @@ translateY(-5px)
 scale(1.05);
 
 }
+.chapter2-btn{
+
+display:inline-block;
+
+margin-top:25px;
+
+padding:18px 40px;
+
+background:
+linear-gradient(
+135deg,
+#ffb6d9,
+#ffd6e7
+);
+
+color:#5a2d45;
+
+font-size:22px;
+
+font-weight:700;
+
+text-decoration:none;
+
+border-radius:50px;
+
+box-shadow:
+0 15px 30px rgba(0,0,0,.15);
+
+transition:.4s;
+
+}
+
+.chapter2-btn:hover{
+
+transform:
+translateY(-5px)
+scale(1.05);
+
+}
