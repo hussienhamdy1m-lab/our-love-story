@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
-  
-<link rel="preconnect" href="https://fonts.googleapis.com">
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>شهودتي ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>قصتنا ❤️</title>
-
-<link rel="stylesheet"
-href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -30,21 +26,15 @@ href="style.css">
 <div class="hero-box">
 
 <h1>
-
 شهودتي ❤️
-
 </h1>
 
 <p>
-
-A collection of beautiful memories
-
+مجموعة من أجمل الذكريات
 </p>
 
 <button id="startBtn">
-
-Begin Journey
-
+ابدئي الرحلة
 </button>
 
 </div>
@@ -54,110 +44,76 @@ Begin Journey
 <section id="memoryRoom">
 
 <h2>
-
-Memory Room
-
+غرفة الذكريات
 </h2>
 
 <p class="subtitle">
-
-دوسي ع الهادي عشان تفتح ❤️
-
+اضغطي على أي ذكرى لفتحها ❤️
 </p>
 
 <div class="memory-grid">
 
-<div class="memory-item"
-data-memory="1">
+<div class="memory-item" data-memory="1">
 
-<div class="camera">
-
-<div class="lens"></div>
-
-</div>
+<div class="memory-icon camera"></div>
 
 <span>
-
-First Memory
-
+أول ذكرى
 </span>
 
 </div>
 
-<div class="memory-item"
-data-memory="2">
+<div class="memory-item" data-memory="2">
 
-<div class="gift-box">
-
-<div class="gift-lid"></div>
-
-</div>
+<div class="memory-icon gift"></div>
 
 <span>
-
-Second Memory
-
+أجمل هدية
 </span>
 
 </div>
 
-<div class="memory-item"
-data-memory="3">
+<div class="memory-item" data-memory="3">
 
-<div class="frame">
-
-🖼
-
-</div>
+<div class="memory-icon frame"></div>
 
 <span>
-
-Third Memory
-
+صورة لا تُنسى
 </span>
 
 </div>
 
-<div class="memory-item"
-data-memory="4">
+<div class="memory-item" data-memory="4">
 
-<div class="balloon">
-
-❤
-
-</div>
+<div class="memory-icon heart"></div>
 
 <span>
-
-Fourth Memory
-
+أسعد لحظة
 </span>
 
 </div>
 
-<div class="memory-item"
-data-memory="5">
+<div class="memory-item" data-memory="5">
 
-<div class="book">
-
-MEMORIES
-
-</div>
+<div class="memory-icon album"></div>
 
 <span>
-
-Final Memory
-
+إلى الأبد
 </span>
 
 </div>
 
 </div>
+
+<div id="overlay"></div>
 
 <div id="viewer">
 
-<img id="viewerImage"
-src="">
+<button id="closeViewer">
+✕
+</button>
+
+<img id="viewerImage" src="">
 
 <h3 id="viewerTitle"></h3>
 
