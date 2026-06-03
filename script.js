@@ -7,6 +7,9 @@ document.getElementById("welcomeScreen");
 const memoryRoom =
 document.getElementById("memoryRoom");
 
+const overlay =
+document.getElementById("overlay");
+
 const viewer =
 document.getElementById("viewer");
 
@@ -19,53 +22,62 @@ document.getElementById("viewerTitle");
 const viewerText =
 document.getElementById("viewerText");
 
+const closeViewer =
+document.getElementById("closeViewer");
+
 startBtn.addEventListener("click",()=>{
 
-welcomeScreen.style.opacity="0";
+welcomeScreen.style.transition =
+"1s";
+
+welcomeScreen.style.opacity =
+"0";
 
 setTimeout(()=>{
 
-welcomeScreen.style.display="none";
+welcomeScreen.style.display =
+"none";
 
-memoryRoom.style.display="block";
+memoryRoom.style.display =
+"block";
 
-memoryRoom.style.animation=
-"fadeIn 1s ease";
+memoryRoom.style.animation =
+"roomFade 1s ease";
 
-},500);
+},800);
 
 });
 
-const memories={
+const memories = {
 
 1:{
 image:"1.jpg",
 title:"أول ذكرى ❤️",
-text:"بداية أجمل قصة عرفها قلبي."
+text:"كانت البداية... وما أجمل تلك البداية."
 },
 
 2:{
 image:"2.png",
 title:"أجمل هدية 🎁",
-text:"كل لحظة معك كانت هدية لا تقدر بثمن."
+text:"بعض الهدايا لا تُلف بورق... بل تُلف بالمشاعر."
 },
 
 3:{
 image:"3.jpeg",
-title:"لحظة لا تنسى 🖼",
-text:"هناك صور لا تحفظها الكاميرا فقط بل يحفظها القلب."
+title:"صورة لا تُنسى 📸",
+text:"هناك صور لا تحفظها الكاميرا فقط... بل يحتفظ بها القلب."
 },
 
 4:{
 image:"4.jpeg",
-title:"سعادة حقيقية ❤️",
-text:"وجودك وحده كان كافياً ليجعل اليوم أجمل."
+title:"أسعد لحظة ❤️",
+text:"الوقت كان جميلاً... لكن الأجمل هو من شاركني إياه."
 },
 
 5:{
 image:"5.jpeg",
-title:"إلى الأبد 📖",
-text:"وما زالت أجمل الذكريات قادمة."
+title:"إلى الأبد ✨",
+text:"هذه ليست النهاية... بل مجرد بداية لمزيد من الذكريات."
 }
 
 };
@@ -76,27 +88,47 @@ document
 
 item.addEventListener("click",()=>{
 
-const id=
+const id =
 item.dataset.memory;
 
-viewer.style.display=
-"block";
-
-viewerImage.src=
+viewerImage.src =
 memories[id].image;
 
-viewerTitle.innerText=
+viewerTitle.innerText =
 memories[id].title;
 
-viewerText.innerText=
+viewerText.innerText =
 memories[id].text;
 
-viewer.scrollIntoView({
+overlay.style.display =
+"block";
 
-behavior:"smooth"
+viewer.style.display =
+"block";
+
+viewer.style.animation =
+"viewerPop .5s ease";
 
 });
 
 });
+
+closeViewer.addEventListener("click",()=>{
+
+viewer.style.display =
+"none";
+
+overlay.style.display =
+"none";
+
+});
+
+overlay.addEventListener("click",()=>{
+
+viewer.style.display =
+"none";
+
+overlay.style.display =
+"none";
 
 });
