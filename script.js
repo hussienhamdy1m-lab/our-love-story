@@ -1,31 +1,20 @@
-const sections =
-document.querySelectorAll(".memory");
-
-const observer =
-new IntersectionObserver(
-
-(entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
-}
-
-});
-
-},
-
-{
-threshold:.25
-}
-
+const openers = document.querySelectorAll(
+'.envelope,.scroll,.book,.gift,.heart-box'
 );
 
-sections.forEach(section=>{
+openers.forEach(item=>{
 
-observer.observe(section);
+item.addEventListener('click',()=>{
+
+const memory =
+item.parentElement.querySelector(
+'.memory-content'
+);
+
+item.style.display='none';
+
+memory.style.display='block';
+
+});
 
 });
