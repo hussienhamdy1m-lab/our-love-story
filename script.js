@@ -1,49 +1,44 @@
 const revealBtn =
 document.getElementById(
-'revealBtn'
+"revealBtn"
 );
 
 const memoryView =
 document.getElementById(
-'memoryView'
+"memoryView"
 );
 
 revealBtn.addEventListener(
-
-'click',
-
+"click",
 ()=>{
 
 memoryView.style.display =
-'block';
+"block";
 
 setTimeout(()=>{
 
 memoryView.classList.add(
-'show'
+"show"
 );
 
 },100);
 
 revealBtn.style.display =
-'none';
+"none";
 
 }
-
 );
 
 window.addEventListener(
-
-'scroll',
-
+"scroll",
 ()=>{
 
 const scrollTop =
 window.scrollY;
 
 const docHeight =
-document.body.scrollHeight
---------------------------
+document.documentElement.scrollHeight
+-------------------------------------
 
 window.innerHeight;
 
@@ -51,10 +46,9 @@ const percent =
 (scrollTop/docHeight)*100;
 
 document.querySelector(
-'.progress-bar'
+".progress-bar"
 ).style.width =
-percent + '%';
+percent + "%";
 
 }
-
 );
