@@ -619,3 +619,42 @@ transform:
 translateX(150%);
 
 }
+.next-page-btn{
+
+display:inline-block;
+
+margin-top:40px;
+
+padding:18px 45px;
+
+background:
+linear-gradient(
+135deg,
+#ffb6d9,
+#ffd6e7
+);
+
+color:#5a2d45;
+
+text-decoration:none;
+
+font-size:24px;
+
+font-weight:700;
+
+border-radius:50px;
+
+box-shadow:
+0 15px 30px rgba(0,0,0,.15);
+
+transition:.4s;
+
+}
+
+.next-page-btn:hover{
+
+transform:
+translateY(-5px)
+scale(1.05);
+
+}
