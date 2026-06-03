@@ -27,28 +27,21 @@ document.getElementById("closeViewer");
 
 startBtn.addEventListener("click",()=>{
 
-welcomeScreen.style.transition =
-"1s";
+welcomeScreen.style.transition="1s";
 
-welcomeScreen.style.opacity =
-"0";
+welcomeScreen.style.opacity="0";
 
 setTimeout(()=>{
 
-welcomeScreen.style.display =
-"none";
+welcomeScreen.style.display="none";
 
-memoryRoom.style.display =
-"block";
-
-memoryRoom.style.animation =
-"roomFade 1s ease";
+memoryRoom.style.display="block";
 
 },800);
 
 });
 
-const memories = {
+const memories={
 
 1:{
 image:"1.jpg",
@@ -88,26 +81,54 @@ document
 
 item.addEventListener("click",()=>{
 
-const id =
-item.dataset.memory;
+const id=item.dataset.memory;
 
-viewerImage.src =
+viewerImage.src=
 memories[id].image;
 
-viewerTitle.innerText =
+viewerTitle.innerText=
 memories[id].title;
 
-viewerText.innerText =
+viewerText.innerText=
 memories[id].text;
 
-overlay.style.display =
+overlay.style.display=
 "block";
 
-viewer.style.display =
+viewer.style.display=
 "block";
 
-viewer.style.animation =
-"viewerPop .5s ease";
+let oldBtn =
+document.getElementById(
+"chapter2Btn"
+);
+
+if(oldBtn){
+
+oldBtn.remove();
+
+}
+
+if(id==="5"){
+
+const btn =
+document.createElement("a");
+
+btn.href =
+"page2.html";
+
+btn.id =
+"chapter2Btn";
+
+btn.className =
+"chapter2-btn";
+
+btn.innerText =
+"✨ افتحي الفصل الثاني ✨";
+
+viewer.appendChild(btn);
+
+}
 
 });
 
@@ -115,20 +136,20 @@ viewer.style.animation =
 
 closeViewer.addEventListener("click",()=>{
 
-viewer.style.display =
+viewer.style.display=
 "none";
 
-overlay.style.display =
+overlay.style.display=
 "none";
 
 });
 
 overlay.addEventListener("click",()=>{
 
-viewer.style.display =
+viewer.style.display=
 "none";
 
-overlay.style.display =
+overlay.style.display=
 "none";
 
 });
