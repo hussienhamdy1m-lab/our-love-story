@@ -363,3 +363,41 @@ margin-top:15px;
 color:#5a2d45;
 
 }
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+#viewer{
+
+display:none;
+
+animation:fadeIn .8s ease;
+
+}
+
+#viewer img{
+
+transition:0.5s;
+
+}
+
+.memory-item:active{
+
+transform:
+scale(.95);
+
+}
