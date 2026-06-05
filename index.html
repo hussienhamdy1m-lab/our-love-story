@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قصتنا الحلوة 💖</title>
+    <!-- ربط مباشر بملف الـ CSS الموجود معاها في نفس المجلد الرئيسي بره -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- دوائر الإضاءة السحرية (البوكيه) اللي بتتحرك في الخلفية ورا البوكس -->
     <div class="bokeh"></div>
     <div class="bokeh"></div>
     <div class="bokeh"></div>
 
+    <!-- شاشة إدخال الباسورد (البوكس الزجاجي العايم) -->
     <div id="login-screen" class="login-container">
         <h2>الباب السري 🔒</h2>
         <p>أدخل كلمة السر عشان تشوف المفاجأة ✨</p>
@@ -20,11 +23,13 @@
         <p id="error-message" class="error">الباسورد غلط، حاول تاني! 🥺</p>
     </div>
 
+    <!-- المحتوى الرئيسي للموقع (مخفي وهيفتح تلقائي بالباسورد الصح) -->
     <div id="main-content" style="display: none;">
         <div class="container">
             <h1>أجمل قصة حب 🥰</h1>
             <p>المكان ده معمول مخصوص عشان يجمع أحلى اللحظات والذكريات. ✨<br>كل يوم بيعدي هو حكاية جديدة بنكتبها سوا.</p>
             
+            <!-- هنا ربطنا الصور بأسماء الملفات الحقيقية اللي عندك في الـ GitHub بره -->
             <div class="gallery">
                 <img src="1.jpg" alt="صورتنا سوا" class="love-photo">
                 <img src="2.png" alt="ذكرى حلوة" class="love-photo">
@@ -33,6 +38,7 @@
         </div>
     </div>
 
+    <!-- ربط مباشر بملف الجافاسكريبت الموجود معاها في نفس المجلد بره -->
     <script src="script.js"></script>
 </body>
 </html>
