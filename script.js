@@ -1,4 +1,4 @@
-const CORRECT_PASSWORD = 'love'; 
+const CORRECT_PASSWORD = 'وحشتيني'; 
 
 // 1. نظام التحقق من الباسورد
 function checkPassword() {
