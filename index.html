@@ -4,27 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قصتنا الحلوة 💖</title>
-    <!-- الربط المباشر لأن الملف في نفس المجلد -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- شاشة إدخال الباسورد -->
     <div id="login-screen" class="login-container">
         <h2>الباب السري 🔒</h2>
         <p>أدخل كلمة السر عشان تشوف المفاجأة ✨</p>
-        <input type="password" id="password-input" placeholder="كلمة السر...">
-        <button onclick="checkPassword()">دخول</button>
+        <input type="password" id="password-input" placeholder="••••••••">
+        <button onclick="checkPassword()">دخول الحكاية ✨</button>
         <p id="error-message" class="error">الباسورد غلط، حاول تاني! 🥺</p>
     </div>
 
-    <!-- المحتوى الرئيسي (هيكون مخفي لحد ما تكتب الباسورد) -->
     <div id="main-content" style="display: none;">
         <div class="container">
             <h1>أجمل قصة حب 🥰</h1>
             <p>المكان ده معمول مخصوص عشان يجمع أحلى اللحظات والذكريات. ✨<br>كل يوم بيعدي هو حكاية جديدة بنكتبها سوا.</p>
             
-            <!-- الصور هنا مربوطة مباشرة بأسماء ملفاتك وامتداداتها المكتوبة في الصورة -->
             <div class="gallery">
                 <img src="1.jpg" alt="صورتنا سوا" class="love-photo">
                 <img src="2.png" alt="ذكرى حلوة" class="love-photo">
@@ -33,7 +29,6 @@
         </div>
     </div>
 
-    <!-- ربط الجافاسكريبت المباشر -->
     <script src="script.js"></script>
 </body>
 </html>
