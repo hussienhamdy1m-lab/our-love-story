@@ -1,155 +1,69 @@
-const startBtn =
-document.getElementById("startBtn");
-
-const welcomeScreen =
-document.getElementById("welcomeScreen");
-
-const memoryRoom =
-document.getElementById("memoryRoom");
-
-const overlay =
-document.getElementById("overlay");
-
-const viewer =
-document.getElementById("viewer");
-
-const viewerImage =
-document.getElementById("viewerImage");
-
-const viewerTitle =
-document.getElementById("viewerTitle");
-
-const viewerText =
-document.getElementById("viewerText");
-
-const closeViewer =
-document.getElementById("closeViewer");
-
-startBtn.addEventListener("click",()=>{
-
-welcomeScreen.style.transition="1s";
-
-welcomeScreen.style.opacity="0";
-
-setTimeout(()=>{
-
-welcomeScreen.style.display="none";
-
-memoryRoom.style.display="block";
-
-},800);
-
-});
-
-const memories={
-
-1:{
-image:"1.jpg",
-title:"أول ذكرى ❤️",
-text:"كانت البداية... وما أجمل تلك البداية."
-},
-
-2:{
-image:"2.png",
-title:"أجمل هدية 🎁",
-text:"بعض الهدايا لا تُلف بورق... بل تُلف بالمشاعر."
-},
-
-3:{
-image:"3.jpeg",
-title:"صورة لا تُنسى 📸",
-text:"هناك صور لا تحفظها الكاميرا فقط... بل يحتفظ بها القلب."
-},
-
-4:{
-image:"4.jpeg",
-title:"أسعد لحظة ❤️",
-text:"الوقت كان جميلاً... لكن الأجمل هو من شاركني إياه."
-},
-
-5:{
-image:"5.jpeg",
-title:"إلى الأبد ✨",
-text:"هذه ليست النهاية... بل مجرد بداية لمزيد من الذكريات."
+function checkPassword() {
+    const pass = document.getElementById('password-input').value;
+    const errorMessage = document.getElementById('error-message');
+    const loginScreen = document.getElementById('login-screen');
+    
+    // كلمة السر الافتراضية هنا هي 'love' (تقدر تعدلها لأي كلمة تانية)
+    if (pass === 'love') {
+        // أنيميشن الاختفاء السينمائي للبوكس الزجاجي
+        loginScreen.style.opacity = '0';
+        loginScreen.style.transform = 'scale(0.8) translateY(-30px)';
+        
+        setTimeout(() => {
+            loginScreen.style.display = 'none';
+            // إظهار المحتوى الرئيسي
+            const mainContent = document.getElementById('main-content');
+            mainContent.style.display = 'block';
+            // السماح بالسكرول بعد الدخول لرؤية الصور والذكريات
+            document.body.style.overflow = 'auto';
+        }, 800);
+        
+    } else {
+        // إظهار رسالة الخطأ ومسح الخانة لإعادة المحاولة
+        errorMessage.style.display = 'block';
+        document.getElementById('password-input').value = '';
+    }
 }
 
-};
+/* دالة إنشاء مطر القلوب الانسيابي والرومانسي */
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    
+    // تشكيلة إيموجيز مريحة للعين ومتناسقة
+    const emojis = ['❤️', '💖', '✨', '🌸', '💕', '🥰', '🌹'];
+    heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    
+    // مكان الظهور العشوائي أفقياً
+    heart.style.left = Math.random() * 100 + 'vw';
+    
+    // أحجام عشوائية هادئة (تأثير ثلاثي الأبعاد)
+    const size = Math.random() * 1.2 + 0.6; 
+    heart.style.fontSize = `${size}rem`;
+    
+    // شفافية عشوائية لعمل عمق في الخلفية
+    const opacity = Math.random() * 0.5 + 0.3; 
+    
+    // سرعة هادئة وانسيابية (بين 4 لـ 7 ثواني للنزول)
+    const duration = Math.random() * 3 + 4;
+    heart.style.animationDuration = `${duration}s`;
+    
+    // زوايا وقيم التمايل يمين وشمال أثناء السقوط
+    const sway1 = (Math.random() * 40 - 20) + 'px'; 
+    const sway2 = (Math.random() * 80 - 40) + 'px'; 
+    
+    // تمرير القيم العشوائية لملف الـ CSS
+    heart.style.setProperty('--sway-1', sway1);
+    heart.style.setProperty('--sway-2', sway2);
+    heart.style.setProperty('--opacity', opacity);
 
-document
-.querySelectorAll(".memory-item")
-.forEach(item=>{
+    document.body.appendChild(heart);
 
-item.addEventListener("click",()=>{
-
-const id=item.dataset.memory;
-
-viewerImage.src=
-memories[id].image;
-
-viewerTitle.innerText=
-memories[id].title;
-
-viewerText.innerText=
-memories[id].text;
-
-overlay.style.display=
-"block";
-
-viewer.style.display=
-"block";
-
-let oldBtn =
-document.getElementById(
-"chapter2Btn"
-);
-
-if(oldBtn){
-
-oldBtn.remove();
-
+    // حذف عنصر القلب بعد انتهائه تماماً حتى لا يثقل المتصفح
+    setTimeout(() => {
+        heart.remove();
+    }, duration * 1000);
 }
 
-if(id==="5"){
-
-const btn =
-document.createElement("a");
-
-btn.href =
-"page2.html";
-
-btn.id =
-"chapter2Btn";
-
-btn.className =
-"chapter2-btn";
-
-btn.innerText =
-"✨ افتحي الفصل الثاني ✨";
-
-viewer.appendChild(btn);
-
-}
-
-});
-
-});
-
-closeViewer.addEventListener("click",()=>{
-
-viewer.style.display=
-"none";
-
-overlay.style.display=
-"none";
-
-});
-
-overlay.addEventListener("click",()=>{
-
-viewer.style.display=
-"none";
-
-overlay.style.display=
-"none";
-
-});
+// جعل المطر يهبط بهدوء مريح (قلب جديد كل 500 مللي ثانية)
+setInterval(createHeart, 500);
