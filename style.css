@@ -1,4 +1,3 @@
-/* تصحيح هوامش الصفحة بالكامل */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,155 +7,156 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-    overflow: hidden; /* يمنع السكرول في شاشة الباسورد لضبط الوهم البصري */
-    color: #4a0e2e;
+    overflow: hidden; /* لمنع السكرول في شاشة الدخول */
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* خلفية أمواج الألوان المتحركة المذهلة */
-    background: linear-gradient(-45deg, #ff9a9e, #fecfef, #feada6, #f5f7fa);
+    /* خلفية بألوان رومانسية عميقة ومتحركة */
+    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #fecfef, #ff9a9e);
     background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
+    animation: gradientBG 10s ease infinite;
+    position: relative;
 }
 
-/* أنيميشن حركة الخلفية السحرية */
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* شاشة إدخال الباسورد في منتصف الشاشة بالظبط */
-.login-container {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(15px); /* تأثير الزجاج المصقول */
-    -webkit-backdrop-filter: blur(15px);
-    padding: 50px 40px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 
-                inset 0 5px 20px rgba(255, 255, 255, 0.3);
-    width: 90%;
-    max-width: 450px;
-    z-index: 100;
-    position: relative;
-    /* أنيميشن الطفو في الهواء */
-    animation: floatCard 4s ease-in-out infinite;
-    transition: opacity 0.8s ease, transform 0.8s ease;
+/* تأثير الإضاءة السحرية (البوكيه) في الخلفية */
+.bokeh {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    filter: blur(50px);
+    animation: moveBokeh 15s infinite alternate ease-in-out;
+    z-index: 0;
+}
+.bokeh:nth-child(1) { top: -50px; left: -50px; background: rgba(255, 255, 255, 0.4); }
+.bokeh:nth-child(2) { bottom: -50px; right: -50px; background: rgba(255, 182, 193, 0.5); animation-duration: 20s; }
+.bokeh:nth-child(3) { top: 40%; left: 60%; background: rgba(255, 105, 180, 0.3); animation-duration: 12s; }
+
+@keyframes moveBokeh {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(80px, 80px) scale(1.5); }
 }
 
-/* أنيميشن طفو البوكس */
+/* البوكس الزجاجي الفخم */
+.login-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 50px 40px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    width: 90%;
+    max-width: 420px;
+    z-index: 10;
+    position: relative;
+    animation: floatCard 5s ease-in-out infinite;
+    transition: all 0.8s ease;
+}
+
 @keyframes floatCard {
-    0% { transform: translateY(0px); }
+    0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
 }
 
 .login-container h2 {
-    font-size: 2.2em;
+    font-size: 2.5em;
     margin-bottom: 10px;
-    color: #5c0632;
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
-
 .login-container p {
     font-size: 1.1em;
-    color: #632043;
+    color: #fff;
     margin-bottom: 30px;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
-/* خانة الباسورد الأنيقة */
 .login-container input {
     width: 100%;
     padding: 15px 25px;
     font-size: 1.3em;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 50px;
     outline: none;
     text-align: center;
-    background: rgba(255, 255, 255, 0.6);
-    color: #4a0e2e;
-    letter-spacing: 3px; /* يخلي شكل النقط بتاعة الباسورد شيك */
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    letter-spacing: 5px;
     transition: all 0.3s ease;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
     margin-bottom: 25px;
 }
-
-/* تأثير التوهج عند الضغط على الخانة */
+.login-container input::placeholder { color: rgba(255,255,255,0.7); letter-spacing: 2px; }
 .login-container input:focus {
-    border-color: #ff6b8b;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 20px rgba(255, 107, 139, 0.4);
+    background: rgba(255, 255, 255, 0.5);
+    border-color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
-/* زرار الدخول المتوهج */
 .login-container button {
     width: 100%;
     padding: 15px;
     font-size: 1.3em;
-    background: linear-gradient(45deg, #ff6b8b, #ff4757);
-    color: white;
+    background: #fff;
+    color: #ff758c;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
-    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.4);
     transition: all 0.3s ease;
 }
-
 .login-container button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(255, 71, 87, 0.6);
-    letter-spacing: 1px;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.6);
 }
 
-/* رسالة الخطأ بهزة خفيفة */
 .error {
-    color: #d63031;
+    color: #ffe6e6;
     font-weight: bold;
     display: none;
     margin-top: 15px;
-    font-size: 1em;
+    text-shadow: 0 2px 5px rgba(255,0,0,0.5);
+}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
 }
 
-/* ستايل مطر القلوب الرومانسي المريح للعين */
-.heart {
+/* شكل وحركة مطر القلوب */
+.heart-rain {
     position: fixed;
     top: -10vh;
-    z-index: 1;
+    z-index: 5;
     pointer-events: none;
-    animation: romanticRain linear forwards;
+    animation: rainFall linear forwards;
+}
+@keyframes rainFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
-@keyframes romanticRain {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: var(--opacity);
-    }
-    50% {
-        transform: translateY(50vh) translateX(var(--sway-1)) rotate(180deg);
-    }
-    90% {
-        opacity: var(--opacity);
-    }
-    100% {
-        transform: translateY(110vh) translateX(var(--sway-2)) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* صندوق المحتوى الرئيسي (مخفي في البداية) */
+/* إعدادات المحتوى الداخلي بعد الدخول */
 #main-content {
     width: 100%;
     min-height: 100vh;
     padding: 20px;
     overflow-y: auto;
+    z-index: 20;
+    position: relative;
 }
-
 .container {
     max-width: 800px;
     margin: 50px auto;
@@ -166,8 +166,6 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
-
-/* تأثير صور البولارويد المائلة والزوم */
 .gallery {
     display: flex;
     justify-content: center;
@@ -175,7 +173,6 @@ body {
     gap: 25px;
     margin-top: 40px;
 }
-
 .love-photo {
     width: 220px;
     height: 220px;
@@ -183,17 +180,8 @@ body {
     border: 6px solid white;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.4s ease;
 }
 .love-photo:nth-child(odd) { transform: rotate(-4deg); }
 .love-photo:nth-child(even) { transform: rotate(4deg); }
-
-.love-photo:hover {
-    transform: scale(1.08) rotate(0deg);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-10px); }
-    40%, 80% { transform: translateX(10px); }
-}
+.love-photo:hover { transform: scale(1.08) rotate(0deg); }
