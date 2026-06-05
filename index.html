@@ -1,135 +1,39 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>شهودتي ❤️</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصتنا الحلوة 💖</title>
+    <!-- الربط المباشر لأن الملف في نفس المجلد -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="background-glow"></div>
+    <!-- شاشة إدخال الباسورد -->
+    <div id="login-screen" class="login-container">
+        <h2>الباب السري 🔒</h2>
+        <p>أدخل كلمة السر عشان تشوف المفاجأة ✨</p>
+        <input type="password" id="password-input" placeholder="كلمة السر...">
+        <button onclick="checkPassword()">دخول</button>
+        <p id="error-message" class="error">الباسورد غلط، حاول تاني! 🥺</p>
+    </div>
 
-<section id="welcomeScreen">
+    <!-- المحتوى الرئيسي (هيكون مخفي لحد ما تكتب الباسورد) -->
+    <div id="main-content" style="display: none;">
+        <div class="container">
+            <h1>أجمل قصة حب 🥰</h1>
+            <p>المكان ده معمول مخصوص عشان يجمع أحلى اللحظات والذكريات. ✨<br>كل يوم بيعدي هو حكاية جديدة بنكتبها سوا.</p>
+            
+            <!-- الصور هنا مربوطة مباشرة بأسماء ملفاتك وامتداداتها المكتوبة في الصورة -->
+            <div class="gallery">
+                <img src="1.jpg" alt="صورتنا سوا" class="love-photo">
+                <img src="2.png" alt="ذكرى حلوة" class="love-photo">
+                <img src="3.jpeg" alt="لحظة مميزة" class="love-photo">
+            </div>
+        </div>
+    </div>
 
-<div class="hero-box">
-
-<h1>
-شهودتي ❤️
-</h1>
-
-<p>
-مجموعة من أجمل الذكريات
-</p>
-
-<button id="startBtn">
-ابدئي الرحلة
-</button>
-
-</div>
-
-</section>
-
-<section id="memoryRoom">
-
-<h2>
-غرفة الذكريات
-</h2>
-
-<p class="subtitle">
-اضغطي على أي ذكرى لفتحها ❤️
-</p>
-
-<div class="memory-grid">
-
-<div class="memory-item" data-memory="1">
-
-<div class="memory-icon camera"></div>
-
-<span>
-أول ذكرى
-</span>
-
-</div>
-
-<div class="memory-item" data-memory="2">
-
-<div class="memory-icon gift"></div>
-
-<span>
-أجمل هدية
-</span>
-
-</div>
-
-<div class="memory-item" data-memory="3">
-
-<div class="memory-icon frame"></div>
-
-<span>
-صورة لا تُنسى
-</span>
-
-</div>
-
-<div class="memory-item" data-memory="4">
-
-<div class="memory-icon heart"></div>
-
-<span>
-أسعد لحظة
-</span>
-
-</div>
-
-<div class="memory-item" data-memory="5">
-
-<div class="memory-icon album"></div>
-
-<span>
-إلى الأبد
-</span>
-
-</div>
-
-</div>
-
-<div id="overlay"></div>
-
-<div id="viewer">
-
-<button id="closeViewer">
-✕
-</button>
-
-<img id="viewerImage" src="">
-
-<h3 id="viewerTitle"></h3>
-
-<p id="viewerText"></p>
-
-</div>
-
-</section>
-
-<script src="script.js"></script>
-
+    <!-- ربط الجافاسكريبت المباشر -->
+    <script src="script.js"></script>
 </body>
-
 </html>
-<a href="page2.html" class="next-page-btn">
-
-اكتشفي المفاجأة التالية ✨
-
-</a>
