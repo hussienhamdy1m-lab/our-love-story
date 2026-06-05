@@ -1,69 +1,163 @@
+// --- إعدادات اللعبة الرومانسية والأمان ---
+const CORRECT_PASSWORD = 'love'; // تقدر تغير الباسورد من هنا
+
+// 1. دالة التحقق من الباسورد (مع تأثير السينما)
 function checkPassword() {
-    const pass = document.getElementById('password-input').value;
+    const passInput = document.getElementById('password-input');
     const errorMessage = document.getElementById('error-message');
     const loginScreen = document.getElementById('login-screen');
     
-    // كلمة السر الافتراضية هنا هي 'love' (تقدر تعدلها لأي كلمة تانية)
-    if (pass === 'love') {
-        // أنيميشن الاختفاء السينمائي للبوكس الزجاجي
+    if (passInput.value === CORRECT_PASSWORD) {
+        // أنيميشن الاختفاء السينمائي (يصغر ويلف ويختفي)
         loginScreen.style.opacity = '0';
-        loginScreen.style.transform = 'scale(0.8) translateY(-30px)';
+        loginScreen.style.transform = 'scale(0.8) translateY(-50px) rotate(-5deg)';
         
         setTimeout(() => {
             loginScreen.style.display = 'none';
-            // إظهار المحتوى الرئيسي
             const mainContent = document.getElementById('main-content');
             mainContent.style.display = 'block';
-            // السماح بالسكرول بعد الدخول لرؤية الصور والذكريات
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'auto'; // تشغيل السكرول للصور
         }, 800);
-        
     } else {
-        // إظهار رسالة الخطأ ومسح الخانة لإعادة المحاولة
+        // تأثير الهزة لو الباسورد غلط
         errorMessage.style.display = 'block';
-        document.getElementById('password-input').value = '';
+        passInput.style.animation = 'none';
+        setTimeout(() => {
+            passInput.style.animation = 'shake 0.4s ease';
+        }, 10);
+        passInput.value = '';
     }
 }
 
-/* دالة إنشاء مطر القلوب الانسيابي والرومانسي */
-function createHeart() {
+// تشغيل الدخول بمجرد الضغط على زرار Enter في الكيبورد
+document.getElementById('password-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        checkPassword();
+    }
+});
+
+
+// 2. نظام مطر القلوب الاحترافي (High-Performance Engine)
+const heartsArray = [];
+const emojis = ['❤️', '💖', '✨', '🌸', '💕', '🥰', '🌹'];
+
+function createRainHeart() {
+    // نحدد حد أقصى للقلوب على الشاشة عشان الأداء يفضل سريع جداً
+    if (heartsArray.length > 40) return;
+
     const heart = document.createElement('div');
-    heart.classList.add('heart');
-    
-    // تشكيلة إيموجيز مريحة للعين ومتناسقة
-    const emojis = ['❤️', '💖', '✨', '🌸', '💕', '🥰', '🌹'];
+    heart.className = 'heart';
     heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
     
-    // مكان الظهور العشوائي أفقياً
-    heart.style.left = Math.random() * 100 + 'vw';
+    // إعدادات عشوائية انسيابية
+    const size = Math.random() * 1.2 + 0.6;
+    const speed = Math.random() * 2 + 1.5; // سرعة الهبوط
     
-    // أحجام عشوائية هادئة (تأثير ثلاثي الأبعاد)
-    const size = Math.random() * 1.2 + 0.6; 
-    heart.style.fontSize = `${size}rem`;
+    heart.style.cssText = `
+        position: fixed;
+        top: -50px;
+        left: ${Math.random() * 100}vw;
+        font-size: ${size}rem;
+        opacity: ${Math.random() * 0.5 + 0.3};
+        pointer-events: none;
+        z-index: 1;
+    `;
     
-    // شفافية عشوائية لعمل عمق في الخلفية
-    const opacity = Math.random() * 0.5 + 0.3; 
-    
-    // سرعة هادئة وانسيابية (بين 4 لـ 7 ثواني للنزول)
-    const duration = Math.random() * 3 + 4;
-    heart.style.animationDuration = `${duration}s`;
-    
-    // زوايا وقيم التمايل يمين وشمال أثناء السقوط
-    const sway1 = (Math.random() * 40 - 20) + 'px'; 
-    const sway2 = (Math.random() * 80 - 40) + 'px'; 
-    
-    // تمرير القيم العشوائية لملف الـ CSS
-    heart.style.setProperty('--sway-1', sway1);
-    heart.style.setProperty('--sway-2', sway2);
-    heart.style.setProperty('--opacity', opacity);
-
     document.body.appendChild(heart);
-
-    // حذف عنصر القلب بعد انتهائه تماماً حتى لا يثقل المتصفح
-    setTimeout(() => {
-        heart.remove();
-    }, duration * 1000);
+    
+    // نحدد خواص الحركة المخصصة للقلب ده
+    heartsArray.push({
+        element: heart,
+        y: -50,
+        x: parseFloat(heart.style.left),
+        speed: speed,
+        swaySpeed: Math.random() * 0.02 + 0.01,
+        swayAmplitude: Math.random() * 30 + 10,
+        angle: Math.random() * 100
+    });
 }
 
-// جعل المطر يهبط بهدوء مريح (قلب جديد كل 500 مللي ثانية)
-setInterval(createHeart, 500);
+// 3. تأثير تتبع الماوس السحري (Mouse Trail)
+window.addEventListener('mousemove', function(e) {
+    // بنعمل قلب صغير كل ما الماوس يتحرك مسافة معينة
+    if (Math.random() > 0.15) return; 
+    
+    const magicHeart = document.createElement('div');
+    magicHeart.innerText = '✨';
+    magicHeart.style.cssText = `
+        position: fixed;
+        left: ${e.clientX}px;
+        top: ${e.clientY}px;
+        font-size: ${Math.random() * 0.8 + 0.5}rem;
+        pointer-events: none;
+        z-index: 200;
+        transition: all 1s ease;
+        transform: translate(-50%, -50%);
+    `;
+    document.body.appendChild(magicHeart);
+    
+    // تأثير الانفجار والاختفاء الصغير للماوس
+    setTimeout(() => {
+        magicHeart.style.transform = `translate(-50%, -100%) scale(0)`;
+        magicHeart.style.opacity = '0';
+    }, 50);
+    
+    setTimeout(() => { magicHeart.remove(); }, 1000);
+});
+
+// لدعم شاشات اللمس والموبايل في تأثير الماوس
+window.addEventListener('touchmove', function(e) {
+    const touch = e.touches[0];
+    const magicHeart = document.createElement('div');
+    magicHeart.innerText = '💖';
+    magicHeart.style.cssText = `
+        position: fixed;
+        left: ${touch.clientX}px;
+        top: ${touch.clientY}px;
+        font-size: 0.8rem;
+        pointer-events: none;
+        z-index: 200;
+        transition: all 0.8s ease;
+    `;
+    document.body.appendChild(magicHeart);
+    setTimeout(() => {
+        magicHeart.style.transform = 'translateY(-30px) scale(0)';
+        magicHeart.style.opacity = '0';
+    }, 50);
+    setTimeout(() => { magicHeart.remove(); }, 800);
+});
+
+
+// 4. محرك الأنيميشن الأساسي (الانسيابية المطلقة)
+function updateAnimation() {
+    // توليد قلب هبوط جديد بنسبة تحكم هادية
+    if (Math.random() < 0.04) {
+        createRainHeart();
+    }
+    
+    // تحديث حركة كل قلب في المطر
+    for (let i = heartsArray.length - 1; i >= 0; i--) {
+        const h = heartsArray[i];
+        h.y += h.speed; // حركة النزول لأسفل
+        h.angle += h.swaySpeed; // زاوية التمايل
+        
+        // التمايل يمين وشمال بالمعادلة الرياضية الهادية
+        const currentX = h.x + Math.sin(h.angle) * h.swayAmplitude / window.innerWidth * 100;
+        
+        h.element.style.top = h.y + 'px';
+        h.element.style.left = currentX + 'vw';
+        h.element.style.transform = `rotate(${h.y * 0.2}deg)`; // يلف بالراحة وهو نازل
+        
+        // لو القلب وصل لآخر الشاشة، نمسحه فوراً
+        if (h.y > window.innerHeight) {
+            h.element.remove();
+            heartsArray.splice(i, 1);
+        }
+    }
+    
+    // استدعاء الفريم القادم بنعومة بدون تقطيع
+    requestAnimationFrame(updateAnimation);
+}
+
+// تشغيل محرك الأنيميشن فوراً عند فتح الصفحة
+requestAnimationFrame(updateAnimation);
