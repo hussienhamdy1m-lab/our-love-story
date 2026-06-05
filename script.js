@@ -28,7 +28,7 @@ document.getElementById('password-input').addEventListener('keypress', function(
 });
 
 
-// 2. قاعدة بيانات الذكريات (الخمس صور بتوعك والكلام بتاعهم)
+// 2. قاعدة بيانات الذكريات (غير الكلام ده براحتك لقصتكم الحقيقية)
 const memoriesData = {
     envelope: {
         title: "الجواب الرومانسي ✉️",
@@ -67,7 +67,6 @@ function openMemory(type) {
     document.getElementById('memory-text').innerText = memory.text;
     document.getElementById('memory-img').src = memory.img;
 
-    const overlay = document.getElementById('memory-overlay');
     const modalOverlay = document.getElementById('memory-modal');
     const card = document.getElementById('modal-card');
 
@@ -80,14 +79,13 @@ function openMemory(type) {
 
     // تفعيل البوب اب والأنيميشن
     modalOverlay.classList.add('active');
-    card.className = 'modal-content'; // ريست للأنيميشن القديم
+    card.className = 'modal-content'; 
     
-    // استدعاء أنيميشن مخصص بناءً على النوع
     setTimeout(() => {
         card.classList.add(`${type}-anim`);
     }, 50);
 
-    // تفجير قلوب مكثف احتفالاً بالضغط
+    // تفجير قلوب مكثف وقت الضغط
     for(let i=0; i<10; i++) {
         setTimeout(createHeartRain, i * 80);
     }
@@ -99,7 +97,7 @@ function closeMemory() {
     const card = document.getElementById('modal-card');
     
     modalOverlay.classList.remove('active');
-    card.className = 'modal-content'; // إلغاء الأنيميشن
+    card.className = 'modal-content'; 
 }
 
 
