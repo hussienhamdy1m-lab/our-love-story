@@ -3,95 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قصتنا الحلوة 💖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>موقع ذكرياتنا السحري</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- مشغل الأغنية المخفي -->
+    <!-- الموسيقى الأساسية للموقع كله -->
     <audio id="bg-music" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- طبقة تأثير المطر (القلوب والنجوم) -->
     <div id="rain-layer"></div>
+    <div id="golden-glow"></div>
 
-    <div class="bokeh"></div>
-    <div class="bokeh"></div>
-    <div class="bokeh"></div>
-    <div id="flash-effect"></div>
-
-    <div id="shutter-top" class="shutter shutter-top"></div>
-    <div id="shutter-bottom" class="shutter shutter-bottom"></div>
-    <div id="ocean-wave" class="ocean-wave"></div>
-    <div id="golden-glow" class="golden-glow"></div> 
-
-    <!-- شاشة الترحيب السينمائية الحرة -->
-    <div id="welcome-screen" class="welcome-fade-scene">
-        <h1 class="ruqaa-text-huge">أَنَا بَحِبِّك يَا شَهْد ❤️</h1>
-        <div class="welcome-line-delayed"></div>
-        <p class="welcome-subtext-delayed">لازم تقولي "وأنا كمان بحبك يا حسين" عشان تخشي تشوفي المفاجأة 😉</p>
-        <button class="welcome-btn-delayed" onclick="showPasswordBox()">قولتها، يلا ندخل ✨</button>
+    <!-- مشهد الترحيب الأول (قفل كلمة السر) -->
+    <div id="welcome-screen" class="glass-panel">
+        <h1 class="main-title">مرحباً بكِ في عالمنا الخاص</h1>
+        <p class="sub-title">هذا المكان يحمل سراً لا يعرفه غيرنا..</p>
+        <button class="magic-btn" onclick="showPasswordBox()">اضغطي للدخول</button>
     </div>
 
-    <!-- شاشة الباسورد -->
-    <div id="login-screen" class="login-container" style="display: none; opacity: 0;">
-        <h2>الباب السري 🔒</h2>
-        <p>أدخل كلمة السر يا قمري ✨</p>
-        <input type="password" id="password-input" placeholder="••••••••">
-        <button onclick="checkPassword()">فتح الحكاية 💖</button>
-        <p id="error-message" class="error">الباسورد غلط، حاولي تاني يا شهد! 🥺</p>
+    <!-- 👑 صندوق كتابة كلمة السر (تم ضبط الـ IDs والزرار هنا بالملّي) 👑 -->
+    <div id="login-screen" class="glass-panel" style="display: none; opacity: 0;">
+        <h2 class="password-title">أدخلي كلمة السر السرية</h2>
+        
+        <!-- الخانة اللي شهد هتكتب فيها الجملة وبنفس الـ ID المظبوط للـ JS -->
+        <input type="text" id="password-input" placeholder="اكتبي الجملة هنا..." autocomplete="off">
+        
+        <!-- الزرار مربوط بدالة الفحص بالملّي -->
+        <button class="magic-btn" onclick="checkPassword()">قولتها، يلا ندخل ✨</button>
+        
+        <p id="error-message" style="display: none; color: #ff4a4a; margin-top: 15px; font-weight: bold;">الجملة خاطئة! حاولي مرة أخرى يا شهد ❤️</p>
     </div>
 
-    <!-- المحتوى الرئيسي -->
+    <!-- المحتوى الرئيسي للموقع بعد فتح كلمة السر -->
     <div id="main-content" style="display: none;">
-        <h1 class="main-title">عالم ذكرياتنا السحري ✨</h1>
-        <p class="main-subtitle">اضغطي على أي عنصر عشان تفتحي ذكرى مخفية...</p>
+        <header class="site-header">
+            <h1 class="site-title">متحف ذكرياتنا الجميلة</h1>
+            <p class="site-subtitle">اضغطي على أي عنصر لتفتحي صندوق الذكريات</p>
+        </header>
 
-        <div class="items-grid">
-            <div class="magic-item" onclick="openMemory('envelope', event)">
-                <div class="item-icon"><img src="envelope.png" alt="جواب"></div>
-                <div class="item-label">الجواب الرومانسي</div>
+        <!-- العناصر التفاعلية السحرية في الصفحة الأولى -->
+        <div class="interactive-container">
+            <div class="memory-item" onclick="openMemory('envelope', event)">
+                <img src="envelope.png" alt="الجواب">
+                <span>الجواب الرومانسي</span>
             </div>
-            <div class="magic-item" onclick="openMemory('camera', event)">
-                <div class="item-icon"><img src="camera.png" alt="كاميرا"></div>
-                <div class="item-label">الكاميرا العتيقة</div>
+            <div class="memory-item" onclick="openMemory('camera', event)">
+                <img src="camera.png" alt="الكاميرا">
+                <span>لقطة الكاميرا</span>
             </div>
-            <div class="magic-item" onclick="openMemory('book', event)">
-                <div class="item-icon"><img src="book.png" alt="كتاب"></div>
-                <div class="item-label">كتاب الحكايات</div>
+            
+            <!-- زرار الانتقال لصفحة السينما التانية -->
+            <div class="memory-item highlight-item" onclick="goToCinemaPage()">
+                <img src="projector.png" alt="السينما">
+                <span style="color: #ffde6a; font-weight: 900;">سينما حكاياتنا 🎬</span>
             </div>
-            <div class="magic-item" onclick="openMemory('bottle', event)">
-                <div class="item-icon"><img src="bottle.png" alt="زجاجة"></div>
-                <div class="item-label">رسالة في زجاجة</div>
-            </div>
-            <div class="magic-item" onclick="openMemory('projector', event)">
-                <div class="item-icon"><img src="projector.png" alt="بروجيكتور"></div>
-                <div class="item-label">الضوء السحري</div> 
-            </div>
-        </div>
-
-        <div class="book-redirect-box">
-            <button class="goto-book-btn" onclick="window.location.href='page2.html'">
-                افتحي كتاب حكاياتنا السري 📖✨
-            </button>
-        </div>
-
-        <div id="memory-modal" class="modal-overlay">
-            <div class="modal-content" id="modal-card">
-                <span class="close-btn" onclick="closeMemory()">&times;</span>
-                <div class="modal-body">
-                    <div class="modal-image-side">
-                        <img id="memory-img" src="" alt="الذكرى">
-                    </div>
-                    <div class="modal-text-side">
-                        <h2 id="memory-title"></h2>
-                        <p id="memory-text"></p>
-                    </div>
-                </div>
+            
+            <div class="memory-item" onclick="openMemory('bottle', event)">
+                <img src="bottle.png" alt="الزجاجة">
+                <span>رسالة في زجاجة</span>
             </div>
         </div>
     </div>
+
+    <!-- نافذة عرض الذكرى (البوب أب النظيف المريح للعين) -->
+    <div id="memory-modal" class="modal-overlay" onclick="closeMemory()">
+        <div id="modal-card" class="modal-card" onclick="event.stopPropagation()">
+            <button class="close-modal-btn" onclick="closeMemory()">×</button>
+            <h2 id="memory-title" class="modal-title"></h2>
+            <div class="modal-body">
+                <img id="memory-img" src="" alt="الذكرى" class="modal-image">
+                <p id="memory-text" class="modal-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- تأثير شاتر الكاميرا -->
+    <div id="shutter-top" class="shutter"></div>
+    <div id="shutter-bottom" class="shutter"></div>
+    <div id="flash-effect"></div>
 
     <script src="script.js"></script>
 </body>
