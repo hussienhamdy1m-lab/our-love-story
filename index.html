@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<audio id="bg-music" loop>
+
+    <!-- مشغل الأغنية المخفي -->
+    <audio id="bg-music" loop>
         <source src="song.mp3" type="audio/mpeg">
     </audio>
+
     <div id="rain-layer"></div>
 
     <div class="bokeh"></div>
@@ -23,6 +26,7 @@
     <div id="ocean-wave" class="ocean-wave"></div>
     <div id="golden-glow" class="golden-glow"></div> 
 
+    <!-- شاشة الترحيب السينمائية الحرة -->
     <div id="welcome-screen" class="welcome-fade-scene">
         <h1 class="ruqaa-text-huge">أَنَا بَحِبِّك يَا شَهْد ❤️</h1>
         <div class="welcome-line-delayed"></div>
@@ -30,6 +34,7 @@
         <button class="welcome-btn-delayed" onclick="showPasswordBox()">قولتها، يلا ندخل ✨</button>
     </div>
 
+    <!-- شاشة الباسورد -->
     <div id="login-screen" class="login-container" style="display: none; opacity: 0;">
         <h2>الباب السري 🔒</h2>
         <p>أدخل كلمة السر يا قمري ✨</p>
@@ -38,6 +43,7 @@
         <p id="error-message" class="error">الباسورد غلط، حاولي تاني يا شهد! 🥺</p>
     </div>
 
+    <!-- المحتوى الرئيسي -->
     <div id="main-content" style="display: none;">
         <h1 class="main-title">عالم ذكرياتنا السحري ✨</h1>
         <p class="main-subtitle">اضغطي على أي عنصر عشان تفتحي ذكرى مخفية...</p>
