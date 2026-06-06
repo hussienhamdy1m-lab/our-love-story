@@ -1,4 +1,4 @@
-const CORRECT_PASSWORD = 'love'; 
+const CORRECT_PASSWORD = 'انا بحبك يا شهد'; 
 
 // 1. إظهار بوكس الباسورد بعد شاشة الترحيب وتشغيل الأغنية
 function showPasswordBox() {
