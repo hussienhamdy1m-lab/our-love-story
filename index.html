@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <!-- طبقة مخصصة لمطر القلوب عشان متأثرش على مكان البوكس -->
+    <!-- طبقة مخصصة لمطر القلوب -->
     <div id="rain-layer"></div>
 
     <!-- تأثيرات الخلفية -->
@@ -19,13 +19,13 @@
     <div class="bokeh"></div>
     <div id="flash-effect"></div>
 
-    <!-- طبقات الأنيميشن الجديدة -->
+    <!-- طبقات الأنيميشن -->
     <div id="shutter-top" class="shutter shutter-top"></div>
     <div id="shutter-bottom" class="shutter shutter-bottom"></div>
     <div id="ocean-wave" class="ocean-wave"></div>
-    <div id="golden-glow" class="golden-glow"></div> <!-- الإيفكت الجديد للبروجيكتور -->
+    <div id="golden-glow" class="golden-glow"></div> 
 
-    <!-- 1. شاشة الترحيب الرومانسية (أول حاجة بتظهر) -->
+    <!-- 1. شاشة الترحيب الرومانسية (أول حاجة بتظهر ونضيفة جداً) -->
     <div id="welcome-screen" class="welcome-container">
         <h1 class="ruqaa-text">أَنَا بَحِبِّك يَا شَهْد ❤️</h1>
         <div class="welcome-line"></div>
@@ -34,7 +34,7 @@
     </div>
 
     <!-- 2. شاشة الباسورد (مخفية في البداية) -->
-    <div id="login-screen" class="login-container" style="display: none;">
+    <div id="login-screen" class="login-container" style="display: none; opacity: 0;">
         <h2>الباب السري 🔒</h2>
         <p>أدخل كلمة السر يا قمري ✨</p>
         <input type="password" id="password-input" placeholder="••••••••">
@@ -42,11 +42,12 @@
         <p id="error-message" class="error">الباسورد غلط، حاولي تاني يا شهد! 🥺</p>
     </div>
 
-    <!-- 3. المحتوى الرئيسي -->
+    <!-- 3. المحتوى الرئيسي (مخفي وهيفتح بالباسورد) -->
     <div id="main-content" style="display: none;">
         <h1 class="main-title">عالم ذكرياتنا السحري ✨</h1>
         <p class="main-subtitle">اضغطي على أي عنصر عشان تفتحي ذكرى مخفية...</p>
 
+        <!-- شبكة العناصر التفاعلية تحت بعض زجزاج -->
         <div class="items-grid">
             <div class="magic-item" onclick="openMemory('envelope', event)">
                 <div class="item-icon"><img src="envelope.png" alt="جواب"></div>
@@ -66,11 +67,18 @@
             </div>
             <div class="magic-item" onclick="openMemory('projector', event)">
                 <div class="item-icon"><img src="projector.png" alt="بروجيكتور"></div>
-                <div class="item-label">الضوء السحري</div> <!-- اتغيرت للضوء السحري -->
+                <div class="item-label">الضوء السحري</div> 
             </div>
         </div>
 
-        <!-- الصندوق الزجاجي للذكريات -->
+        <!-- الـجـزرار الـسـحـري مـكـانـه الـصـح هـنـا (تحت البروجيكتور علطول) -->
+        <div class="book-redirect-box">
+            <button class="goto-book-btn" onclick="window.location.href='page2.html'">
+                افتحي كتاب حكاياتنا السري 📖✨
+            </button>
+        </div>
+
+        <!-- الصندوق الزجاجي للذكريات (Modal) -->
         <div id="memory-modal" class="modal-overlay">
             <div class="modal-content" id="modal-card">
                 <span class="close-btn" onclick="closeMemory()">&times;</span>
@@ -86,11 +94,7 @@
             </div>
         </div>
     </div>
-<div style="margin: 50px auto; text-align: center; z-index: 20; position: relative;">
-    <button class="welcome-btn" onclick="window.location.href='page2.html'" style="background: linear-gradient(45deg, #6c5ce7, #a29bfe); box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4);">
-        افتحي كتاب حكاياتنا السري 📖✨
-    </button>
-</div>
+
     <script src="script.js"></script>
 </body>
 </html>
