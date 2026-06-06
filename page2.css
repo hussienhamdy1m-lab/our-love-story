@@ -40,9 +40,8 @@ body {
     max-width: 960px;
     height: 85vh;
     max-height: 720px;
-    /* سحب الصورة الفخمة كجسم للكتاب بالكامل بكل تفاصيله ومظاريفه والدبوس */
-    background: url('steptodown.com706407.jpg') center center no-repeat;
-    background-size: cubic-bezier;
+    /* السطر ده اتعدل عشان يقرأ الصورة بتاعتك بالظبط */
+    background: url('vintage_book.jpg') center center no-repeat;
     background-size: 100% 100%;
     border-radius: 4px;
     /* ظلال ناعمة خرافية تعطي الكتاب بعدًا وعمقًا ثلاثي الأبعاد على الشاشة */
