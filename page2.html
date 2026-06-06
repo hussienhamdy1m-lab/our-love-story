@@ -3,73 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كتاب حكاياتنا السحرية 📖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>كتاب حكاياتنا العتيق 📖✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
 
-    <!-- موسيقى الكتاب -->
+    <!-- موسيقى الخلفية الهادية الخاصة بالكتاب -->
     <audio id="book-music" autoplay loop>
-        <source src="song.mp3" type="audio/mpeg">
+        <source src="song2.mp3" type="audio/mpeg">
     </audio>
 
-    <button class="back-home-btn" onclick="window.location.href='index.html'">⬅️ العودة</button>
+    <!-- زرار العودة الشيك للرئيسية -->
+    <button class="back-home-btn" onclick="window.location.href='index.html'">⬅️ العودة للرئيسية</button>
 
-    <div class="book-scene">
-        <div id="book" class="book">
-            
-            <div class="leaf">
-                <div class="page front cover" onclick="flipNext(this)">
-                    <div class="cover-design">
-                        <h1 class="ruqaa-title">كِتَابُ<br>مُغَامَرَاتِنَا ✨</h1>
-                        <p class="cover-subtitle">اضغطي للفتح 📜</p>
-                    </div>
-                </div>
-                <div class="page back paper" onclick="flipPrev(this)">
-                    <div class="page-content">
-                        <h2 class="ruqaa-title">إهداء...</h2>
-                        <p>إلى من جعلت أيامي حكاية تستحق أن تُروى ❤️</p>
-                    </div>
+    <!-- حاوية الحكايات التفاعلية فوق الكتاب -->
+    <div class="book-container" onclick="nextStory()">
+        
+        <!-- الحكاية الأولى -->
+        <div class="story-page active">
+            <!-- النص اليمين (فيه الصورة محطوطة كأنها كارت بريدي) -->
+            <div class="book-side right-side">
+                <div class="photo-card-wrapper">
+                    <img src="1.jpg" alt="ذكرياتنا" class="vintage-photo">
                 </div>
             </div>
-
-            <div class="leaf">
-                <div class="page front paper" onclick="flipNext(this)">
-                    <div class="page-content">
-                        <img src="1.jpg" alt="رسمة 1" class="sketch-img">
-                        <h2>الفصل الأول: البداية 🌸</h2>
-                        <p>هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي.</p>
-                        <span class="page-number">1</span>
-                    </div>
-                </div>
-                <div class="page back paper" onclick="flipPrev(this)">
-                    <div class="page-content">
-                        <img src="2.png" alt="رسمة 2" class="sketch-img">
-                        <h2>الفصل الثاني: الضحكة 🥰</h2>
-                        <p>كل تفصيلة معاكي بتخليني متأكد إنك أجمل حكاية بكتبها في عمري كله.</p>
-                        <span class="page-number">2</span>
-                    </div>
+            <!-- النص الشمال (فيه الكلام) -->
+            <div class="book-side left-side">
+                <div class="story-text-content">
+                    <h2 class="ruqaa-heading">الفصل الأول: البداية 🌸</h2>
+                    <p class="story-p">هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي كأن الكون كله بيحتفل بوجودك معايا.</p>
+                    <span class="hint-click">اضغطي لقراءة الصفحة التالية 📜</span>
                 </div>
             </div>
-
-            <div class="leaf">
-                <div class="page front paper" onclick="flipNext(this)">
-                    <div class="page-content">
-                        <img src="3.jpeg" alt="رسمة 3" class="sketch-img">
-                        <h2>الفصل الثالث: لآخر العمر ❤️</h2>
-                        <p>وعد مني نفضل نملى صفحات الكتاب ده بذكرياتنا وضحكتنا لحد آخر يوم.</p>
-                        <span class="page-number">3</span>
-                    </div>
-                </div>
-                <div class="page back cover" onclick="flipPrev(this)">
-                    <div class="cover-design">
-                        <h3 class="ruqaa-title" style="font-size: 2em;">تَمَّتْ بِحُبٍّ 💖</h3>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+        <!-- الحكاية الثانية -->
+        <div class="story-page">
+            <div class="book-side right-side">
+                <div class="photo-card-wrapper">
+                    <img src="2.png" alt="ذكرياتنا" class="vintage-photo">
+                </div>
+            </div>
+            <div class="book-side left-side">
+                <div class="story-text-content">
+                    <h2 class="ruqaa-heading">الفصل الثاني: الضحكة الحلوة 🥰</h2>
+                    <p class="story-p">كل تفصيلة معاكي بتخليني متأكد إنك أجمل حكاية بكتبها في عمري كله، ضحكتك دي هي الأمان اللي بهرب بيه من الدنيا.</p>
+                    <span class="hint-click">اضغطي لقراءة الصفحة التالية 📜</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- الحكاية الثالثة والأخيرة -->
+        <div class="story-page">
+            <div class="book-side right-side">
+                <div class="photo-card-wrapper">
+                    <img src="3.jpeg" alt="ذكرياتنا" class="vintage-photo">
+                </div>
+            </div>
+            <div class="book-side left-side">
+                <div class="story-text-content">
+                    <h2 class="ruqaa-heading">الفصل الثالث: لآخر العمر ❤️</h2>
+                    <p class="story-p">وعد مني نفضل نملى صفحات كتابنا ده بذكرياتنا، وضحكتنا، ومغامراتنا سوا لحد آخر يوم في العمر.. بحبك يا شهدي.</p>
+                    <span class="hint-click" style="color: #a61e4d;">نهاية الحكاية الأولى (اضغطي للبدء من جديد) 🔄</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="page2.js"></script>
