@@ -1,64 +1,61 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>فيلمنا ❤️</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="page2.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كتاب حكاياتنا السحرية 📖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="page2.css">
 </head>
-
 <body>
 
-<div id="introScreen">
+    <button class="back-home-btn" onclick="window.location.href='index.html'">⬅️ العودة للرئيسية</button>
 
-<h1>
-🎬 فيلمنا ❤️
-</h1>
+    <div class="book-wrapper">
+        <div id="book" class="book" onclick="flipPage()">
+            
+            <div class="page cover">
+                <div class="cover-design">
+                    <h1 class="ruqaa-title">كِتَابُ<br>مُغَامَرَاتِنَا ✨</h1>
+                    <p class="cover-subtitle">حسين & شهد</p>
+                    <span class="click-hint">اضغطي لفتح الكتاب 📜</span>
+                </div>
+            </div>
 
-<p>
-قصة لا تشبه أي قصة
-</p>
+            <div class="page text-page">
+                <div class="page-content">
+                    <img src="1.jpg" alt="حكاية 1" class="sketch-photo">
+                    <h2>الفصل الأول: البداية 🌸</h2>
+                    <p>هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي..</p>
+                </div>
+            </div>
 
-<button id="playBtn">
-تشغيل الفيلم
-</button>
+            <div class="page text-page">
+                <div class="page-content">
+                    <img src="2.png" alt="حكاية 2" class="sketch-photo">
+                    <h2>الفصل الثاني: الضحكة الحلوة 🥰</h2>
+                    <p>كل تفصيلة معاكي بتخليني متأكد إنك أجمل حكاية بكتبها في عمري كله.</p>
+                </div>
+            </div>
 
-</div>
+            <div class="page text-page">
+                <div class="page-content">
+                    <img src="3.jpeg" alt="حكاية 3" class="sketch-photo">
+                    <h2>الفصل الثالث: لآخر العمر ❤️</h2>
+                    <p>وعد مني نفضل نملى صفحات الكتاب ده بذكرياتنا وضحكتنا لحد آخر يوم.</p>
+                </div>
+            </div>
 
-<div id="movieScreen">
+            <div class="page back-cover">
+                <div class="back-design">
+                    <h3>تَمَّتْ بِحُبٍّ 💖</h3>
+                    <p>والقادم أجمل سوا...</p>
+                </div>
+            </div>
 
-<div class="scene">
+        </div>
+    </div>
 
-<img id="movieImage" src="1.jpg">
-
-<h2 id="sceneTitle">
-البداية ❤️
-</h2>
-
-<p id="sceneText">
-كل شيء بدأ من هنا
-</p>
-
-<button id="nextScene">
-التالي →
-</button>
-
-</div>
-
-</div>
-
-<script src="page2.js"></script>
-
+    <script src="page2.js"></script>
 </body>
-
 </html>
