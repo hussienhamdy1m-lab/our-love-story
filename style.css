@@ -15,7 +15,7 @@ body {
 }
 @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-/* طبقة المطر المنفصلة عشان متأثرش على البوكس */
+/* طبقة المطر المنفصلة */
 #rain-layer {
     position: fixed;
     top: 0; left: 0;
@@ -32,7 +32,7 @@ body {
 @keyframes moveBokeh { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 50px) scale(1.3); } }
 
 /* =========================================
-   👑 شاشة الترحيب (شهد وحسين)
+   👑 شاشة الترحيب (الأنيميشن السينمائي المتدرج)
    ========================================= */
 .welcome-container {
     background: rgba(255, 255, 255, 0.25);
@@ -49,13 +49,27 @@ body {
     transition: all 0.8s ease;
 }
 
+@keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+@keyframes magicalReveal {
+    0% { opacity: 0; transform: scale(0.8) translateY(30px); filter: blur(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+@keyframes fadeUpDelay {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
 .ruqaa-text {
-    font-family: 'Aref Ruqaa', serif; /* خط الرقعة */
+    font-family: 'Aref Ruqaa', serif; 
     font-size: 3.5em;
     color: #a61e4d;
     text-shadow: 0 4px 15px rgba(255, 255, 255, 0.8);
     margin-bottom: 10px;
     font-weight: 700;
+    opacity: 0; 
+    animation: magicalReveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 .welcome-line {
@@ -63,6 +77,8 @@ body {
     height: 3px;
     background: linear-gradient(90deg, transparent, #ff4757, transparent);
     margin: 15px auto 25px auto;
+    opacity: 0;
+    animation: fadeUpDelay 0.8s ease forwards 0.8s; 
 }
 
 .welcome-subtext {
@@ -71,6 +87,8 @@ body {
     margin-bottom: 35px;
     font-weight: bold;
     line-height: 1.6;
+    opacity: 0;
+    animation: fadeUpDelay 0.8s ease forwards 1.2s; 
 }
 
 .welcome-btn {
@@ -84,8 +102,11 @@ body {
     font-weight: 900;
     box-shadow: 0 10px 25px rgba(255, 71, 87, 0.4);
     transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    animation: fadeUpDelay 0.8s ease forwards 1.8s; 
 }
 .welcome-btn:hover { transform: scale(1.08); box-shadow: 0 15px 35px rgba(255, 71, 87, 0.6); }
+
 
 /* =========================================
    🔒 شاشة الباسورد
@@ -108,7 +129,6 @@ body {
 .login-container button { width: 100%; padding: 14px; font-size: 1.2em; background: #fff; color: #ff758c; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; }
 .error { color: #ffe6e6; font-weight: bold; display: none; margin-top: 15px; }
 
-/* اهتزاز البوكس بالكامل لما الباسورد يكون غلط */
 .shake-box { animation: boxShake 0.4s ease; }
 @keyframes boxShake { 
     0%, 100% { transform: translateX(0); } 
@@ -116,11 +136,12 @@ body {
     40%, 80% { transform: translateX(15px); } 
 }
 
+
 /* =========================================
-   🌧️ مطر القلوب المبتكر
+   🌧️ مطر القلوب
    ========================================= */
 .heart-rain { 
-    position: absolute; /* لازم absolute جوه الـ layer عشان ميبوظش الطول والعرض */
+    position: absolute; 
     top: -10vh; 
     animation: fallAndSway linear forwards; 
 }
@@ -132,13 +153,17 @@ body {
     100% { transform: translateY(110vh) translateX(-30px) rotate(360deg); opacity: 0; } 
 }
 
-/* المحتوى والعناصر */
+
+/* =========================================
+   الواجهة الرئيسية (الذكريات السحرية)
+   ========================================= */
 #main-content { width: 100%; min-height: 100vh; padding: 50px 20px; display: none; z-index: 20; position: relative; overflow-y: auto; }
 .main-title { font-size: 3em; color: white; margin-bottom: 10px; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 .main-subtitle { font-size: 1.4em; color: white; margin-bottom: 50px; opacity: 0.9; }
 
-.items-grid { display: flex; flex-direction: column; align-items: center; gap: 50px; max-width: 1200px; margin: 0 auto 100px auto; }
+.items-grid { display: flex; flex-direction: column; align-items: center; gap: 50px; max-width: 1200px; margin: 0 auto 50px auto; }
 .magic-item { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.4); padding: 40px 20px; border-radius: 25px; width: 300px; cursor: pointer; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s; animation: itemFloat 5s ease-in-out infinite; }
+@keyframes itemFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 .magic-item:nth-child(even) { animation-delay: 1.5s; transform: translateX(20px); }
 .magic-item:nth-child(odd) { transform: translateX(-20px); }
 .magic-item:hover { transform: scale(1.1) translateX(0) !important; background: rgba(255, 255, 255, 0.35); box-shadow: 0 25px 50px rgba(0,0,0,0.2); z-index: 30; }
@@ -146,7 +171,10 @@ body {
 .item-icon img { width: 150px; height: 150px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.3)); transition: transform 0.4s ease; }
 .item-label { color: white; font-size: 1.5em; font-weight: bold; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
-/* إيفكتات الأنيميشن المرعبة */
+
+/* =========================================
+   🔥 تأثيرات الأنيميشن (الشتر، البحر، الإضاءة)
+   ========================================= */
 .shutter { position: fixed; left: 0; width: 100vw; height: 50vh; background: #111; z-index: 9999; transition: transform 0.4s cubic-bezier(0.8, 0, 0.2, 1); pointer-events: none; }
 .shutter-top { top: 0; transform: translateY(-100%); border-bottom: 3px solid #333; }
 .shutter-bottom { bottom: 0; transform: translateY(100%); border-top: 3px solid #333; }
@@ -157,7 +185,6 @@ body {
 .ocean-wave { position: fixed; bottom: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(to top, rgba(0, 153, 255, 0.9), rgba(0, 255, 255, 0.6)); transform: translateY(100%); z-index: 9998; pointer-events: none; transition: transform 0.8s; border-radius: 50% 50% 0 0 / 20% 20% 0 0; backdrop-filter: blur(5px); }
 .ocean-wave.rise { transform: translateY(0); border-radius: 0; }
 
-/* الإيفكت الذهبي الجديد بديل البروجيكتور */
 .golden-glow { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, rgba(255,215,0,0.6) 0%, rgba(255,140,0,0.3) 50%, transparent 100%); z-index: 9997; opacity: 0; pointer-events: none; transition: opacity 0.8s; mix-blend-mode: overlay; }
 .golden-glow.active { opacity: 1; animation: pulseGlow 1s infinite alternate; }
 @keyframes pulseGlow { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.1); opacity: 1; } }
@@ -165,7 +192,10 @@ body {
 .burst-item { position: fixed; z-index: 9999; pointer-events: none; animation: flyOut 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; }
 @keyframes flyOut { 0% { transform: translate(0,0) scale(0.5); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot)); opacity: 0; } }
 
-/* الصندوق الزجاجي للذكريات */
+
+/* =========================================
+   الصندوق الزجاجي للذكريات (Modal)
+   ========================================= */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); z-index: 10001; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
 .modal-overlay.active { opacity: 1; pointer-events: auto; }
 .modal-content { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.6); width: 90%; max-width: 800px; border-radius: 30px; padding: 40px; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.4); transform: scale(0.7) translateY(50px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -182,6 +212,40 @@ body {
 .modal-text-side h2 { font-size: 2.2em; margin-bottom: 20px; color: #ff4757; }
 .modal-text-side p { font-size: 1.3em; line-height: 1.8; font-weight: bold; }
 
+
+/* =========================================
+   📖 زرار كتاب الحكايات (في نهاية الصفحة)
+   ========================================= */
+.book-redirect-box {
+    margin: 60px auto 100px auto;
+    text-align: center;
+    z-index: 25;
+    position: relative;
+    width: 100%;
+}
+
+.goto-book-btn {
+    padding: 16px 45px;
+    font-size: 1.3em;
+    background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 900;
+    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.5);
+    transition: all 0.3s ease;
+}
+
+.goto-book-btn:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 15px 35px rgba(108, 92, 231, 0.7);
+}
+
+
+/* =========================================
+   تظبيط الموبايل والشاشات الصغيرة
+   ========================================= */
 @media (max-width: 650px) {
     .modal-body { flex-direction: column; gap: 20px; }
     .modal-content { padding: 25px; max-height: 90vh; overflow-y: auto; }
@@ -189,4 +253,5 @@ body {
     .item-icon img { width: 120px; height: 120px; }
     .ruqaa-text { font-size: 2.5em; }
     .welcome-subtext { font-size: 1.1em; }
+    .goto-book-btn { font-size: 1.1em; padding: 14px 30px; }
 }
