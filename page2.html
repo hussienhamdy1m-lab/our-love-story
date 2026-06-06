@@ -9,47 +9,61 @@
 </head>
 <body>
 
-    <button class="back-home-btn" onclick="window.location.href='index.html'">⬅️ العودة للرئيسية</button>
+    <button class="back-home-btn" onclick="window.location.href='index.html'">⬅️ العودة</button>
 
-    <div class="book-wrapper">
-        <div id="book" class="book" onclick="flipPage()">
+    <div class="book-scene">
+        <div id="book" class="book">
             
-            <div class="page cover">
-                <div class="cover-design">
-                    <h1 class="ruqaa-title">كِتَابُ<br>مُغَامَرَاتِنَا ✨</h1>
-                    <p class="cover-subtitle">حسين & شهد</p>
-                    <span class="click-hint">اضغطي لفتح الكتاب 📜</span>
+            <!-- الورقة الأولى (الغلاف) -->
+            <div class="leaf">
+                <div class="page front cover" onclick="flipNext(this)">
+                    <div class="cover-design">
+                        <h1 class="ruqaa-title">كِتَابُ<br>مُغَامَرَاتِنَا ✨</h1>
+                        <p class="cover-subtitle">اضغطي للفتح 📜</p>
+                    </div>
+                </div>
+                <div class="page back paper" onclick="flipPrev(this)">
+                    <div class="page-content">
+                        <h2 class="ruqaa-title">إهداء...</h2>
+                        <p>إلى من جعلت أيامي حكاية تستحق أن تُروى ❤️</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="page text-page">
-                <div class="page-content">
-                    <img src="1.jpg" alt="حكاية 1" class="sketch-photo">
-                    <h2>الفصل الأول: البداية 🌸</h2>
-                    <p>هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي..</p>
+            <!-- الورقة التانية (حكاية 1 و 2) -->
+            <div class="leaf">
+                <div class="page front paper" onclick="flipNext(this)">
+                    <div class="page-content">
+                        <img src="1.jpg" alt="رسمة 1" class="sketch-img">
+                        <h2>الفصل الأول: البداية 🌸</h2>
+                        <p>هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي..</p>
+                        <span class="page-number">1</span>
+                    </div>
+                </div>
+                <div class="page back paper" onclick="flipPrev(this)">
+                    <div class="page-content">
+                        <img src="2.png" alt="رسمة 2" class="sketch-img">
+                        <h2>الفصل الثاني: الضحكة 🥰</h2>
+                        <p>كل تفصيلة معاكي بتخليني متأكد إنك أجمل حكاية بكتبها في عمري كله.</p>
+                        <span class="page-number">2</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="page text-page">
-                <div class="page-content">
-                    <img src="2.png" alt="حكاية 2" class="sketch-photo">
-                    <h2>الفصل الثاني: الضحكة الحلوة 🥰</h2>
-                    <p>كل تفصيلة معاكي بتخليني متأكد إنك أجمل حكاية بكتبها في عمري كله.</p>
+            <!-- الورقة التالتة (حكاية 3 والنهاية) -->
+            <div class="leaf">
+                <div class="page front paper" onclick="flipNext(this)">
+                    <div class="page-content">
+                        <img src="3.jpeg" alt="رسمة 3" class="sketch-img">
+                        <h2>الفصل الثالث: لآخر العمر ❤️</h2>
+                        <p>وعد مني نفضل نملى صفحات الكتاب ده بذكرياتنا وضحكتنا لحد آخر يوم.</p>
+                        <span class="page-number">3</span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="page text-page">
-                <div class="page-content">
-                    <img src="3.jpeg" alt="حكاية 3" class="sketch-photo">
-                    <h2>الفصل الثالث: لآخر العمر ❤️</h2>
-                    <p>وعد مني نفضل نملى صفحات الكتاب ده بذكرياتنا وضحكتنا لحد آخر يوم.</p>
-                </div>
-            </div>
-
-            <div class="page back-cover">
-                <div class="back-design">
-                    <h3>تَمَّتْ بِحُبٍّ 💖</h3>
-                    <p>والقادم أجمل سوا...</p>
+                <div class="page back cover" onclick="flipPrev(this)">
+                    <div class="cover-design">
+                        <h3 class="ruqaa-title" style="font-size: 2em;">Tَمَّتْ بِحُبٍّ 💖</h3>
+                    </div>
                 </div>
             </div>
 
