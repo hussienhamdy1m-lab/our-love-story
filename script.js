@@ -1,9 +1,16 @@
 const CORRECT_PASSWORD = 'love'; 
 
-// 1. إظهار بوكس الباسورد بعد شاشة الترحيب
+// 1. إظهار بوكس الباسورد بعد شاشة الترحيب وتشغيل الأغنية
 function showPasswordBox() {
     const welcomeScreen = document.getElementById('welcome-screen');
     const loginScreen = document.getElementById('login-screen');
+    const bgMusic = document.getElementById('bg-music');
+    
+    // تشغيل الأغنية في الخلفية فوراً
+    if(bgMusic) {
+        bgMusic.volume = 0.5; // الصوت على 50% عشان يكون هادي ورومانسي
+        bgMusic.play();
+    }
     
     welcomeScreen.style.opacity = '0';
     welcomeScreen.style.transform = 'scale(0.8) translateY(-50px)';
@@ -12,7 +19,6 @@ function showPasswordBox() {
         welcomeScreen.style.display = 'none';
         loginScreen.style.display = 'block';
         
-        // تأثير ظهور ناعم لبوكس الباسورد
         setTimeout(() => {
             loginScreen.style.opacity = '1';
         }, 50);
