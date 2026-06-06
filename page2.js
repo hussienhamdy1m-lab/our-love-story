@@ -2,7 +2,7 @@ let currentStoryIndex = 0;
 const stories = document.querySelectorAll('.story-page');
 
 function nextStory() {
-    // إخفاء الصفحة الحالية
+    // إخفاء الصفحة الحالية بنعومة
     stories[currentStoryIndex].classList.remove('active');
     
     // الانتقال للفصل القادم
@@ -13,6 +13,6 @@ function nextStory() {
         currentStoryIndex = 0;
     }
     
-    // إظهار الصفحة الجديدة بأنيميشن الفيد الناعم المريح للعين
+    // إظهار الصفحة الجديدة بأنيميشن مريح للعين
     stories[currentStoryIndex].classList.add('active');
 }
