@@ -1,5 +1,25 @@
-const CORRECT_PASSWORD = 'بحبك'; 
+const CORRECT_PASSWORD = 'love'; 
 
+// 1. إظهار بوكس الباسورد بعد شاشة الترحيب
+function showPasswordBox() {
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const loginScreen = document.getElementById('login-screen');
+    
+    welcomeScreen.style.opacity = '0';
+    welcomeScreen.style.transform = 'scale(0.8) translateY(-50px)';
+    
+    setTimeout(() => {
+        welcomeScreen.style.display = 'none';
+        loginScreen.style.display = 'block';
+        
+        // تأثير ظهور ناعم لبوكس الباسورد
+        setTimeout(() => {
+            loginScreen.style.opacity = '1';
+        }, 50);
+    }, 600);
+}
+
+// 2. التحقق من الباسورد وهزة البوكس الصحيحة
 function checkPassword() {
     const passInput = document.getElementById('password-input');
     const errorMessage = document.getElementById('error-message');
@@ -15,23 +35,28 @@ function checkPassword() {
         }, 800);
     } else {
         errorMessage.style.display = 'block';
-        passInput.style.animation = 'none';
-        setTimeout(() => { passInput.style.animation = 'shake 0.4s ease'; }, 10);
+        
+        // هزة البوكس بالكامل 
+        loginScreen.classList.remove('shake-box');
+        void loginScreen.offsetWidth; // ريفريش للأنيميشن
+        loginScreen.classList.add('shake-box');
+        
         passInput.value = '';
     }
 }
 document.getElementById('password-input').addEventListener('keypress', function(e) { if (e.key === 'Enter') checkPassword(); });
 
 
+// 3. قاعدة بيانات الذكريات
 const memoriesData = {
-    envelope: { title: "الجواب الرومانسي ✉️", text: "فتحتِ الجواب؟ ده أول جواب بكتبهولك من كل قلبي.. عشان أقولك إنك أحلى حاجة في حياتي.", img: "1.jpg" },
+    envelope: { title: "الجواب الرومانسي ✉️", text: "فتحتِ الجواب؟ ده أول جواب بكتبهولك من كل قلبي.. عشان أقولك إنك أحلى حاجة في حياتي يا شهد.", img: "1.jpg" },
     camera: { title: "لقطة من الكاميرا 📸", text: "الضحكة دي هتفضل محفورة في قلبي طول العمر.", img: "2.png" },
     book: { title: "كتاب حكاياتنا 📖", text: "كل صفحة في قصتنا بتثبتلي إنك أجمل تفاصيلي.", img: "3.jpeg" },
     bottle: { title: "رسالة في زجاجة 🍾", text: "وعد مني إني هفضل جنبك ومعاكي لآخر العمر.", img: "4.jpeg" },
-    projector: { title: "شريط السينما 📹", text: "لو حياتي فيلم سينما، فإنتي أحلى مشهد فيه.", img: "5.jpeg" }
+    projector: { title: "الضوء الذهبي الساحر ✨", text: "انتي النور اللي نور حياتي كلها يا أحلى شهد في الدنيا.", img: "5.jpeg" }
 };
 
-// تشغيل الأنيميشن المرعب قبل ظهور الصورة
+// 4. تشغيل الأنيميشن للصورة
 function openMemory(type, event) {
     const memory = memoriesData[type];
     document.getElementById('memory-title').innerText = memory.title;
@@ -41,82 +66,64 @@ function openMemory(type, event) {
     const overlay = document.getElementById('memory-modal');
     const card = document.getElementById('modal-card');
 
-    // إحداثيات الضغطة عشان نطلع منها الانفجارات
     const rect = event.currentTarget.getBoundingClientRect();
     const startX = rect.left + rect.width / 2;
     const startY = rect.top + rect.height / 2;
 
-    let delayBeforeModal = 0; // وقت الانتظار قبل ظهور الصورة
+    let delayBeforeModal = 0; 
 
     if (type === 'camera') {
-        // 1. شتر الكاميرا بيقفل ويضرب فلاش
         const topShutter = document.getElementById('shutter-top');
         const bottomShutter = document.getElementById('shutter-bottom');
         const flash = document.getElementById('flash-effect');
-        
         topShutter.classList.add('close');
         bottomShutter.classList.add('close');
-        
         setTimeout(() => { 
             flash.style.opacity = '1'; 
             setTimeout(() => { flash.style.opacity = '0'; }, 150);
             topShutter.classList.remove('close');
             bottomShutter.classList.remove('close');
-        }, 500); // الفلاش بيضرب والشتر بيفتح
-        
+        }, 500); 
         delayBeforeModal = 700;
-
     } else if (type === 'bottle') {
-        // 2. موجة البحر بتطلع تغطي الشاشة
         const wave = document.getElementById('ocean-wave');
         wave.classList.add('rise');
         setTimeout(() => { wave.classList.remove('rise'); }, 1200);
         delayBeforeModal = 800;
-
     } else if (type === 'projector') {
-        // 3. الشاشة تضلم وشعاع البروجيكتور يشتغل
-        const cinema = document.getElementById('cinematic-overlay');
-        cinema.classList.add('darken');
-        delayBeforeModal = 1000;
-
+        // الإيفكت الذهبي الجديد بديل البروجيكتور المظلم
+        const glow = document.getElementById('golden-glow');
+        glow.classList.add('active');
+        delayBeforeModal = 800;
     } else if (type === 'envelope') {
-        // 4. انفجار جوابات وقلوب من مكان الضغطة
         createBurst(startX, startY, ['✉️', '💖', '💌', '✨']);
         delayBeforeModal = 600;
-
     } else if (type === 'book') {
-        // 5. انفجار سحر ودهب من الكتاب
         createBurst(startX, startY, ['✨', '⭐', '💫', '🌟'], true);
         delayBeforeModal = 600;
     }
 
-    // إظهار الصورة بعد انتهاء الخدعة البصرية
     setTimeout(() => {
         overlay.classList.add('active');
         card.classList.add('show-anim');
     }, delayBeforeModal);
 }
 
-// مولد الانفجارات (الجواب والكتاب)
+// الانفجارات (جواب وكتاب)
 function createBurst(x, y, icons, isGold = false) {
     for (let i = 0; i < 30; i++) {
         const item = document.createElement('div');
         item.classList.add('burst-item');
         item.innerText = icons[Math.floor(Math.random() * icons.length)];
-        
-        item.style.left = x + 'px';
-        item.style.top = y + 'px';
+        item.style.left = x + 'px'; item.style.top = y + 'px';
         item.style.fontSize = isGold ? (Math.random() * 2 + 1) + 'rem' : (Math.random() * 2 + 2) + 'rem';
         if(isGold) { item.style.textShadow = '0 0 15px gold'; }
         
-        // حساب اتجاه الطيران العشوائي
         const tx = (Math.random() - 0.5) * 800 + 'px';
         const ty = (Math.random() - 0.5) * 800 + 'px';
-        const rot = Math.random() * 360 + 'deg';
-        
         item.style.setProperty('--tx', tx);
         item.style.setProperty('--ty', ty);
-        item.style.setProperty('--rot', rot);
+        item.style.setProperty('--rot', Math.random() * 360 + 'deg');
         
         document.body.appendChild(item);
         setTimeout(() => { item.remove(); }, 1200);
@@ -126,20 +133,22 @@ function createBurst(x, y, icons, isGold = false) {
 function closeMemory() {
     document.getElementById('memory-modal').classList.remove('active');
     document.getElementById('modal-card').classList.remove('show-anim');
-    
-    // إخفاء إيفكت السينما لو كان شغال
-    document.getElementById('cinematic-overlay').classList.remove('darken');
+    document.getElementById('golden-glow').classList.remove('active'); // نقفل النور الدهبي
 }
 
-// مطر خفيف في الخلفية
+// 5. مطر القلوب (بينزل في الطبقة المخصصة ليه عشان ميزقش البوكس)
 function createHeartRain() {
+    const rainLayer = document.getElementById('rain-layer');
+    if (!rainLayer) return;
+
     const heart = document.createElement('div');
     heart.classList.add('heart-rain');
-    heart.innerText = ['❤️', '💖', '✨'][Math.floor(Math.random() * 3)];
+    heart.innerText = ['❤️', '💖', '✨', '💕', '🥰'][Math.floor(Math.random() * 5)];
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+    heart.style.fontSize = (Math.random() * 1.2 + 1) + 'rem';
     heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-    document.body.appendChild(heart);
+    
+    rainLayer.appendChild(heart);
     setTimeout(() => { heart.remove(); }, 7000);
 }
-setInterval(createHeartRain, 500);
+setInterval(createHeartRain, 400);
