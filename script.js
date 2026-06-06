@@ -1,69 +1,65 @@
 const bgMusic = document.getElementById('bg-music');
+// كلمة السر الإلزامية بالملي وبنفس المسافات
+const CORRECT_PASSWORD = 'انا بحبك يا شهد'; 
 
-// 1. أول ما الصفحة الأولى تفتح، بتشوف هل في وقت متسجل للأغنية؟ لو فيه بتكمل منه
+// 1. مزامنة الموسيقى وإكمالها من ثواني التوقف السابقة
 window.addEventListener('load', () => {
     const savedTime = sessionStorage.getItem('musicTime');
     if (savedTime && bgMusic) {
         bgMusic.currentTime = parseFloat(savedTime);
-        bgMusic.play().catch(e => console.log("Audio auto-play prevented:", e));
+        bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
 });
 
-// 2. العداد السحري: بيسجل ثواني الأغنية أول بأول في الذاكرة طول ما هي شغالّہ
+// حفظ ثواني الأغنية أول بأول
 setInterval(() => {
     if (bgMusic && !bgMusic.paused) {
         sessionStorage.setItem('musicTime', bgMusic.currentTime);
     }
 }, 200);
 
-// ظهور صندوق كلمة السر
-function showPasswordBox() {
-    const welcomeScreen = document.getElementById('welcome-screen');
-    const loginScreen = document.getElementById('login-screen');
-    
-    if(bgMusic) {
-        bgMusic.volume = 0.6; 
-        bgMusic.play().catch(e => console.log("Audio play failed:", e));
+// دالة تفعيل الموسيقى عند المحاولة الأولى للأمان
+function startMusicIfNeeded() {
+    if (bgMusic && bgMusic.paused) {
+        bgMusic.volume = 0.6;
+        bgMusic.play().catch(e => console.log("Audio trigger fail:", e));
     }
-    
-    if (welcomeScreen) {
-        welcomeScreen.style.opacity = '0';
-        welcomeScreen.style.transform = 'scale(0.8) translateY(-50px)';
-    }
-    
-    setTimeout(() => {
-        if (welcomeScreen) welcomeScreen.style.display = 'none';
-        if (loginScreen) {
-            loginScreen.style.display = 'block';
-            setTimeout(() => { loginScreen.style.opacity = '1'; }, 50);
-        }
-    }, 600);
 }
 
-// 👑 دالة الفحص الذكية جداً: مستحيل تعلق بسبب الهمزات أو المسافات 👑
+// 👑 فحص كلمة السر الإلزامي الدقيق 👑
 function checkPassword() {
+    startMusicIfNeeded();
+    
     const passInput = document.getElementById('password-input');
     const errorMessage = document.getElementById('error-message');
     const loginScreen = document.getElementById('login-screen');
+    const mainContent = document.getElementById('main-content');
     
     if (!passInput) return;
     
-    // بناخد الكلام اللي شهد كتبته ونشيل منه أي مسافات زيادة
-    const userText = passInput.value.trim();
+    // إزالة الفراغات الزائدة من الأطراف لمساعدة شهد
+    const enteredText = passInput.value.trim();
     
-    // الخدعة: لو الكلام جواه كلمة "بحبك" وكلمة "شهد" بأي طريقة (أنا بحبك يا شهد / بحبك يا شهد / انا بحبك شهد) يفتح علطول!
-    if (userText.includes('بحبك') && userText.includes('شهد')) {
+    if (enteredText === CORRECT_PASSWORD) {
+        // اختفاء بوكس الزجاج الترحيبي بالأنيميشن العكسي الممتع
         if (loginScreen) {
+            loginScreen.style.transition = '0.6s ease';
             loginScreen.style.opacity = '0';
-            loginScreen.style.transform = 'scale(0.8) translateY(-50px)';
+            loginScreen.style.transform = 'scale(0.8) translateY(-30px)';
         }
+        
         setTimeout(() => {
             if (loginScreen) loginScreen.style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            document.body.style.overflow = 'auto'; 
-        }, 800);
+            if (mainContent) {
+                mainContent.style.display = 'block';
+                setTimeout(() => {
+                    mainContent.style.style = 'transition: 0.6s ease';
+                    mainContent.style.opacity = '1';
+                }, 50);
+            }
+        }, 600);
     } else {
-        // لو كتبت حاجة بره الحوار تماماً يطلع خطأ
+        // تأثير اهتزاز البوكس البصري الرائع لو كتبت غلط
         if (errorMessage) errorMessage.style.display = 'block';
         if (loginScreen) {
             loginScreen.classList.remove('shake-box');
@@ -74,17 +70,17 @@ function checkPassword() {
     }
 }
 
-// تشغيل الفحص لو ضغطت Enter من الكيبورد
-setTimeout(() => {
+// تشغيل الفحص التلقائي لو ضغطت زر Enter من لوحة المفاتيح
+document.addEventListener('DOMContentLoaded', () => {
     const passInput = document.getElementById('password-input');
-    if(passInput) {
-        passInput.addEventListener('keypress', function(e) { 
-            if (e.key === 'Enter') checkPassword(); 
+    if (passInput) {
+        passInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
         });
     }
-}, 1000);
+});
 
-// دالة الانتقال لصفحة السينما التانية بدون ما الأغنية تعيد
+// دالة ترحيل ثواني الأغنية والانتقال لصفحة السينما الثانية
 function goToCinemaPage() {
     if (bgMusic) {
         sessionStorage.setItem('musicTime', bgMusic.currentTime);
@@ -92,7 +88,7 @@ function goToCinemaPage() {
     window.location.href = 'page2.html';
 }
 
-// داتا الحكايات كاملة ومقسمة بالصيغة الجديدة .jpeg
+// 👑 صندوق معلومات حكاياتكم الفخم والصور بصيغة .jpeg 👑
 const memoriesData = {
     envelope: { 
         title: "اهم لحظه عدت عليا لحد دلوقتي ولحد سنين جايه ✉️", 
@@ -111,16 +107,12 @@ const memoriesData = {
     },
     projector: {
         title: "اول قرب واول لمسه ✨",
-        text: "نيجي بقا لليوم الاهم والاقرب والاحن اول يوم نقرب فعليا من بعض اول يوم تنسي الدنيا وانا انسي انا فين واركز في شفايفك بس واديكي اول بوسه واحلي بوسه طلعت مني كانت بكل حنيه وححب واكل لاكتر شفايف وحشتني اول مره تيجي في حضني متحسيش بالدنيا تيجي وتترمي فيا وميهمكيش انتي فين ولا احنا بنعمل ايه وتغمضي عينك وتسرحي ومتخفيش مني ولا من اي حاجه تحصل.\n\nاول لمسه لقرب جسمك مني اول حضن ونومه علي صدري اول ضمه بحب واشتياق ومسكتي لبطنك وقربي من ضهرك رغم انك مكنتيش بتحبيني المسك بس انتي اللي اترميتي ونسيتي الدنيا والناس وخلتيني اسرح فيكي وفي اللحظه اني شوفتنا ف مكان مفيهوش اي حاجه وحتي مش سامعين غير صوت بعض وانا باصصلك بعيني وببوسك تاني وانك حبيتي تحسي تاني وحبيتي تخليني ادوب تاني.\n\nانتي اجمل حاجه انا طلعت بيها من الدنيا رغم اي ظروف انتي الاهم والاحن والاحلي والاحسن.\n\nانتي امي واختي وبنتي وصحبتي واهلي وناسي وده مش مجرد كلام انتي بنتي حرفيا وفعليا وجسديا وروحيا وكل حاجه انتي جوهرتي وضحكتي وفرحتي وعياطي وكسرتي.\n\nانتي شهد وميوصفكيش كلام يا احن شهد.\n\nاتمني لحظه في قربك تخليني اثبتلك انتي عندي ايه وانا لسه جوايا الاكتر من اللي طلعلك قبل كده.",
+        text: "نيجي بقا لليوم الاهم والاقرب والاحن اول يوم نقرب فعليا من بعض اول يوم تنسي الدنيا وانا انسي انا فين واركز في شفايفك بس واديكي اول بوسه واحلي بوسه طلعت مني كانت بكل حنيه وحب واكل لاكتر شفايف وحشتني اول مره تيجي في حضني متحسيش بالدنيا تيجي وتترمي فيا وميهمكيش انتي فين ولا احنا بنعمل ايه وتغمضي عينك وتسرحي ومتخفيش مني ولا من اي حاجه تحصل.\n\nاول لمسه لقرب جسمك مني اول حضن ونومه علي صدري اول ضمه بحب واشتياق ومسكتي لبطنك وقربي من ضهرك رغم انك مكنتيش بتحبيني المسك بس انتي اللي اترميتي ونسيتي الدنيا والناس وخلتيني اسرح فيكي وفي اللحظه اني شوفتنا ف مكان مفيهوش اي حاجه وحتي مش سامعين غير صوت بعض وانا باصصلك بعيني وببوسك تاني وانك حبيتي تحسي تاني وحبيتي تخليني ادوب تاني.\n\nانتي اجمل حاجه انا طلعت بيها من الدنيا رغم اي ظروف انتي الاهم والاحن والاحلي والاحسن.\n\nانتي امي واختي وبنتي وصحبتي واهلي وناسي وده مش مجرد كلام انتي بنتي حرفيا وفعليا وجسديا وروحيا وكل حاجه انتي جوهرتي وضحكتي وفرحتي وعياطي وكسرتي.\n\nانتي شهد وميوصفكيش كلام يا احن شهد.\n\nاتمني لحظه في قربك تخليني اثبتلك انتي عندي ايه وانا لسه جوايا الاكتر من اللي طلعلك قبل كده.",
         img: "44.jpeg"
-    },
-    book: {
-        title: "الذكري الخامسه اللي متتنسيش 📖",
-        text: "اليوم اللي قررت فيه اتهبل في عقلي بقا وانزل ازاكرلك وكنت مفكرك شاطره بس انتي قلبتي القاعده لاكتر قاعده فيها نار قلبتي الترابيره لاوضه نوم ولما سبتيني احط رجلي بين رجلك واقرب منك وفضلت مقربه وشك مني اوي وبتعضي علي شفايفك وماسكه ف ايدي وعينك كلها بتقولي بوسني كلني بعينك انا ملكك اللحظه اللي عرفت واتأكدت فيها اننا مش بنعتمد ناس ولا اماكن ولا حد يبصلنا ولا يركز اني فضلت متنحلك ورجلي فيكي ومش سيباكي وزاكرتلك صفحه بالعافيه ونسيتي ونسيت كليتك وامتحاناتك وكل حاجه وركزت ف لحظه اني مع مراتي ونصي التاني ومرايتي وراحتي.\n\nاليوم اللي برضو لبستلك فيه قميص جديد اول مره البسه كان ليكي وصورتيني احلي صوره وصورتك صور احلي من حياتي بسبب شكلك وحلاوتك ودلعك اللي طالع فيها وانتي بتبصيلي انا مش بتبصي للكاميرا وسرحانه فيا انا وعينك بتلمعلي انا وبعديها اتمشينا في الشارع وأتصورنا وعملنا تيك توك وفضلنا ماشين ميتين علي بعض ومش مهمتمين بالناس ولا اي حد وفضلتي تتلزقي فيا.\n\nانا بحبك وهفضل طول عمري عايش عشان احبك معايا او لا هفضل احبك واعشقك واتمناكي من ربنا واتمني قربك.",
-        img: "55.jpeg"
     }
 };
 
+// تشغيل نافذة البوب أب المطاطية بالأنيميشن
 function openMemory(type, event) {
     const memory = memoriesData[type];
     if(!memory) return;
@@ -132,11 +124,38 @@ function openMemory(type, event) {
     const overlay = document.getElementById('memory-modal');
     const card = document.getElementById('modal-card');
     
-    let delayBeforeModal = 200; 
+    let startX = window.innerWidth / 2;
+    let startY = window.innerHeight / 2;
+    
+    if (event && event.currentTarget) {
+        const rect = event.currentTarget.getBoundingClientRect();
+        startX = rect.left + rect.width / 2;
+        startY = rect.top + rect.height / 2;
+    }
+
+    if (type === 'envelope') {
+        createBurst(startX, startY, ['✉️', '💖', '💌', '✨']);
+    }
+
     setTimeout(() => { 
         if(overlay) overlay.classList.add('active'); 
         if(card) card.classList.add('show-anim'); 
-    }, delayBeforeModal);
+    }, 150);
+}
+
+function createBurst(x, y, icons) {
+    for (let i = 0; i < 20; i++) {
+        const item = document.createElement('div');
+        item.classList.add('burst-item');
+        item.innerText = icons[Math.floor(Math.random() * icons.length)];
+        item.style.left = x + 'px'; item.style.top = y + 'px';
+        item.style.fontSize = (Math.random() * 1.2 + 1.2) + 'rem';
+        item.style.setProperty('--tx', (Math.random() - 0.5) * 500 + 'px');
+        item.style.setProperty('--ty', (Math.random() - 0.5) * 500 + 'px');
+        item.style.setProperty('--rot', Math.random() * 360 + 'deg');
+        document.body.appendChild(item);
+        setTimeout(() => { item.remove(); }, 1200);
+    }
 }
 
 function closeMemory() {
@@ -146,6 +165,7 @@ function closeMemory() {
     if(card) card.classList.remove('show-anim');
 }
 
+// هطول الأمطار الرومانسية (القلوب)
 function createHeartRain() {
     const rainLayer = document.getElementById('rain-layer');
     if (!rainLayer) return;
@@ -153,9 +173,9 @@ function createHeartRain() {
     heart.classList.add('heart-rain');
     heart.innerText = ['❤️', '💖', '✨', '💕', '🥰'][Math.floor(Math.random() * 5)];
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (Math.random() * 1.2 + 1) + 'rem';
+    heart.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
     heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
     rainLayer.appendChild(heart);
-    setTimeout(() => { heart.remove(); }, 7000);
+    setTimeout(() => { heart.remove(); }, 6000);
 }
-setInterval(createHeartRain, 400);
+setInterval(createHeartRain, 450);
