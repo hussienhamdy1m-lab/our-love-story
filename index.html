@@ -17,49 +17,60 @@
     <!-- طبقة تأثير مطر القلوب والنجوم -->
     <div id="rain-layer"></div>
 
-    <!-- 👑 مشهد الترحيب الأول (صندوق الزجاج الفخم لقفل كلمة السر) 👑 -->
+    <!-- 👑 مشهد الترحيب وصندوق كلمة السر 👑 -->
     <div id="login-screen" class="glass-panel">
         <h1 class="main-title">أَنَا بَحِبِّك يَا شَهْد ❤️</h1>
         <p class="sub-title">لازم تقولي "وأنا كمان بحبك يا حسين" عشان تخشي تشوفي المفاجأة 😉</p>
         
-        <!-- خانة كتابة الجملة السرية -->
         <input type="text" id="password-input" placeholder="اكتبي الجملة هنا..." autocomplete="off">
-        
-        <!-- زرار الدخول بالتأثير السحري -->
         <button class="magic-btn" onclick="checkPassword()">قولتها، يلا ندخل ✨</button>
         
-        <p id="error-message" style="display: none; color: #ff4a4a; margin-top: 15px; font-weight: bold;">الجملة خاطئة! اكتبيها بالظبط: انا بحبك يا شهد ❤️</p>
+        <!-- رسالة الخطأ الجديدة بتاعتك -->
+        <p id="error-message" style="display: none; color: #ff4a4a; margin-top: 15px; font-weight: bold; font-size: 1.1rem;">الباسورد غلط يا شهودتي ركزي 🥺❤️</p>
     </div>
 
-    <!-- المحتوى الرئيسي للموقع (متحف الذكريات) بيظهر بالأنيميشن بعد الباسورد -->
+    <!-- المحتوى الرئيسي للموقع -->
     <div id="main-content" style="display: none; opacity: 0;">
         <header class="site-header">
             <h1 class="site-title">متحف ذكرياتنا الجميلة</h1>
             <p class="site-subtitle">اضغطي على أي عنصر لتفتحي صندوق الذكريات</p>
         </header>
 
-        <!-- العناصر التفاعلية الأربعة جوه الكروت الزجاجية -->
+        <!-- 👑 الـ 6 خانات: 5 ذكريات + سينما حكاياتنا 👑 -->
         <div class="interactive-container">
             <div class="memory-item" onclick="openMemory('envelope', event)">
-                <img src="envelope.png" alt="الجواب">
+                <span style="font-size: 3rem; display: block; margin-bottom: 10px;">✉️</span>
                 <span>الجواب الرومانسي</span>
             </div>
+            
             <div class="memory-item" onclick="openMemory('camera', event)">
-                <img src="camera.png" alt="الكاميرا">
+                <span style="font-size: 3rem; display: block; margin-bottom: 10px;">📸</span>
                 <span>لقطة الكاميرا</span>
             </div>
-            <div class="memory-item highlight-item" onclick="goToCinemaPage()">
-                <img src="projector.png" alt="السينما">
-                <span style="color: #ffde6a; font-weight: 900;">سينما حكاياتنا 🎬</span>
-            </div>
+            
             <div class="memory-item" onclick="openMemory('bottle', event)">
-                <img src="bottle.png" alt="الزجاجة">
-                <span>رسالة في زجاجة</span>
+                <span style="font-size: 3rem; display: block; margin-bottom: 10px;">🍾</span>
+                <span>يوم الفرهدة</span>
+            </div>
+            
+            <div class="memory-item" onclick="openMemory('touch', event)">
+                <span style="font-size: 3rem; display: block; margin-bottom: 10px;">✨</span>
+                <span>أول قرب</span>
+            </div>
+
+            <div class="memory-item" onclick="openMemory('book', event)">
+                <span style="font-size: 3rem; display: block; margin-bottom: 10px;">📖</span>
+                <span>كتاب حكاياتنا</span>
+            </div>
+
+            <div class="memory-item highlight-item" onclick="goToCinemaPage()">
+                <span style="font-size: 3rem; display: block; margin-bottom: 10px;">🎬</span>
+                <span style="color: #ffde6a; font-weight: 900;">سينما حكاياتنا</span>
             </div>
         </div>
     </div>
 
-    <!-- نافذة عرض الذكرى (البوب أب النظيف التفاعلي بمؤثرات خرافية) -->
+    <!-- نافذة عرض الذكرى (البوب أب) -->
     <div id="memory-modal" class="modal-overlay" onclick="closeMemory()">
         <div id="modal-card" class="modal-card" onclick="event.stopPropagation()">
             <button class="close-modal-btn" onclick="closeMemory()">×</button>
