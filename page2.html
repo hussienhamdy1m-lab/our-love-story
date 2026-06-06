@@ -9,12 +9,16 @@
 </head>
 <body>
 
+    <!-- موسيقى الكتاب -->
+    <audio id="book-music" autoplay loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
     <button class="back-home-btn" onclick="window.location.href='index.html'">⬅️ العودة</button>
 
     <div class="book-scene">
         <div id="book" class="book">
             
-            <!-- الورقة الأولى (الغلاف) -->
             <div class="leaf">
                 <div class="page front cover" onclick="flipNext(this)">
                     <div class="cover-design">
@@ -30,13 +34,12 @@
                 </div>
             </div>
 
-            <!-- الورقة التانية (حكاية 1 و 2) -->
             <div class="leaf">
                 <div class="page front paper" onclick="flipNext(this)">
                     <div class="page-content">
                         <img src="1.jpg" alt="رسمة 1" class="sketch-img">
                         <h2>الفصل الأول: البداية 🌸</h2>
-                        <p>هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي..</p>
+                        <p>هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي.</p>
                         <span class="page-number">1</span>
                     </div>
                 </div>
@@ -50,7 +53,6 @@
                 </div>
             </div>
 
-            <!-- الورقة التالتة (حكاية 3 والنهاية) -->
             <div class="leaf">
                 <div class="page front paper" onclick="flipNext(this)">
                     <div class="page-content">
@@ -62,7 +64,7 @@
                 </div>
                 <div class="page back cover" onclick="flipPrev(this)">
                     <div class="cover-design">
-                        <h3 class="ruqaa-title" style="font-size: 2em;">Tَمَّتْ بِحُبٍّ 💖</h3>
+                        <h3 class="ruqaa-title" style="font-size: 2em;">تَمَّتْ بِحُبٍّ 💖</h3>
                     </div>
                 </div>
             </div>
