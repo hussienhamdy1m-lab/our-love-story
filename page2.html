@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كتاب حكاياتنا</title>
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>حكاياتنا السحرية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
@@ -15,55 +15,69 @@
 
     <button class="back-home-btn" onclick="window.location.href='index.html'">العودة للرئيسية</button>
 
-    <!-- المشهد الأول: الكتاب المغلق السينمائي -->
-    <div id="closed-book-scene" class="closed-scene">
-        <div class="glow-effect"></div>
-        <!-- الصورة بتاعتك اللي سميناها closed_book.png -->
-        <img src="closed_book.png" alt="كتاب مغلق" class="closed-book-img" onclick="openBookTransition()">
-        <p class="click-hint">اضغطي على الكتاب لفتحه</p>
-    </div>
-
-    <!-- المشهد الثاني: الكتاب المفتوح المدمج (مخفي في البداية) -->
-    <div id="open-book-scene" class="book-scene" style="display: none; opacity: 0;">
-        <div class="seamless-book" onclick="nextStory()">
+    <div class="scene-3d">
+        <!-- مجسم الكتاب ثلاثي الأبعاد بالكامل بالكود -->
+        <div id="interactive-book" class="book-3d" onclick="handleBookClick()">
             
-            <div class="story-page active">
-                <div class="book-side right-side">
-                    <img src="1.jpg" alt="ذكرياتنا" class="printed-photo">
-                </div>
-                <div class="book-side left-side">
-                    <div class="printed-text">
-                        <h2 class="ink-heading">الفصل الأول: البداية</h2>
-                        <p class="ink-p">هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي كأن الكون كله بيحتفل بوجودك معايا.</p>
-                        <span class="hint-click">اضغطي لقلب الصفحة</span>
-                    </div>
+            <!-- غلاف الكتاب المغلق الخارجي -->
+            <div class="book-cover-front">
+                <div class="cover-gold-lines">
+                    <h1 class="cover-title">كِتَابُ<br>ذِكْرَيَاتِنَا</h1>
+                    <span class="cover-instruction">اضغطي لفتح الحكاية</span>
                 </div>
             </div>
 
-            <div class="story-page">
-                <div class="book-side right-side">
-                    <img src="2.png" alt="ذكرياتنا" class="printed-photo">
-                </div>
-                <div class="book-side left-side">
-                    <div class="printed-text">
-                        <h2 class="ink-heading">الفصل الثاني: الضحكة الحلوة</h2>
-                        <p class="ink-p">كل تفصيلة معاكي بتخليني متأكد إنك أجمل حكاية بكتبها في عمري كله، ضحكتك دي هي الأمان اللي بهرب بيه من الدنيا.</p>
-                        <span class="hint-click">اضغطي لقلب الصفحة</span>
+            <!-- أوراق الكتاب الداخلية التفاعلية -->
+            <div class="book-pages-container">
+                
+                <!-- الفصل الأول -->
+                <div class="dynamic-page active">
+                    <div class="inner-side right-page">
+                        <div class="frame-photo-clean">
+                            <img src="1.jpg" alt="اجمل ذكرى" class="pure-photo">
+                        </div>
+                    </div>
+                    <div class="inner-side left-page">
+                        <div class="text-clean-layout">
+                            <h2 class="vintage-heading">الفصل الأول: البداية</h2>
+                            <p class="vintage-p">هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي كأن الكون كله بيحتفل بوجودك معايا.</p>
+                            <span class="click-page-hint">اضغطي لقلب الصفحة التالي</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="story-page">
-                <div class="book-side right-side">
-                    <img src="3.jpeg" alt="ذكرياتنا" class="printed-photo">
-                </div>
-                <div class="book-side left-side">
-                    <div class="printed-text">
-                        <h2 class="ink-heading">الفصل الثالث: لآخر العمر</h2>
-                        <p class="ink-p">وعد مني نفضل نملى صفحات كتابنا ده بذكرياتنا، وضحكتنا، ومغامراتنا سوا لحد آخر يوم في العمر.. بحبك يا شهدي.</p>
-                        <span class="hint-click" style="color: #6b2020;">نهاية الحكاية - اضغطي للبدء من جديد</span>
+                <!-- الفصل الثاني -->
+                <div class="dynamic-page">
+                    <div class="inner-side right-page">
+                        <div class="frame-photo-clean">
+                            <img src="2.png" alt="اجمل ذكرى" class="pure-photo">
+                        </div>
+                    </div>
+                    <div class="inner-side left-page">
+                        <div class="text-clean-layout">
+                            <h2 class="vintage-heading">الفصل الثاني: الضحكة الحلوة</h2>
+                            <p class="vintage-p">كل تفصيلة معاكي بتخليني متأكد إنك أجمل حكاية بكتبها في عمري كله، ضحكتك دي هي الأمان اللي بهرب بيه من الدنيا.</p>
+                            <span class="click-page-hint">اضغطي لقلب الصفحة التالي</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- الفصل الثالث -->
+                <div class="dynamic-page">
+                    <div class="inner-side right-page">
+                        <div class="frame-photo-clean">
+                            <img src="3.jpeg" alt="اجمل ذكرى" class="pure-photo">
+                        </div>
+                    </div>
+                    <div class="inner-side left-page">
+                        <div class="text-clean-layout">
+                            <h2 class="vintage-heading">الفصل الثالث: لآخر العمر</h2>
+                            <p class="vintage-p">وعد مني نفضل نملى صفحات كتابنا ده بذكرياتنا، وضحكتنا، ومغامراتنا سوا لحد آخر يوم في العمر.. بحبك يا شهدي.</p>
+                            <span class="click-page-hint" style="color: #c92a2a;">نهاية الحكاية - اضغطي للإعادة</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
