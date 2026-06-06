@@ -1,27 +1,18 @@
-const leaves = document.querySelectorAll('.leaf');
-let currentLeaf = 0;
+let currentStoryIndex = 0;
+const stories = document.querySelectorAll('.story-page');
 
-function initBook() {
-    for (let i = 0; i < leaves.length; i++) {
-        leaves[i].style.zIndex = leaves.length - i;
+function nextStory() {
+    // إخفاء الصفحة الحالية
+    stories[currentStoryIndex].classList.remove('active');
+    
+    // الانتقال للفصل القادم
+    currentStoryIndex++;
+    
+    // لو الحكايات خلصت نرجع نعيد من الأول
+    if (currentStoryIndex >= stories.length) {
+        currentStoryIndex = 0;
     }
-}
-initBook();
-
-function flipNext(page) {
-    if (currentLeaf < leaves.length) {
-        let leafToFlip = leaves[currentLeaf];
-        leafToFlip.classList.add('flipped');
-        leafToFlip.style.zIndex = currentLeaf + 1; 
-        currentLeaf++;
-    }
-}
-
-function flipPrev(page) {
-    if (currentLeaf > 0) {
-        currentLeaf--;
-        let leafToFlip = leaves[currentLeaf];
-        leafToFlip.classList.remove('flipped');
-        leafToFlip.style.zIndex = leaves.length - currentLeaf;
-    }
+    
+    // إظهار الصفحة الجديدة بأنيميشن الفيد الناعم المريح للعين
+    stories[currentStoryIndex].classList.add('active');
 }
