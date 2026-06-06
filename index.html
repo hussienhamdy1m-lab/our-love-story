@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع ذكرياتنا السحري</title>
+    <title>موقع ذكرياتنا السحري ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* كود سريع لضمان اختفاء أي مستطيل أسود معلق */
+        .shutter, #shutter-top, #shutter-bottom, #flash-effect { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+    </style>
 </head>
 <body>
 
@@ -16,26 +20,19 @@
 
     <!-- طبقة تأثير المطر (القلوب والنجوم) -->
     <div id="rain-layer"></div>
-    <div id="golden-glow"></div>
 
-    <!-- مشهد الترحيب الأول (قفل كلمة السر) -->
-    <div id="welcome-screen" class="glass-panel">
-        <h1 class="main-title">مرحباً بكِ في عالمنا الخاص</h1>
-        <p class="sub-title">هذا المكان يحمل سراً لا يعرفه غيرنا..</p>
-        <button class="magic-btn" onclick="showPasswordBox()">اضغطي للدخول</button>
-    </div>
-
-    <!-- 👑 صندوق كتابة كلمة السر (تم ضبط الـ IDs والزرار هنا بالملّي) 👑 -->
-    <div id="login-screen" class="glass-panel" style="display: none; opacity: 0;">
-        <h2 class="password-title">أدخلي كلمة السر السرية</h2>
+    <!-- 👑 شاشة الدخول المظبوطة بالملي على شكل صورتك البينك 👑 -->
+    <div id="login-screen" class="glass-panel">
+        <h1 class="main-title" style="font-family: 'Aref Ruqaa', serif; color: #ff4a75; font-size: 3.5rem; margin-bottom: 10px;">أَنَا بَحِبِّك يَا شَهْد ❤️</h1>
+        <p class="sub-title" style="font-size: 1.3rem; color: #666; margin-bottom: 25px;">لازم تقولي "وأنا كمان بحبك يا حسين" عشان تخشي تشوفي المفاجأة 😉</p>
         
-        <!-- الخانة اللي شهد هتكتب فيها الجملة وبنفس الـ ID المظبوط للـ JS -->
-        <input type="text" id="password-input" placeholder="اكتبي الجملة هنا..." autocomplete="off">
+        <!-- خانة كتابة الباسورد النظيفة -->
+        <input type="text" id="password-input" placeholder="اكتبي الجملة هنا..." autocomplete="off" style="width: 80%; max-width: 400px; padding: 12px 20px; border: 2px solid #ff4a75; border-radius: 25px; text-align: center; font-size: 1.1rem; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
         
         <!-- الزرار مربوط بدالة الفحص بالملّي -->
-        <button class="magic-btn" onclick="checkPassword()">قولتها، يلا ندخل ✨</button>
+        <button class="magic-btn" onclick="checkPassword()" style="background: #fff; color: #ff4a75; border: 2px solid #ff4a75; padding: 12px 35px; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1.2rem; transition: 0.3s;">قولتها، يلا ندخل ✨</button>
         
-        <p id="error-message" style="display: none; color: #ff4a4a; margin-top: 15px; font-weight: bold;">الجملة خاطئة! حاولي مرة أخرى يا شهد ❤️</p>
+        <p id="error-message" style="display: none; color: #ff4a4a; margin-top: 15px; font-weight: bold;">الجملة خاطئة! اكتبيها بالظبط: انا بحبك يا شهد</p>
     </div>
 
     <!-- المحتوى الرئيسي للموقع بعد فتح كلمة السر -->
@@ -56,7 +53,7 @@
                 <span>لقطة الكاميرا</span>
             </div>
             
-            <!-- زرار الانتقال لصفحة السينما التانية -->
+            <!-- زرار السينما -->
             <div class="memory-item highlight-item" onclick="goToCinemaPage()">
                 <img src="projector.png" alt="السينما">
                 <span style="color: #ffde6a; font-weight: 900;">سينما حكاياتنا 🎬</span>
@@ -69,22 +66,17 @@
         </div>
     </div>
 
-    <!-- نافذة عرض الذكرى (البوب أب النظيف المريح للعين) -->
+    <!-- نافذة عرض الذكرى (البوب أب) -->
     <div id="memory-modal" class="modal-overlay" onclick="closeMemory()">
         <div id="modal-card" class="modal-card" onclick="event.stopPropagation()">
             <button class="close-modal-btn" onclick="closeMemory()">×</button>
             <h2 id="memory-title" class="modal-title"></h2>
             <div class="modal-body">
-                <img id="memory-img" src="" alt="الذكرى" class="modal-image">
-                <p id="memory-text" class="modal-text"></p>
+                <img id="memory-img" src="" alt="الذكرى" class="modal-image" style="max-height: 400px; object-fit: contain;">
+                <p id="memory-text" class="modal-text" style="white-space: pre-line; text-align: right; line-height: 1.8;"></p>
             </div>
         </div>
     </div>
-
-    <!-- تأثير شاتر الكاميرا -->
-    <div id="shutter-top" class="shutter"></div>
-    <div id="shutter-bottom" class="shutter"></div>
-    <div id="flash-effect"></div>
 
     <script src="script.js"></script>
 </body>
