@@ -1,85 +1,146 @@
+/* إعدادات الخطوط والخلفية البينك الفخمة */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Cairo', sans-serif; text-align: center; overflow: hidden; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(-45deg, #ff758c, #ff7eb3, #fecfef, #ff9a9e); background-size: 400% 400%; animation: gradientBG 10s ease infinite; position: relative; }
-@keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-#rain-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 5; pointer-events: none; overflow: hidden; }
-.bokeh { position: absolute; width: 200px; height: 200px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); filter: blur(50px); animation: moveBokeh 15s infinite alternate ease-in-out; z-index: 0; }
-.bokeh:nth-child(1) { top: -50px; left: -50px; background: rgba(255, 255, 255, 0.4); }
-.bokeh:nth-child(2) { bottom: -50px; right: -50px; background: rgba(255, 182, 193, 0.5); }
-.bokeh:nth-child(3) { top: 40%; left: 60%; background: rgba(255, 105, 180, 0.3); }
-@keyframes moveBokeh { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 50px) scale(1.3); } }
 
-.welcome-fade-scene { width: 90%; max-width: 800px; z-index: 10; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-@keyframes megaReveal { 0% { opacity: 0; transform: scale(0.9) translateY(20px); filter: blur(15px); } 50% { opacity: 0.5; filter: blur(5px); } 100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); } }
-@keyframes fadeUpDelayed { 0% { opacity: 0; transform: translateY(20px); filter: blur(5px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
-.ruqaa-text-huge { font-family: 'Aref Ruqaa', serif; font-size: 5em; color: #fff; text-shadow: 0 10px 30px rgba(166, 30, 77, 0.5), 0 0 20px rgba(255,255,255,0.4); margin-bottom: 10px; font-weight: 700; opacity: 0; animation: megaReveal 2s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-.welcome-line-delayed { width: 60%; height: 3px; background: linear-gradient(90deg, transparent, #fff, transparent); margin: 20px auto; opacity: 0; animation: fadeUpDelayed 1s ease forwards 2s; }
-.welcome-subtext-delayed { font-size: 1.4em; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.15); margin-bottom: 40px; font-weight: bold; line-height: 1.6; max-width: 550px; opacity: 0; animation: fadeUpDelayed 1s ease forwards 2.5s; }
-.welcome-btn-delayed { padding: 16px 45px; font-size: 1.3em; background: #fff; color: #ff758c; border: none; border-radius: 50px; cursor: pointer; font-weight: 900; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3); transition: all 0.3s ease; opacity: 0; animation: fadeUpDelayed 1s ease forwards 3.2s; }
-.welcome-btn-delayed:hover { transform: scale(1.06) translateY(-2px); box-shadow: 0 15px 35px rgba(255, 255, 255, 0.5); }
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
 
-.login-container { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 50px 40px; border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); width: 90%; max-width: 400px; z-index: 10; transition: all 0.8s ease; }
-.login-container h2 { font-size: 2.3em; margin-bottom: 10px; color: #fff; }
-.login-container p { font-size: 1.1em; color: #fff; margin-bottom: 25px; }
-.login-container input { width: 100%; padding: 14px 20px; font-size: 1.2em; border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 50px; outline: none; text-align: center; background: rgba(255, 255, 255, 0.25); color: #fff; letter-spacing: 5px; margin-bottom: 20px; }
-.login-container input:focus { background: rgba(255, 255, 255, 0.45); border-color: #fff; }
-.login-container button { width: 100%; padding: 14px; font-size: 1.2em; background: #fff; color: #ff758c; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; }
-.error { color: #ffe6e6; font-weight: bold; display: none; margin-top: 15px; }
-.shake-box { animation: boxShake 0.4s ease; }
-@keyframes boxShake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-15px); } 40%, 80% { transform: translateX(15px); } }
+/* طبقة المطر والقلوب الطايرة الخلفية */
+#rain-layer {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; z-index: 1; overflow: hidden;
+}
 
-.heart-rain { position: absolute; top: -10vh; animation: fallAndSway linear forwards; }
-@keyframes fallAndSway { 0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.8; } 50% { transform: translateY(50vh) translateX(30px) rotate(180deg); } 90% { opacity: 0.8; } 100% { transform: translateY(110vh) translateX(-30px) rotate(360deg); opacity: 0; } }
+.heart-rain {
+    position: absolute; top: -50px;
+    animation: fall linear forwards;
+    opacity: 0.8; z-index: 1;
+}
 
-#main-content { width: 100%; min-height: 100vh; padding: 50px 20px; display: none; z-index: 20; position: relative; overflow-y: auto; }
-.main-title { font-size: 3em; color: white; margin-bottom: 10px; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.main-subtitle { font-size: 1.4em; color: white; margin-bottom: 50px; opacity: 0.9; }
-.items-grid { display: flex; flex-direction: column; align-items: center; gap: 50px; max-width: 1200px; margin: 0 auto 50px auto; }
-.magic-item { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.4); padding: 40px 20px; border-radius: 25px; width: 300px; cursor: pointer; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s; animation: itemFloat 5s ease-in-out infinite; }
-@keyframes itemFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-.magic-item:nth-child(even) { animation-delay: 1.5s; transform: translateX(20px); }
-.magic-item:nth-child(odd) { transform: translateX(-20px); }
-.magic-item:hover { transform: scale(1.1) translateX(0) !important; background: rgba(255, 255, 255, 0.35); box-shadow: 0 25px 50px rgba(0,0,0,0.2); z-index: 30; }
-.item-icon img { width: 150px; height: 150px; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.3)); transition: transform 0.4s ease; }
-.item-label { color: white; font-size: 1.5em; font-weight: bold; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+@keyframes fall {
+    to { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
 
-.shutter { position: fixed; left: 0; width: 100vw; height: 50vh; background: #111; z-index: 9999; transition: transform 0.4s cubic-bezier(0.8, 0, 0.2, 1); pointer-events: none; }
-.shutter-top { top: 0; transform: translateY(-100%); border-bottom: 3px solid #333; }
-.shutter-bottom { bottom: 0; transform: translateY(100%); border-top: 3px solid #333; }
-.shutter-top.close { transform: translateY(0); }
-.shutter-bottom.close { transform: translateY(0); }
-#flash-effect { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: white; opacity: 0; z-index: 10000; pointer-events: none; transition: opacity 0.1s ease; }
-.ocean-wave { position: fixed; bottom: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(to top, rgba(0, 153, 255, 0.9), rgba(0, 255, 255, 0.6)); transform: translateY(100%); z-index: 9998; pointer-events: none; transition: transform 0.8s; border-radius: 50% 50% 0 0 / 20% 20% 0 0; backdrop-filter: blur(5px); }
-.ocean-wave.rise { transform: translateY(0); border-radius: 0; }
-.golden-glow { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: radial-gradient(circle, rgba(255,215,0,0.6) 0%, rgba(255,140,0,0.3) 50%, transparent 100%); z-index: 9997; opacity: 0; pointer-events: none; transition: opacity 0.8s; mix-blend-mode: overlay; }
-.golden-glow.active { opacity: 1; animation: pulseGlow 1s infinite alternate; }
-@keyframes pulseGlow { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.1); opacity: 1; } }
-.burst-item { position: fixed; z-index: 9999; pointer-events: none; animation: flyOut 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; }
-@keyframes flyOut { 0% { transform: translate(0,0) scale(0.5); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot)); opacity: 0; } }
+/* 👑 كود البوكس الازاز (Glassmorphism) الفخم بالأنيميشن الداخلي 👑 */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    padding: 40px 30px;
+    width: 90%; max-width: 550px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(255, 74, 117, 0.15);
+    z-index: 10;
+    animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
 
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); z-index: 10001; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
-.modal-overlay.active { opacity: 1; pointer-events: auto; }
-.modal-content { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.6); width: 90%; max-width: 800px; border-radius: 30px; padding: 40px; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.4); transform: scale(0.7) translateY(50px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.modal-content.show-anim { transform: scale(1) translateY(0); }
-.close-btn { position: absolute; top: 15px; left: 25px; font-size: 2.5rem; cursor: pointer; color: #ff758c; font-weight: bold; transition: transform 0.3s; z-index: 5; }
-.close-btn:hover { transform: scale(1.2) rotate(90deg); }
-.modal-body { display: flex; gap: 40px; align-items: center; text-align: right; }
-.modal-image-side { flex: 1; }
-.modal-image-side img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); background: white; padding: 10px; transform: rotate(-3deg); transition: transform 0.3s; }
-.modal-image-side img:hover { transform: rotate(0deg) scale(1.02); }
-.modal-text-side { flex: 1; color: #4a0e2e; }
-.modal-text-side h2 { font-size: 2.2em; margin-bottom: 20px; color: #ff4757; }
-.modal-text-side p { font-size: 1.3em; line-height: 1.8; font-weight: bold; }
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8) translateY(30px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
 
-.book-redirect-box { margin: 60px auto 100px auto; text-align: center; z-index: 25; position: relative; width: 100%; }
-.goto-book-btn { padding: 16px 45px; font-size: 1.3em; background: linear-gradient(45deg, #6c5ce7, #a29bfe); color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: 900; box-shadow: 0 10px 30px rgba(108, 92, 231, 0.5); transition: all 0.3s ease; }
-.goto-book-btn:hover { transform: scale(1.08) translateY(-3px); box-shadow: 0 15px 35px rgba(108, 92, 231, 0.7); }
+.main-title {
+    font-family: 'Aref Ruqaa', serif;
+    color: #ff4a75; font-size: 3rem; margin-bottom: 12px;
+    text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.8);
+}
 
-@media (max-width: 650px) {
-    .modal-body { flex-direction: column; gap: 20px; }
-    .modal-content { padding: 25px; max-height: 90vh; overflow-y: auto; }
-    .magic-item { width: 250px; transform: translateX(0) !important; }
-    .item-icon img { width: 120px; height: 120px; }
-    .ruqaa-text-huge { font-size: 3em; } 
-    .welcome-subtext-delayed { font-size: 1.1em; padding: 0 10px; }
-    .goto-book-btn { font-size: 1.1em; padding: 14px 30px; }
+.sub-title { font-size: 1.15rem; color: #555; margin-bottom: 30px; line-height: 1.6; }
+
+/* تصميم خانة كتابة الباسورد النظيفة جداً */
+#password-input {
+    width: 85%; max-width: 380px; padding: 14px 20px;
+    border: 2px solid #ff4a75; border-radius: 30px;
+    text-align: center; font-size: 1.15rem; font-family: 'Cairo', sans-serif;
+    margin-bottom: 25px; display: block; margin-left: auto; margin-right: auto;
+    background: rgba(255, 255, 255, 0.8); color: #333; outline: none;
+    transition: 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+#password-input:focus { box-shadow: 0 0 15px rgba(255, 74, 117, 0.4); border-color: #ff144d; }
+
+/* زرار الدخول السحري بمؤثرات الإضاءة */
+.magic-btn {
+    background: linear-gradient(45deg, #ff4a75, #ff758f);
+    color: #fff; border: none; padding: 14px 40px;
+    border-radius: 30px; font-weight: bold; cursor: pointer;
+    font-size: 1.2rem; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 25px rgba(255, 74, 117, 0.3);
+}
+.magic-btn:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 12px 30px rgba(255, 74, 117, 0.5); }
+
+/* أنيميشن اهتزاز الصندوق لو الباسورد غلط */
+.shake-box { animation: shake 0.5s ease-in-out; }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+}
+
+/* تصاميم محتوى الذكريات الرئيسي بعد الدخول */
+.site-header { text-align: center; margin-bottom: 40px; animation: fadeInDown 0.8s ease; }
+.site-title { font-family: 'Aref Ruqaa', serif; color: #ff4a75; font-size: 2.8rem; margin-bottom: 10px; }
+.site-subtitle { color: #666; font-size: 1.1rem; }
+
+.interactive-container {
+    display: grid; grid-template-columns: repeat(2, minmax(160px, 240px));
+    gap: 30px; justify-content: center; width: 100%; max-width: 600px;
+    padding: 20px; z-index: 5;
+}
+
+.memory-item {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 20px; padding: 25px 15px; text-align: center;
+    cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+.memory-item:hover { transform: translateY(-10px); background: rgba(255,255,255,0.9); box-shadow: 0 15px 35px rgba(255, 74, 117, 0.2); }
+.memory-item img { width: 75px; height: 75px; object-fit: contain; margin-bottom: 15px; }
+.memory-item span { display: block; font-weight: 700; color: #444; font-size: 1.05rem; }
+.highlight-item { background: rgba(5, 5, 5, 0.85); border-color: #d4af37; }
+.highlight-item:hover { background: #000; }
+
+/* 👑 بوب أب عرض الرسائل الفخم المطاطي المريح جداً للعين 👑 */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; z-index: 1000; transition: 0.4s ease;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+
+.modal-card {
+    background: #fff; width: 90%; max-width: 650px;
+    max-height: 85vh; border-radius: 24px; padding: 30px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.3); overflow-y: auto;
+    position: relative; transform: scale(0.7) translateY(50px);
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.active .modal-card.show-anim { transform: scale(1) translateY(0); }
+
+.close-modal-btn {
+    position: absolute; top: 15px; right: 25px; font-size: 2rem;
+    background: none; border: none; color: #aaa; cursor: pointer; transition: 0.3s;
+}
+.close-modal-btn:hover { color: #ff4a75; }
+
+.modal-title { font-family: 'Aref Ruqaa', serif; color: #ff4a75; font-size: 2rem; margin-bottom: 20px; text-align: center; }
+.modal-image { width: 100%; max-height: 380px; object-fit: contain; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.modal-text { font-size: 1.15rem; color: #444; line-height: 1.8; text-align: right; white-space: pre-line; font-weight: 500; }
+
+/* تأثير انفجار الأيقونات الرومانسي */
+.burst-item { position: fixed; pointer-events: none; z-index: 999; animation: burstMove 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; }
+@keyframes burstMove {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); opacity: 0; }
 }
