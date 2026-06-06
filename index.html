@@ -4,37 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قصتنا الحلوة 💖</title>
+    <!-- ربط خط الرقعة وخط كايرو من جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- خلفيات وأساسيات -->
+    <!-- طبقة مخصصة لمطر القلوب عشان متأثرش على مكان البوكس -->
+    <div id="rain-layer"></div>
+
+    <!-- تأثيرات الخلفية -->
     <div class="bokeh"></div>
     <div class="bokeh"></div>
     <div class="bokeh"></div>
     <div id="flash-effect"></div>
 
-    <!-- طبقات الأنيميشن الوهمية الجديدة -->
+    <!-- طبقات الأنيميشن الجديدة -->
     <div id="shutter-top" class="shutter shutter-top"></div>
     <div id="shutter-bottom" class="shutter shutter-bottom"></div>
     <div id="ocean-wave" class="ocean-wave"></div>
-    <div id="cinematic-overlay" class="cinematic-overlay"><div class="projector-beam"></div></div>
+    <div id="golden-glow" class="golden-glow"></div> <!-- الإيفكت الجديد للبروجيكتور -->
 
-    <!-- شاشة الباسورد -->
-    <div id="login-screen" class="login-container">
-        <h2>الباب السري 🔒</h2>
-        <p>أدخل كلمة السر عشان تشوف المفاجأة ✨</p>
-        <input type="password" id="password-input" placeholder="••••••••">
-        <button onclick="checkPassword()">دخول الحكاية ✨</button>
-        <p id="error-message" class="error">الباسورد غلط، حاول تاني! 🥺</p>
+    <!-- 1. شاشة الترحيب الرومانسية (أول حاجة بتظهر) -->
+    <div id="welcome-screen" class="welcome-container">
+        <h1 class="ruqaa-text">أَنَا بَحِبِّك يَا شَهْد ❤️</h1>
+        <div class="welcome-line"></div>
+        <p class="welcome-subtext">لازم تقولي "وأنا كمان بحبك يا حسين" عشان تخشي تشوفي المفاجأة 😉</p>
+        <button class="welcome-btn" onclick="showPasswordBox()">قولتها، يلا ندخل ✨</button>
     </div>
 
-    <!-- المحتوى الرئيسي -->
+    <!-- 2. شاشة الباسورد (مخفية في البداية) -->
+    <div id="login-screen" class="login-container" style="display: none;">
+        <h2>الباب السري 🔒</h2>
+        <p>أدخل كلمة السر يا قمري ✨</p>
+        <input type="password" id="password-input" placeholder="••••••••">
+        <button onclick="checkPassword()">فتح الحكاية 💖</button>
+        <p id="error-message" class="error">الباسورد غلط، حاولي تاني يا شهد! 🥺</p>
+    </div>
+
+    <!-- 3. المحتوى الرئيسي -->
     <div id="main-content" style="display: none;">
         <h1 class="main-title">عالم ذكرياتنا السحري ✨</h1>
         <p class="main-subtitle">اضغطي على أي عنصر عشان تفتحي ذكرى مخفية...</p>
 
-        <!-- العناصر بقت تحت بعض (Vertical) -->
         <div class="items-grid">
             <div class="magic-item" onclick="openMemory('envelope', event)">
                 <div class="item-icon"><img src="envelope.png" alt="جواب"></div>
@@ -54,7 +66,7 @@
             </div>
             <div class="magic-item" onclick="openMemory('projector', event)">
                 <div class="item-icon"><img src="projector.png" alt="بروجيكتور"></div>
-                <div class="item-label">بروجيكتور السينما</div>
+                <div class="item-label">الضوء السحري</div> <!-- اتغيرت للضوء السحري -->
             </div>
         </div>
 
