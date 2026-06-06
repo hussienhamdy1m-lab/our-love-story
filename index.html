@@ -8,13 +8,19 @@
 </head>
 <body>
 
+    <!-- خلفيات وأساسيات -->
     <div class="bokeh"></div>
     <div class="bokeh"></div>
     <div class="bokeh"></div>
-
     <div id="flash-effect"></div>
 
-    <!-- شاشة إدخال الباسورد -->
+    <!-- طبقات الأنيميشن الوهمية الجديدة -->
+    <div id="shutter-top" class="shutter shutter-top"></div>
+    <div id="shutter-bottom" class="shutter shutter-bottom"></div>
+    <div id="ocean-wave" class="ocean-wave"></div>
+    <div id="cinematic-overlay" class="cinematic-overlay"><div class="projector-beam"></div></div>
+
+    <!-- شاشة الباسورد -->
     <div id="login-screen" class="login-container">
         <h2>الباب السري 🔒</h2>
         <p>أدخل كلمة السر عشان تشوف المفاجأة ✨</p>
@@ -23,52 +29,36 @@
         <p id="error-message" class="error">الباسورد غلط، حاول تاني! 🥺</p>
     </div>
 
-    <!-- المحتوى الرئيسي للموقع -->
+    <!-- المحتوى الرئيسي -->
     <div id="main-content" style="display: none;">
         <h1 class="main-title">عالم ذكرياتنا السحري ✨</h1>
         <p class="main-subtitle">اضغطي على أي عنصر عشان تفتحي ذكرى مخفية...</p>
 
-        <!-- شبكة العناصر التفاعلية (بقت أحجامها كبيرة وصور حقيقية) -->
+        <!-- العناصر بقت تحت بعض (Vertical) -->
         <div class="items-grid">
-            
-            <div class="magic-item" onclick="openMemory('envelope')">
-                <div class="item-icon">
-                    <img src="envelope.png" alt="جواب رومانسي">
-                </div>
+            <div class="magic-item" onclick="openMemory('envelope', event)">
+                <div class="item-icon"><img src="envelope.png" alt="جواب"></div>
                 <div class="item-label">الجواب الرومانسي</div>
             </div>
-
-            <div class="magic-item" onclick="openMemory('camera')">
-                <div class="item-icon">
-                    <img src="camera.png" alt="كاميرا عتيقة">
-                </div>
+            <div class="magic-item" onclick="openMemory('camera', event)">
+                <div class="item-icon"><img src="camera.png" alt="كاميرا"></div>
                 <div class="item-label">الكاميرا العتيقة</div>
             </div>
-
-            <div class="magic-item" onclick="openMemory('book')">
-                <div class="item-icon">
-                    <img src="book.png" alt="كتاب الحكايات">
-                </div>
+            <div class="magic-item" onclick="openMemory('book', event)">
+                <div class="item-icon"><img src="book.png" alt="كتاب"></div>
                 <div class="item-label">كتاب الحكايات</div>
             </div>
-
-            <div class="magic-item" onclick="openMemory('bottle')">
-                <div class="item-icon">
-                    <img src="bottle.png" alt="رسالة في زجاجة">
-                </div>
+            <div class="magic-item" onclick="openMemory('bottle', event)">
+                <div class="item-icon"><img src="bottle.png" alt="زجاجة"></div>
                 <div class="item-label">رسالة في زجاجة</div>
             </div>
-
-            <div class="magic-item" onclick="openMemory('projector')">
-                <div class="item-icon">
-                    <img src="projector.png" alt="بروجيكتور">
-                </div>
+            <div class="magic-item" onclick="openMemory('projector', event)">
+                <div class="item-icon"><img src="projector.png" alt="بروجيكتور"></div>
                 <div class="item-label">بروجيكتور السينما</div>
             </div>
-
         </div>
 
-        <!-- الصندوق الزجاجي المنبثق -->
+        <!-- الصندوق الزجاجي للذكريات -->
         <div id="memory-modal" class="modal-overlay">
             <div class="modal-content" id="modal-card">
                 <span class="close-btn" onclick="closeMemory()">&times;</span>
