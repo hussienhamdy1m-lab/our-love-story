@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تلفزيون الذكريات 📺</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>سينما الحكايات الذكية 🧠❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
@@ -15,51 +15,41 @@
 
     <button class="back-home-btn" onclick="goBackHome()">⬅️ العودة للرئيسية</button>
 
-    <div class="retro-tv-container">
-        
-        <div class="retro-tv">
-            <div class="tv-inner-screen">
-                
-                <div id="tv-static" class="tv-static-effect"></div>
-                
-                <div class="tv-channel active">
-                    <video id="video1" playsinline loop>
-                        <source src="vid1.mp4" type="video/mp4">
-                    </video>
-                </div>
+    <div id="ai-neural-bg"></div>
 
-                <div class="tv-channel">
-                    <video id="video2" playsinline loop>
-                        <source src="vid2.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="tv-channel">
-                    <video id="video3" playsinline loop>
-                        <source src="vid3.mp4" type="video/mp4">
-                    </video>
-                </div>
-
+    <div class="dreamweaver-wrapper">
+        <div class="cinematic-frame">
+            
+            <div id="tv-static" class="screen-static"></div>
+            
+            <div class="video-slide active">
+                <video id="vid1" playsinline controls loop>
+                    <source src="vid1.mp4" type="video/mp4">
+                </video>
             </div>
 
-            <div class="tv-controls-panel">
-                <div class="tv-dial" onclick="nextChannel()"></div>
-                <div class="tv-btn" onclick="nextChannel()">CH +</div>
-                <div class="tv-btn" onclick="prevChannel()">CH -</div>
-                <div class="tv-power-light"></div>
+            <div class="video-slide">
+                <video id="vid2" playsinline controls loop>
+                    <source src="vid2.mp4" type="video/mp4">
+                </video>
             </div>
+
+            <div class="video-slide">
+                <video id="vid3" playsinline controls loop>
+                    <source src="vid3.mp4" type="video/mp4">
+                </video>
+            </div>
+
         </div>
 
-        <div class="movie-subtitles">
-            <p id="subtitle-text">المشهد الأول: هنا بتكتب كلامك الرايق الهادي اللي هيظهر مع أول فيديو...</p>
+        <div class="subtitle-box">
+            <p id="subtitle-text" class="woven-text"></p>
         </div>
 
-        <div class="remote-control">
-            <button class="remote-btn" onclick="prevChannel()">◀️ القناة السابقة</button>
-            <button class="remote-btn play-btn" onclick="togglePlayVideo()">تشغيل / إيقاف مؤقت 🎥</button>
-            <button class="remote-btn" onclick="nextChannel()">القناة التالية ▶️</button>
+        <div class="modern-nav">
+            <button class="nav-btn-modern" onclick="changeScene(-1)">◀️ المشهد السابق</button>
+            <button class="nav-btn-modern next-btn-modern" onclick="changeScene(1)">المشهد التالي ▶️</button>
         </div>
-
     </div>
 
     <script src="page2.js"></script>
