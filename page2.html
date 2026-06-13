@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سينما الذكاء الاصطناعي 🧠🎬</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
@@ -15,33 +15,33 @@
 
     <button class="back-home-btn" onclick="goBackHome()">⬅️ العودة للرئيسية</button>
 
-    <div id="ai-matrix-bg"></div>
-
     <div class="ai-interface-container">
         
         <div id="ai-console" class="ai-console-box">
-            <div class="console-header">
-                <span class="status-dot"></span>
-                <span class="console-title">AI MEMORY GENERATOR v2.5</span>
-            </div>
-            <p class="console-hint">اضغطي على الأوامر الذكية أدناه لتوليد وعرض المشاهد السحرية..</p>
+            <h2 style="color: #ff4a75; font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">نظام تشغيل ذكريات شهد 🤖</h2>
+            <p class="console-hint">اضغطي على أي مشهد لتوليد وعرض الفيديو بنقلة الـ AI الفائقة..</p>
             
             <div class="ai-commands-list">
-                <button class="ai-cmd-btn" onclick="generateAiMemory(0)">🤖 Execute_Memory_Command_01.exe</button>
-                <button class="ai-cmd-btn" onclick="generateAiMemory(1)">🤖 Execute_Memory_Command_02.exe</button>
-                <button class="ai-cmd-btn" onclick="generateAiMemory(2)">🤖 Execute_Memory_Command_03.exe</button>
+                <button class="ai-cmd-btn" onclick="generateAiMemory(1)">🧠 تشغيل مصفوفة المشهد الأول</button>
+                <button class="ai-cmd-btn" onclick="generateAiMemory(2)">🧠 تشغيل مصفوفة المشهد الثاني</button>
+                <button class="ai-cmd-btn" onclick="generateAiMemory(3)">🧠 تشغيل مصفوفة المشهد الثالث</button>
+                <button class="ai-cmd-btn" onclick="generateAiMemory(4)">🧠 تشغيل مصفوفة المشهد الرابع</button>
+                <button class="ai-cmd-btn" onclick="generateAiMemory(5)">🧠 تشغيل مصفوفة المشهد الخامس</button>
             </div>
         </div>
 
         <div id="cinema-theater" class="theater-wrapper" style="display: none; opacity: 0;">
             <div class="cinematic-frame" id="cinema-frame">
+                
                 <div id="ai-glitch" class="ai-glitch-overlay"></div>
                 <div id="ai-blur" class="ai-blur-overlay"></div>
                 <div id="light-leak" class="light-leak-overlay"></div>
                 
-                <div class="video-slide" id="slide-0"><video id="vid0" playsinline controls loop><source src="vid1.mp4" type="video/mp4"></video></div>
-                <div class="video-slide" id="slide-1"><video id="vid1" playsinline controls loop><source src="vid2.mp4" type="video/mp4"></video></div>
-                <div class="video-slide" id="slide-2"><video id="vid2" playsinline controls loop><source src="vid3.mp4" type="video/mp4"></video></div>
+                <div class="video-slide" id="slide-1"><video id="vid1" playsinline controls loop><source src="vid1.mp4" type="video/mp4"></video></div>
+                <div class="video-slide" id="slide-2"><video id="vid2" playsinline controls loop><source src="vid2.mp4" type="video/mp4"></video></div>
+                <div class="video-slide" id="slide-3"><video id="vid3" playsinline controls loop><source src="vid3.mp4" type="video/mp4"></video></div>
+                <div class="video-slide" id="slide-4"><video id="vid4" playsinline controls loop><source src="vid4.mp4" type="video/mp4"></video></div>
+                <div class="video-slide" id="slide-5"><video id="vid5" playsinline controls loop><source src="vid5.mp4" type="video/mp4"></video></div>
             </div>
 
             <div class="subtitle-box">
