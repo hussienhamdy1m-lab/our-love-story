@@ -3,81 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حكاياتنا السحرية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>سينما حكاياتنا 🎬</title>
+    <link href="https://fonts.googleapis.com/css2 family=Cairo:wght@400;700;900&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
 
-    <audio id="book-music" autoplay loop>
-        <source src="song2.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
     </audio>
 
-    <button class="back-home-btn" onclick="window.location.href='index.html'">العودة للرئيسية</button>
+    <button class="back-home-btn" onclick="goBackHome()">⬅️ العودة للرئيسية</button>
 
-    <div class="scene-3d">
-        <!-- مجسم الكتاب ثلاثي الأبعاد بالكامل بالكود -->
-        <div id="interactive-book" class="book-3d" onclick="handleBookClick()">
-            
-            <!-- غلاف الكتاب المغلق الخارجي -->
-            <div class="book-cover-front">
-                <div class="cover-gold-lines">
-                    <h1 class="cover-title">كِتَابُ<br>ذِكْرَيَاتِنَا</h1>
-                    <span class="cover-instruction">اضغطي لفتح الحكاية</span>
-                </div>
+    <div id="envelope-stage" class="envelope-wrapper">
+        <p class="envelope-hint">اضغطي على الجواب لفتح صندوق المفاجآت.. ❤️</p>
+        <div class="envelope" onclick="openEnvelope()">
+            <div class="front-flap"></div>
+            <div class="pocket"></div>
+            <div class="letter">
+                <p>إلى شهودتي.. ❤️</p>
+                <p style="font-size: 0.85rem; margin-top: 5px;">جاهزة لرحلة جوة ذكرياتنا؟</p>
             </div>
+            <div class="hearts-seal">❤️</div>
+        </div>
+    </div>
 
-            <!-- أوراق الكتاب الداخلية التفاعلية -->
-            <div class="book-pages-container">
-                
-                <!-- الفصل الأول -->
-                <div class="dynamic-page active">
-                    <div class="inner-side right-page">
-                        <div class="frame-photo-clean">
-                            <img src="1.jpg" alt="اجمل ذكرى" class="pure-photo">
-                        </div>
-                    </div>
-                    <div class="inner-side left-page">
-                        <div class="text-clean-layout">
-                            <h2 class="vintage-heading">الفصل الأول: البداية</h2>
-                            <p class="vintage-p">هنا بدأت حكايتنا، يوم ما عيني شافت عينك لأول مرة، والدنيا كلها ضحكتلي كأن الكون كله بيحتفل بوجودك معايا.</p>
-                            <span class="click-page-hint">اضغطي لقلب الصفحة التالي</span>
-                        </div>
-                    </div>
+    <div id="cinema-stage" class="cinema-container" style="display: none; opacity: 0;">
+        <div class="cinema-screen">
+            
+            <div class="slide active">
+                <video controls playsinline id="main-video">
+                    <source src="vid1.mp4" type="video/mp4">
+                </video>
+                <div class="caption">
+                    <h2>المشهد الأول 🎬</h2>
+                    <p>كل لحظة متسجلة هنا هي حكاية عمر كامل بحاله.. تفرجِ وعيشي اللحظة يا شهدي.</p>
                 </div>
-
-                <!-- الفصل الثاني -->
-                <div class="dynamic-page">
-                    <div class="inner-side right-page">
-                        <div class="frame-photo-clean">
-                            <img src="2.png" alt="اجمل ذكرى" class="pure-photo">
-                        </div>
-                    </div>
-                    <div class="inner-side left-page">
-                        <div class="text-clean-layout">
-                            <h2 class="vintage-heading">الفصل الثاني: الضحكة الحلوة</h2>
-                            <p class="vintage-p">كل تفصيلة معاكي بتخليني متأكد إنك أجمل حكاية بكتبها في عمري كله، ضحكتك دي هي الأمان اللي بهرب بيه من الدنيا.</p>
-                            <span class="click-page-hint">اضغطي لقلب الصفحة التالي</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- الفصل الثالث -->
-                <div class="dynamic-page">
-                    <div class="inner-side right-page">
-                        <div class="frame-photo-clean">
-                            <img src="3.jpeg" alt="اجمل ذكرى" class="pure-photo">
-                        </div>
-                    </div>
-                    <div class="inner-side left-page">
-                        <div class="text-clean-layout">
-                            <h2 class="vintage-heading">الفصل الثالث: لآخر العمر</h2>
-                            <p class="vintage-p">وعد مني نفضل نملى صفحات كتابنا ده بذكرياتنا، وضحكتنا، ومغامراتنا سوا لحد آخر يوم في العمر.. بحبك يا شهدي.</p>
-                            <span class="click-page-hint" style="color: #c92a2a;">نهاية الحكاية - اضغطي للإعادة</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
