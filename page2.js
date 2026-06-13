@@ -1,16 +1,12 @@
 const bgMusic = document.getElementById('bg-music');
 
-// مزامنة أغنية الخلفية
 window.addEventListener('load', () => {
     const savedTime = sessionStorage.getItem('musicTime');
     if (savedTime && bgMusic) {
         bgMusic.currentTime = parseFloat(savedTime);
         bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
-    // تحديث الترجمة لأول فيديو
-    weaveSubtitle(0);
-    // تشغيل خلفية الـ AI العصبية
-    initNeuralBackground();
+    initMatrixBackground();
 });
 
 setInterval(() => {
@@ -24,57 +20,74 @@ function goBackHome() {
     window.location.href = 'index.html';
 }
 
-// 👑 نصوص الترجمة السينمائية (اكتب الكلام الكتير بتاعك هنا يا بطل) 👑
+// 👑 اكتب كابشن ورسائل الفيديوهات هنا يا بطل 👑
 const cinematicTexts = [
-    "المشهد الأول: اكتب هنا الذكرى الكتيرة والرسالة الرومانسية الرايقة بتاعة الفيديو الأول.. الكلام هيظهر كلمة بكلمة كأنه بيتنّسج، مريح جداً للنظر.",
-    "المشهد الثاني: اكتب هنا كلام الفيديو التاني وتفاصيله الممتعة.. التصميم وقور وهادي وبيجبر العين تركز في ملامحكم في الفيديو وبس.",
-    "المشهد الثالث: اكتب هنا وعدك وكلامك الحلو للفيديو الثالث، يا رب نفضل سوا لآخر العمر."
+    "المشهد الأول: تم توليد حزمة البيانات بنجاح.. اكتب هنا ذكريات الفيديو الأول بالكامل، الكلام بيتنّسج بنعومة مريحة جداً للعين.",
+    "المشهد الثاني: معالجة القطاع الثاني.. اكتب هنا تفاصيل كلام الفيديو التاني ورسالتك لشهد.",
+    "المشهد الثالث: نهاية مصفوفة الحكايات.. اكتب هنا وعدك الأخير وكلامك اللي من القلب يا حسين."
 ];
 
-let currentSlide = 0;
+const consoleStage = document.getElementById('ai-console');
+const theaterStage = document.getElementById('cinema-theater');
 const slides = document.querySelectorAll('.video-slide');
 const videos = document.querySelectorAll('.video-slide video');
 const subtitleText = document.getElementById('subtitle-text');
-const tvStatic = document.getElementById('tv-static');
 
-function changeScene(direction) {
-    // إيقاف الفيديوهات الحالية
-    videos.forEach(vid => vid.pause());
+const glitchOverlay = document.getElementById('ai-glitch');
+const blurOverlay = document.getElementById('ai-blur');
+const leakOverlay = document.getElementById('light-leak');
+const cinemaFrame = document.getElementById('cinema-frame');
 
-    // حجب النص القديم لعمل تأثير النسج الجديد
-    if (subtitleText) subtitleText.classList.add('text-hidden');
-    // تشغيل الوشيش السريع
-    if (tvStatic) tvStatic.classList.add('show');
-
+// 👑 دالة توليد الـ AI وتشغيل نقلات المونتاج الذكية 👑
+function generateAiMemory(index) {
+    // 1. إخفاء لوحة التحكم وظهور مسرح العرض بالأنيميشن
+    if (consoleStage) { consoleStage.style.opacity = '0'; consoleStage.style.transform = 'scale(0.9)'; }
+    
     setTimeout(() => {
-        slides[currentSlide].classList.remove('active');
+        if (consoleStage) consoleStage.style.display = 'none';
+        if (theaterStage) { theaterStage.style.display = 'flex'; setTimeout(() => theaterStage.style.opacity = '1', 50); }
         
-        // حساب المشهد الجديد
-        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        // 2. تفعيل الصدمة الضوئية والغليتش الـ AI
+        if (glitchOverlay) { glitchOverlay.classList.add('active'); setTimeout(() => glitchOverlay.classList.remove('active'), 300); }
+        if (blurOverlay) { blurOverlay.classList.add('active'); setTimeout(() => blurOverlay.classList.remove('active'), 400); }
+        if (leakOverlay) { leakOverlay.classList.add('active'); setTimeout(() => leakOverlay.classList.remove('active'), 500); }
+        if (cinemaFrame) { cinemaFrame.classList.add('ai-impact'); setTimeout(() => cinemaFrame.classList.remove('ai-impact'), 500); }
         
-        slides[currentSlide].classList.add('active');
+        // 3. عرض شريحة الفيديو المطلوبة
+        slides.forEach(sl => sl.classList.remove('active'));
+        const targetSlide = document.getElementById(`slide-${index}`);
+        if (targetSlide) targetSlide.classList.add('active');
         
-        // تحديث النص بنسج جديد
-        weaveSubtitle(currentSlide);
+        // 4. نسج الترجمة كلمة كلمة تلقائياً
+        weaveSubtitle(index);
         
-        if (tvStatic) tvStatic.classList.remove('show'); // إيقاف الوشيش
-
-        // تشغيل الفيديو الجديد تلقائياً
-        const activeVid = videos[currentSlide];
-        if (activeVid) {
-            activeVid.currentTime = 0;
-            activeVid.play().catch(e => console.log("Auto-play click required"));
+        // 5. تشغيل الفيديو المختار
+        const targetVid = document.getElementById(`vid${index}`);
+        if (targetVid) {
+            targetVid.currentTime = 0;
+            targetVid.play().catch(e => console.log("Auto-play trigger required"));
         }
-    }, 400); // تأثير وشيش سريع
+    }, 400);
 }
 
-// 👑 دالة الـ AI الخاصة لنسج النص كلمة بكلمة بنعومة 👑
+// العودة للوحة الـ AI لاختيار فيديو تاني
+function returnToConsole() {
+    videos.forEach(vid => vid.pause());
+    if (theaterStage) { theaterStage.style.opacity = '0'; }
+    
+    setTimeout(() => {
+        if (theaterStage) theaterStage.style.display = 'none';
+        if (consoleStage) {
+            consoleStage.style.display = 'block';
+            setTimeout(() => { consoleStage.style.opacity = '1'; consoleStage.style.transform = 'scale(1)'; }, 50);
+        }
+    }, 400);
+}
+
+// دالة نسج الكلام كلمة كلمة
 function weaveSubtitle(index) {
     if (!subtitleText) return;
-    
-    // إزالة النص المخفي
-    subtitleText.classList.remove('text-hidden');
-    subtitleText.innerHTML = ''; // تفريغ الصندوق
+    subtitleText.innerHTML = '';
     
     const words = cinematicTexts[index].split(' ');
     let currentWordIndex = 0;
@@ -84,39 +97,27 @@ function weaveSubtitle(index) {
             const wordSpan = document.createElement('span');
             wordSpan.innerText = words[currentWordIndex] + ' ';
             wordSpan.style.opacity = '0';
-            wordSpan.style.transition = 'opacity 0.3s ease';
-            
+            wordSpan.style.transition = 'opacity 0.2s ease';
             subtitleText.appendChild(wordSpan);
             
-            // جعل الكلمة تظهر بنعومة (fade-in)
-            setTimeout(() => {
-                wordSpan.style.opacity = '1';
-            }, 50);
-            
+            setTimeout(() => { wordSpan.style.opacity = '1'; }, 30);
             currentWordIndex++;
         } else {
-            clearInterval(weaveInterval); // نهاية النسج
+            clearInterval(weaveInterval);
         }
-    }, 150); // سرعة النسج (150 مللي ثانية بين كل كلمة)
+    }, 120); 
 }
 
-// تخليق تأثير الخلفية العصبية العائمة (Procedural Art)
-function initNeuralBackground() {
-    const container = document.getElementById('ai-neural-bg');
+// مصفوفة الخطوط الخلفية الهادئة جداً (Matrix Rain style)
+function initMatrixBackground() {
+    const container = document.getElementById('ai-matrix-bg');
     if (!container) return;
-    
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('neural-node');
-        
-        const size = Math.random() * 4 + 2; // جزيئات صغيرة غير مزعجة
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.animationDuration = (Math.random() * 8 + 8) + 's'; // حركة بطيئة جداً
-        particle.style.animationDelay = (Math.random() * 5) + 's';
-        
-        container.appendChild(particle);
+    for (let i = 0; i < 12; i++) {
+        const line = document.createElement('div');
+        line.classList.add('matrix-line');
+        line.style.left = Math.random() * 100 + 'vw';
+        line.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        line.style.animationDelay = (Math.random() * 4) + 's';
+        container.appendChild(line);
     }
 }
