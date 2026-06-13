@@ -3,39 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سينما الذكاء الاصطناعي 🧠🎬</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>بوابة الذكاء الاصطناعي السينمائية 🧠🎬</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
 
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop preload="metadata">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <button class="back-home-btn" onclick="goBackHome()">⬅️ العودة للرئيسية</button>
 
-    <div class="ai-interface-container">
+    <div id="ai-neural-canvas"></div>
+
+    <div class="ai-universe-container">
         
-        <div id="ai-console" class="ai-console-box">
-            <h2 style="color: #ff4a75; font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">نظام تشغيل ذكريات شهد 🤖</h2>
-            <p class="console-hint">اضغطي على أي مشهد لتوليد وعرض الفيديو بنقلة الـ AI الفائقة..</p>
+        <div id="cinema-auth-portal" class="premium-glass-card">
+            <div class="ai-status-bar">
+                <span class="pulse-core"></span>
+                <span class="system-loader">ROMANTIC_CORE_INITIALIZED...</span>
+            </div>
+            <h1 class="portal-main-title">بوابة التشفير العاطفي 🔐</h1>
+            <p class="portal-subtitle">عشان السيستم يولد الفيديوهات، لازم تجاوبي: مين بيحب التاني أكتر؟ 😉</p>
             
-            <div class="ai-commands-list">
-                <button class="ai-cmd-btn" onclick="generateAiMemory(1)">🧠 تشغيل مصفوفة المشهد الأول</button>
-                <button class="ai-cmd-btn" onclick="generateAiMemory(2)">🧠 تشغيل مصفوفة المشهد الثاني</button>
-                <button class="ai-cmd-btn" onclick="generateAiMemory(3)">🧠 تشغيل مصفوفة المشهد الثالث</button>
-                <button class="ai-cmd-btn" onclick="generateAiMemory(4)">🧠 تشغيل مصفوفة المشهد الرابع</button>
-                <button class="ai-cmd-btn" onclick="generateAiMemory(5)">🧠 تشغيل مصفوفة المشهد الخامس</button>
+            <input type="text" id="cinema-password-input" placeholder="اكتبي الإجابة السرية هنا..." autocomplete="off">
+            <button class="ai-submit-btn" onclick="unlockAiCinema()">تأكيد الهوية الرقمية ✨</button>
+            
+            <p id="cinema-error-message" class="error-msg-style">الباسورد غلط يا شهودتي ركزي! 🥺❤️</p>
+        </div>
+
+        <div id="ai-console-dashboard" class="premium-glass-card" style="display: none; opacity: 0;">
+            <div class="console-header-bar">
+                <div class="terminal-dots"><span></span><span></span><span></span></div>
+                <span class="terminal-title">DATA_MATRIX: MEMORIES_STREAM</span>
+            </div>
+            <h2 class="dashboard-title">نظام استدعاء الذكريات 🤖</h2>
+            <p class="dashboard-subtitle">اضغطي على أي حزمة بيانات لتوليد وعرض المشهد بنقلة الـ AI الفائقة..</p>
+            
+            <div class="ai-matrix-commands">
+                <button class="matrix-cmd-btn" onclick="compileAndPlayScene(1)">⚡ Run_Memory_Sequence_01.dat</button>
+                <button class="matrix-cmd-btn" onclick="compileAndPlayScene(2)">⚡ Run_Memory_Sequence_02.dat</button>
+                <button class="matrix-cmd-btn" onclick="compileAndPlayScene(3)">⚡ Run_Memory_Sequence_03.dat</button>
+                <button class="matrix-cmd-btn" onclick="compileAndPlayScene(4) ">⚡ Run_Memory_Sequence_04.dat</button>
+                <button class="matrix-cmd-btn" onclick="compileAndPlayScene(5)">⚡ Run_Memory_Sequence_05.dat</button>
             </div>
         </div>
 
-        <div id="cinema-theater" class="theater-wrapper" style="display: none; opacity: 0;">
-            <div class="cinematic-frame" id="cinema-frame">
+        <div id="cinema-theater-stage" class="theater-wrapper-layout" style="display: none; opacity: 0;">
+            <div class="cinematic-canvas-frame" id="cinema-frame">
                 
-                <div id="ai-glitch" class="ai-glitch-overlay"></div>
-                <div id="ai-blur" class="ai-blur-overlay"></div>
-                <div id="light-leak" class="light-leak-overlay"></div>
+                <div id="ai-glitch-layer" class="ai-glitch-overlay"></div>
+                <div id="ai-blur-layer" class="ai-blur-overlay"></div>
+                <div id="ai-light-leak" class="light-leak-overlay"></div>
                 
                 <div class="video-slide" id="slide-1"><video id="vid1" playsinline controls loop><source src="vid1.mp4" type="video/mp4"></video></div>
                 <div class="video-slide" id="slide-2"><video id="vid2" playsinline controls loop><source src="vid2.mp4" type="video/mp4"></video></div>
@@ -44,11 +64,11 @@
                 <div class="video-slide" id="slide-5"><video id="vid5" playsinline controls loop><source src="vid5.mp4" type="video/mp4"></video></div>
             </div>
 
-            <div class="subtitle-box">
-                <p id="subtitle-text"></p>
+            <div class="ai-subtitles-container">
+                <p id="subtitle-text-field"></p>
             </div>
 
-            <button class="return-console-btn" onclick="returnToConsole()">⚙️ إعادة تشغيل نظام الـ AI</button>
+            <button class="return-system-btn" onclick="returnToAiConsole()">⚙️ إعادة تشغيل مصفوفة الـ AI</button>
         </div>
 
     </div>
