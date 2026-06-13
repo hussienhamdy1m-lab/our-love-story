@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سينما حكاياتنا 🎬</title>
-    <link href="https://fonts.googleapis.com/css2 family=Cairo:wght@400;700;900&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+    <title>تلفزيون الذكريات 📺</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
@@ -15,33 +15,51 @@
 
     <button class="back-home-btn" onclick="goBackHome()">⬅️ العودة للرئيسية</button>
 
-    <div id="envelope-stage" class="envelope-wrapper">
-        <p class="envelope-hint">اضغطي على الجواب لفتح صندوق المفاجآت.. ❤️</p>
-        <div class="envelope" onclick="openEnvelope()">
-            <div class="front-flap"></div>
-            <div class="pocket"></div>
-            <div class="letter">
-                <p>إلى شهودتي.. ❤️</p>
-                <p style="font-size: 0.85rem; margin-top: 5px;">جاهزة لرحلة جوة ذكرياتنا؟</p>
-            </div>
-            <div class="hearts-seal">❤️</div>
-        </div>
-    </div>
-
-    <div id="cinema-stage" class="cinema-container" style="display: none; opacity: 0;">
-        <div class="cinema-screen">
-            
-            <div class="slide active">
-                <video controls playsinline id="main-video">
-                    <source src="vid1.mp4" type="video/mp4">
-                </video>
-                <div class="caption">
-                    <h2>المشهد الأول 🎬</h2>
-                    <p>كل لحظة متسجلة هنا هي حكاية عمر كامل بحاله.. تفرجِ وعيشي اللحظة يا شهدي.</p>
+    <div class="retro-tv-container">
+        
+        <div class="retro-tv">
+            <div class="tv-inner-screen">
+                
+                <div id="tv-static" class="tv-static-effect"></div>
+                
+                <div class="tv-channel active">
+                    <video id="video1" playsinline loop>
+                        <source src="vid1.mp4" type="video/mp4">
+                    </video>
                 </div>
+
+                <div class="tv-channel">
+                    <video id="video2" playsinline loop>
+                        <source src="vid2.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="tv-channel">
+                    <video id="video3" playsinline loop>
+                        <source src="vid3.mp4" type="video/mp4">
+                    </video>
+                </div>
+
             </div>
 
+            <div class="tv-controls-panel">
+                <div class="tv-dial" onclick="nextChannel()"></div>
+                <div class="tv-btn" onclick="nextChannel()">CH +</div>
+                <div class="tv-btn" onclick="prevChannel()">CH -</div>
+                <div class="tv-power-light"></div>
+            </div>
         </div>
+
+        <div class="movie-subtitles">
+            <p id="subtitle-text">المشهد الأول: هنا بتكتب كلامك الرايق الهادي اللي هيظهر مع أول فيديو...</p>
+        </div>
+
+        <div class="remote-control">
+            <button class="remote-btn" onclick="prevChannel()">◀️ القناة السابقة</button>
+            <button class="remote-btn play-btn" onclick="togglePlayVideo()">تشغيل / إيقاف مؤقت 🎥</button>
+            <button class="remote-btn" onclick="nextChannel()">القناة التالية ▶️</button>
+        </div>
+
     </div>
 
     <script src="page2.js"></script>
