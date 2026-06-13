@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سينما الحكايات الذكية 🧠❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>سينما الذكاء الاصطناعي 🧠🎬</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
@@ -15,41 +15,42 @@
 
     <button class="back-home-btn" onclick="goBackHome()">⬅️ العودة للرئيسية</button>
 
-    <div id="ai-neural-bg"></div>
+    <div id="ai-matrix-bg"></div>
 
-    <div class="dreamweaver-wrapper">
-        <div class="cinematic-frame">
+    <div class="ai-interface-container">
+        
+        <div id="ai-console" class="ai-console-box">
+            <div class="console-header">
+                <span class="status-dot"></span>
+                <span class="console-title">AI MEMORY GENERATOR v2.5</span>
+            </div>
+            <p class="console-hint">اضغطي على الأوامر الذكية أدناه لتوليد وعرض المشاهد السحرية..</p>
             
-            <div id="tv-static" class="screen-static"></div>
-            
-            <div class="video-slide active">
-                <video id="vid1" playsinline controls loop>
-                    <source src="vid1.mp4" type="video/mp4">
-                </video>
+            <div class="ai-commands-list">
+                <button class="ai-cmd-btn" onclick="generateAiMemory(0)">🤖 Execute_Memory_Command_01.exe</button>
+                <button class="ai-cmd-btn" onclick="generateAiMemory(1)">🤖 Execute_Memory_Command_02.exe</button>
+                <button class="ai-cmd-btn" onclick="generateAiMemory(2)">🤖 Execute_Memory_Command_03.exe</button>
             </div>
-
-            <div class="video-slide">
-                <video id="vid2" playsinline controls loop>
-                    <source src="vid2.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div class="video-slide">
-                <video id="vid3" playsinline controls loop>
-                    <source src="vid3.mp4" type="video/mp4">
-                </video>
-            </div>
-
         </div>
 
-        <div class="subtitle-box">
-            <p id="subtitle-text" class="woven-text"></p>
+        <div id="cinema-theater" class="theater-wrapper" style="display: none; opacity: 0;">
+            <div class="cinematic-frame" id="cinema-frame">
+                <div id="ai-glitch" class="ai-glitch-overlay"></div>
+                <div id="ai-blur" class="ai-blur-overlay"></div>
+                <div id="light-leak" class="light-leak-overlay"></div>
+                
+                <div class="video-slide" id="slide-0"><video id="vid0" playsinline controls loop><source src="vid1.mp4" type="video/mp4"></video></div>
+                <div class="video-slide" id="slide-1"><video id="vid1" playsinline controls loop><source src="vid2.mp4" type="video/mp4"></video></div>
+                <div class="video-slide" id="slide-2"><video id="vid2" playsinline controls loop><source src="vid3.mp4" type="video/mp4"></video></div>
+            </div>
+
+            <div class="subtitle-box">
+                <p id="subtitle-text"></p>
+            </div>
+
+            <button class="return-console-btn" onclick="returnToConsole()">⚙️ إعادة تشغيل نظام الـ AI</button>
         </div>
 
-        <div class="modern-nav">
-            <button class="nav-btn-modern" onclick="changeScene(-1)">◀️ المشهد السابق</button>
-            <button class="nav-btn-modern next-btn-modern" onclick="changeScene(1)">المشهد التالي ▶️</button>
-        </div>
     </div>
 
     <script src="page2.js"></script>
