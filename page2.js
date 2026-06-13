@@ -6,7 +6,6 @@ window.addEventListener('load', () => {
         bgMusic.currentTime = parseFloat(savedTime);
         bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
-    initMatrixBackground();
 });
 
 setInterval(() => {
@@ -20,17 +19,17 @@ function goBackHome() {
     window.location.href = 'index.html';
 }
 
-// 👑 اكتب كابشن ورسائل الفيديوهات هنا يا بطل 👑
-const cinematicTexts = [
-    "المشهد الأول: تم توليد حزمة البيانات بنجاح.. اكتب هنا ذكريات الفيديو الأول بالكامل، الكلام بيتنّسج بنعومة مريحة جداً للعين.",
-    "المشهد الثاني: معالجة القطاع الثاني.. اكتب هنا تفاصيل كلام الفيديو التاني ورسالتك لشهد.",
-    "المشهد الثالث: نهاية مصفوفة الحكايات.. اكتب هنا وعدك الأخير وكلامك اللي من القلب يا حسين."
-];
+// 👑 اكتب الرسايل والترجمة بتاعت الـ 5 فيديوهات هنا براحتك 👑
+const cinematicTexts = {
+    1: "المشهد الأول: تم توليد حزمة البيانات بنجاح.. اكتب هنا ذكريات وتفاصيل الفيديو الأول بالكامل لشهد، الكلام بيتنّسج بنعومة بالغة ومريحة للنظر.",
+    2: "المشهد الثاني: معالجة القطاع الثاني.. اكتب هنا تفاصيل كلام الفيديو التاني ورسالتك الرومانسية اللي من القلب.",
+    3: "المشهد الثالث: اكتب هنا كلامك الحلو وعبر عن اللي جواك في الفيديو الثالث يا بطل.. الخط رايق ومريح للعين.",
+    4: "المشهد الرابع: هنا بتكتب تفاصيل وذكرى المقابلة أو الفيديو الرابع بالتفصيل الممتع.",
+    5: "المشهد الخامس: نهاية مصفوفة الحكايات.. اكتب هنا وعدك الأخير وكلامك الأبدي لشهودتي لآخر العمر."
+};
 
 const consoleStage = document.getElementById('ai-console');
 const theaterStage = document.getElementById('cinema-theater');
-const slides = document.querySelectorAll('.video-slide');
-const videos = document.querySelectorAll('.video-slide video');
 const subtitleText = document.getElementById('subtitle-text');
 
 const glitchOverlay = document.getElementById('ai-glitch');
@@ -38,42 +37,55 @@ const blurOverlay = document.getElementById('ai-blur');
 const leakOverlay = document.getElementById('light-leak');
 const cinemaFrame = document.getElementById('cinema-frame');
 
-// 👑 دالة توليد الـ AI وتشغيل نقلات المونتاج الذكية 👑
-function generateAiMemory(index) {
-    // 1. إخفاء لوحة التحكم وظهور مسرح العرض بالأنيميشن
-    if (consoleStage) { consoleStage.style.opacity = '0'; consoleStage.style.transform = 'scale(0.9)'; }
+let activeVideoId = null;
+let weaveInterval = null;
+
+// 👑 دالة تفعيل السيستم وتشغيل النقلات الاحترافية المدمجة بالـ AI 👑
+function generateAiMemory(num) {
+    if (consoleStage) {
+        consoleStage.style.opacity = '0';
+        consoleStage.style.transform = 'scale(0.96)';
+    }
     
     setTimeout(() => {
         if (consoleStage) consoleStage.style.display = 'none';
-        if (theaterStage) { theaterStage.style.display = 'flex'; setTimeout(() => theaterStage.style.opacity = '1', 50); }
+        if (theaterStage) {
+            theaterStage.style.display = 'flex';
+            setTimeout(() => theaterStage.style.opacity = '1', 50);
+        }
         
-        // 2. تفعيل الصدمة الضوئية والغليتش الـ AI
+        // قدح شرارة النقلات السينمائية المتقاطعة (هزة + ومضة + غليتش + بلور)
         if (glitchOverlay) { glitchOverlay.classList.add('active'); setTimeout(() => glitchOverlay.classList.remove('active'), 300); }
         if (blurOverlay) { blurOverlay.classList.add('active'); setTimeout(() => blurOverlay.classList.remove('active'), 400); }
-        if (leakOverlay) { leakOverlay.classList.add('active'); setTimeout(() => leakOverlay.classList.remove('active'), 500); }
+        if (leakOverlay) { leakOverlay.classList.add('active'); setTimeout(() => leakOverlay.classList.remove('active'), 400); }
         if (cinemaFrame) { cinemaFrame.classList.add('ai-impact'); setTimeout(() => cinemaFrame.classList.remove('ai-impact'), 500); }
         
-        // 3. عرض شريحة الفيديو المطلوبة
-        slides.forEach(sl => sl.classList.remove('active'));
-        const targetSlide = document.getElementById(`slide-${index}`);
+        // إخفاء الفيديوهات السابقة وعرض المطلوب
+        document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
+        const targetSlide = document.getElementById(`slide-${num}`);
         if (targetSlide) targetSlide.classList.add('active');
         
-        // 4. نسج الترجمة كلمة كلمة تلقائياً
-        weaveSubtitle(index);
+        // تشغيل نسج الترجمة كلمة كلمة
+        weaveSubtitle(num);
         
-        // 5. تشغيل الفيديو المختار
-        const targetVid = document.getElementById(`vid${index}`);
+        // تشغيل الفيديو الجديد
+        const targetVid = document.getElementById(`vid${num}`);
         if (targetVid) {
             targetVid.currentTime = 0;
-            targetVid.play().catch(e => console.log("Auto-play trigger required"));
+            targetVid.play().catch(e => console.log("Auto-play deferred"));
+            activeVideoId = `vid${num}`;
         }
-    }, 400);
+    }, 350);
 }
 
-// العودة للوحة الـ AI لاختيار فيديو تاني
+// دالة العودة للكونسول
 function returnToConsole() {
-    videos.forEach(vid => vid.pause());
-    if (theaterStage) { theaterStage.style.opacity = '0'; }
+    if (activeVideoId) {
+        const currentVid = document.getElementById(activeVideoId);
+        if (currentVid) currentVid.pause();
+    }
+    
+    if (theaterStage) theaterStage.style.opacity = '0';
     
     setTimeout(() => {
         if (theaterStage) theaterStage.style.display = 'none';
@@ -81,18 +93,20 @@ function returnToConsole() {
             consoleStage.style.display = 'block';
             setTimeout(() => { consoleStage.style.opacity = '1'; consoleStage.style.transform = 'scale(1)'; }, 50);
         }
-    }, 400);
+    }, 350);
 }
 
-// دالة نسج الكلام كلمة كلمة
-function weaveSubtitle(index) {
+// دالة نسج النص الذكية المريحة للعين
+function weaveSubtitle(num) {
     if (!subtitleText) return;
+    clearInterval(weaveInterval);
     subtitleText.innerHTML = '';
     
-    const words = cinematicTexts[index].split(' ');
+    const textToShow = cinematicTexts[num] || "";
+    const words = textToShow.split(' ');
     let currentWordIndex = 0;
     
-    const weaveInterval = setInterval(() => {
+    weaveInterval = setInterval(() => {
         if (currentWordIndex < words.length) {
             const wordSpan = document.createElement('span');
             wordSpan.innerText = words[currentWordIndex] + ' ';
@@ -100,24 +114,10 @@ function weaveSubtitle(index) {
             wordSpan.style.transition = 'opacity 0.2s ease';
             subtitleText.appendChild(wordSpan);
             
-            setTimeout(() => { wordSpan.style.opacity = '1'; }, 30);
+            setTimeout(() => { wordSpan.style.opacity = '1'; }, 20);
             currentWordIndex++;
         } else {
             clearInterval(weaveInterval);
         }
     }, 120); 
-}
-
-// مصفوفة الخطوط الخلفية الهادئة جداً (Matrix Rain style)
-function initMatrixBackground() {
-    const container = document.getElementById('ai-matrix-bg');
-    if (!container) return;
-    for (let i = 0; i < 12; i++) {
-        const line = document.createElement('div');
-        line.classList.add('matrix-line');
-        line.style.left = Math.random() * 100 + 'vw';
-        line.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        line.style.animationDelay = (Math.random() * 4) + 's';
-        container.appendChild(line);
-    }
 }
