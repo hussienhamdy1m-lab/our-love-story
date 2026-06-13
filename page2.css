@@ -2,82 +2,125 @@
 
 body { 
     font-family: 'Cairo', sans-serif; 
-    background: #040404; /* أسود مطفي معتم تماماً ومريح جداً للعين */
+    background: #020202; /* أسود مطلق ومطفي فخم جداً مريح للعين */
     color: #fff; 
     display: flex; align-items: center; justify-content: center; 
     min-height: 100vh; overflow: hidden; position: relative; padding: 20px;
 }
 
+/* زر العودة للرئيسية */
 .back-home-btn { 
     position: absolute; top: 20px; right: 20px; 
-    padding: 8px 18px; background: rgba(255,255,255,0.02); 
-    color: #666; border: 1px solid #111; border-radius: 30px; 
+    padding: 8px 20px; background: rgba(255,255,255,0.01); 
+    color: #444; border: 1px solid #111; border-radius: 30px; 
     cursor: pointer; z-index: 100; transition: 0.3s; font-size: 0.85rem; font-weight: bold;
 }
 .back-home-btn:hover { background: #ff4a75; color: #fff; border-color: transparent; }
 
-.ai-interface-container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 850px; z-index: 5; }
-
-/* تصميم لوحة الكونسول الفخمة الهادئة */
-.ai-console-box {
-    background: rgba(12, 12, 12, 0.7); border: 1px solid #1c1c1c; border-radius: 16px;
-    padding: 35px 25px; width: 100%; max-width: 480px; text-align: center;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.8); transition: 0.4s ease;
+/* 🧠 نظام هندسة الخلفية العصبية للـ AI (النجوم العائمة) 🧠 */
+#ai-neural-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
+.neural-point { position: absolute; background: rgba(255, 74, 117, 0.08); border-radius: 50%; animation: neuralPulse 8s linear infinite; }
+@keyframes neuralPulse {
+    from { transform: translateY(105vh) scale(1); opacity: 0; }
+    50% { opacity: 0.3; }
+    to { transform: translateY(-10vh) scale(0.4); opacity: 0; }
 }
-.console-hint { color: #777; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.6; }
 
-.ai-commands-list { display: flex; flex-direction: column; gap: 12px; }
-.ai-cmd-btn {
-    background: #0a0a0a; color: #999; border: 1px solid #1a1a1a; padding: 14px 20px;
-    border-radius: 10px; font-size: 0.95rem; font-weight: 600; text-align: right; cursor: pointer; transition: 0.3s;
+.ai-universe-container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 850px; z-index: 5; }
+
+/* 👑 تصميم الكروت الزجاجية البريميوم الفخمة 👑 */
+.premium-glass-card {
+    background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.02); border-radius: 24px; padding: 45px 35px;
+    width: 100%; max-width: 500px; text-align: center; box-shadow: 0 40px 90px rgba(0,0,0,0.9);
+    transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.ai-cmd-btn:hover { background: #ff4a75; color: #fff; border-color: transparent; transform: scale(1.02); }
 
-/* مسرح الشاشة السينمائية المحمية الأبعاد */
-.theater-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; transition: 0.5s ease; }
-.cinematic-frame {
+/* النبضة الضوئية المبتكرة في الدخلة */
+.ai-status-bar { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.pulse-core { width: 10px; height: 10px; background: #ff4a75; border-radius: 50%; box-shadow: 0 0 12px #ff4a75; animation: coreBreathe 1.5s infinite alternate; }
+@keyframes coreBreathe { from { transform: scale(0.8); opacity: 0.4; } to { transform: scale(1.3); opacity: 1; box-shadow: 0 0 20px #ff4a75; } }
+.system-loader { font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: #666; letter-spacing: 2px; }
+
+.portal-main-title, .dashboard-title { font-size: 1.6rem; color: #fff; font-weight: 700; margin-bottom: 12px; }
+.portal-subtitle, .dashboard-subtitle { color: #666; font-size: 0.95rem; margin-bottom: 30px; line-height: 1.6; }
+
+/* الخانة المظلمة الفخمة */
+#cinema-password-input {
+    width: 85%; max-width: 350px; padding: 14px 22px; border: 1px solid #1a1a1a; border-radius: 30px;
+    text-align: center; font-size: 1.1rem; background: #070707; color: #fff; outline: none; transition: 0.3s; margin-bottom: 25px;
+}
+#cinema-password-input:focus { border-color: #ff4a75; box-shadow: 0 0 20px rgba(255, 74, 117, 0.15); }
+
+.ai-submit-btn {
+    background: linear-gradient(135deg, #ff4a75 0%, #ff758f 100%); color: #fff; border: none;
+    padding: 14px 40px; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(255, 74, 117, 0.2);
+}
+.ai-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255, 74, 117, 0.35); }
+
+.error-msg-style { font-size: 1rem; margin-top: 15px; font-weight: bold; }
+.shake-box-anim { animation: consoleShake 0.4s ease-in-out; }
+@keyframes consoleShake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-8px); } 50% { transform: translateX(8px); } }
+
+/* أزرار مصفوفة الـ AI (الـ Console Dashboard) */
+.console-header-bar { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #151515; padding-bottom: 12px; margin-bottom: 20px; }
+.terminal-dots { display: flex; gap: 6px; }
+.terminal-dots span { width: 8px; height: 8px; background: #333; border-radius: 50%; }
+.terminal-title { font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: #444; }
+
+.ai-matrix-commands { display: flex; flex-direction: column; gap: 12px; }
+.matrix-cmd-btn {
+    background: #060606; color: #777; border: 1px solid #141414; padding: 14px 20px;
+    border-radius: 12px; font-family: 'Share Tech Mono', 'Cairo', sans-serif; font-size: 0.9rem; text-align: left; direction: ltr; cursor: pointer; transition: 0.3s;
+}
+.matrix-cmd-btn:hover { background: rgba(255, 74, 117, 0.05); color: #ff4a75; border-color: #ff4a75; transform: translateX(4px); }
+
+/* 🎬 هندسة شاشة مسرح العرض الفخم 🎬 */
+.theater-wrapper-layout { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; transition: 0.5s ease; }
+.cinematic-canvas-frame {
     position: relative; width: 100%; aspect-ratio: 16/9; background: #000;
-    border-radius: 16px; overflow: hidden; border: 1px solid #111; box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+    border-radius: 16px; overflow: hidden; border: 1px solid #111; box-shadow: 0 40px 90px rgba(0,0,0,0.95);
 }
 
-/* 👑 حركة هزة وزوم الشاشة السينمائية بالـ AI عند النقلة 👑 */
-.cinematic-frame.ai-impact { animation: aiImpactEffect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.25); }
-@keyframes aiImpactEffect {
-    0% { transform: scale(0.95) rotate(-0.5deg); filter: contrast(1.5); }
-    50% { transform: scale(1.04) rotate(0.5deg); filter: contrast(1.2); }
-    100% { transform: scale(1) rotate(0deg); filter: contrast(1); }
+/* 👑 الحركة الزلزالية التكنولوجية لنقلة الـ AI الجبارة 👑 */
+.cinematic-canvas-frame.ai-jump-active { animation: aiQuantumJump 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes aiQuantumJump {
+    0% { transform: scale(0.94) translateY(10px); filter: contrast(1.5) brightness(0.5); }
+    40% { transform: scale(1.04) translateY(-5px); filter: contrast(1.2) brightness(1.3); }
+    100% { transform: scale(1) translateY(0); filter: contrast(1) brightness(1); }
 }
 
 .video-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden; }
 .video-slide.active { opacity: 1; visibility: visible; z-index: 5; }
 .video-slide video { width: 100%; height: 100%; object-fit: contain; background: #000; }
 
-/* 👑 أوفرلايز نقلات الـ AI الرقمية 👑 */
-.ai-glitch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, transparent 1px, transparent 2px), url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Static_noise_flicker_slow.gif'); background-size: cover; opacity: 0; z-index: 20; pointer-events: none; }
-.ai-glitch-overlay.active { animation: glitchFlash 0.3s steps(2) forwards; }
-@keyframes glitchFlash { 0% { opacity: 0.25; filter: hue-rotate(90deg); } 50% { opacity: 0.35; filter: hue-rotate(180deg); } 100% { opacity: 0; filter: hue-rotate(0deg); } }
+/* 👑 أوفرلايز نقلات المونتاج الذكية 👑 */
+.ai-glitch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02) 1px, transparent 1px, transparent 2px), url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Static_noise_flicker_slow.gif'); background-size: cover; opacity: 0; z-index: 20; pointer-events: none; }
+.ai-glitch-overlay.active { animation: glitchFlashEffect 0.35s steps(2) forwards; }
+@keyframes glitchFlashEffect { 0% { opacity: 0.2; filter: hue-rotate(90deg); } 50% { opacity: 0.3; filter: hue-rotate(270deg); } 100% { opacity: 0; } }
 
 .ai-blur-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); z-index: 19; pointer-events: none; }
-.ai-blur-overlay.active { animation: blurImpact 0.4s ease-in-out; }
-@keyframes blurImpact { 0% { backdrop-filter: blur(0px); } 40% { backdrop-filter: blur(15px); } 100% { backdrop-filter: blur(0px); } }
+.ai-blur-overlay.active { animation: blurImpactEffect 0.4s ease-in-out; }
+@keyframes blurImpactEffect { 0% { backdrop-filter: blur(0px); } 40% { backdrop-filter: blur(18px); } 100% { backdrop-filter: blur(0px); } }
 
-.light-leak-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,74,117,0.35) 0%, transparent 65%); opacity: 0; z-index: 21; pointer-events: none; }
-.light-leak-overlay.active { animation: leakFlash 0.4s ease-out; }
-@keyframes leakFlash { 0% { opacity: 0; } 40% { opacity: 0.75; } 100% { opacity: 0; } }
+.light-leak-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,74,117,0.25) 0%, transparent 70%); opacity: 0; z-index: 21; pointer-events: none; }
+.light-leak-overlay.active { animation: leakFlashEffect 0.4s ease-out; }
+@keyframes leakFlashEffect { 0% { opacity: 0; } 35% { opacity: 0.8; } 100% { opacity: 0; } }
 
-/* صندوق الترجمة المنسوجة الرايق */
-.subtitle-box { width: 100%; min-height: 70px; display: flex; align-items: center; justify-content: center; padding: 0 10px; }
-#subtitle-text { color: #dbdbdb; font-size: 1.1rem; line-height: 1.7; text-align: center; font-weight: 400; max-width: 750px; }
+/* صندوق الترجمة المنسوجة الرايق جداً */
+.ai-subtitles-container { width: 100%; min-height: 70px; display: flex; align-items: center; justify-content: center; padding: 0 10px; }
+#subtitle-text-field { color: #b5b5b5; font-size: 1.1rem; line-height: 1.7; text-align: center; font-weight: 400; max-width: 750px; }
 
-.return-console-btn {
-    background: transparent; color: #444; border: 1px dashed #1a1a1a; padding: 8px 22px;
+.return-system-btn {
+    background: transparent; color: #333; border: 1px dashed #111; padding: 8px 22px;
     font-family: 'Cairo', sans-serif; font-size: 0.85rem; border-radius: 20px; cursor: pointer; transition: 0.3s; margin-top: 5px;
 }
-.return-console-btn:hover { color: #ff4a75; border-color: #ff4a75; }
+.return-system-btn:hover { color: #ff4a75; border-color: #ff4a75; }
 
 @media (max-width: 600px) {
-    .cinematic-frame { border-radius: 8px; }
-    .ai-console-box { padding: 25px 15px; width: 95%; }
-    .ai-cmd-btn { font-size: 0.85rem; padding: 12px 15px; }
-    #subtitle-text { font-size: 0.95rem; }
+    .cinematic-canvas-frame { border-radius: 8px; }
+    .premium-glass-card { padding: 30px 20px; width: 95%; }
+    .matrix-cmd-btn { font-size: 0.8rem; padding: 12px 15px; }
+    #subtitle-text-field { font-size: 0.95rem; }
 }
