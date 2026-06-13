@@ -2,96 +2,97 @@
 
 body { 
     font-family: 'Cairo', sans-serif; 
-    background: #0a0a0a; /* ظلام السينما الفخم */
+    background: #0d0d0d; /* أسود مطفي مريح جداً للعين */
     color: #fff; 
     display: flex; align-items: center; justify-content: center; 
-    min-height: 100vh; overflow: hidden; position: relative;
+    min-height: 100vh; overflow: hidden; 
 }
 
 .back-home-btn { 
     position: absolute; top: 20px; right: 20px; 
-    padding: 10px 20px; background: rgba(255,255,255,0.05); 
-    color: #fff; border: 1px solid rgba(255,255,255,0.2); 
-    border-radius: 20px; cursor: pointer; 
-    z-index: 100; transition: 0.3s; font-weight: bold;
+    padding: 8px 18px; background: rgba(255,255,255,0.03); 
+    color: #888; border: 1px solid #222; border-radius: 6px; 
+    cursor: pointer; z-index: 100; transition: 0.3s; font-size: 0.9rem;
 }
-.back-home-btn:hover { background: #ff4a75; border-color: transparent; }
+.back-home-btn:hover { background: #222; color: #fff; }
 
-/* 👑 هندسة وتصميم الجواب بالـ CSS 👑 */
-.envelope-wrapper {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    z-index: 50; transition: 0.8s ease;
-}
-.envelope-hint { font-family: 'Aref Ruqaa', serif; color: #ff4a75; font-size: 1.5rem; margin-bottom: 20px; text-align: center; }
-
-.envelope {
-    position: relative; width: 280px; height: 180px;
-    background: #f5ccd4; border-radius: 0 0 12px 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5); cursor: pointer;
-    transition: transform 0.3s ease;
-}
-.envelope:hover { transform: scale(1.05); }
-
-/* الغطاء المثلث الفوقاني للجواب */
-.front-flap {
-    position: absolute; top: 0; left: 0; width: 0; height: 0;
-    border-left: 140px solid transparent; border-right: 140px solid transparent;
-    border-top: 100px solid #e599a7; transform-origin: top;
-    transition: transform 0.4s ease 0.2s; z-index: 3;
-}
-/* جيب الجواب السفلي */
-.pocket {
-    position: absolute; top: 0; left: 0; width: 0; height: 0;
-    border-left: 140px solid #f9dbdf; border-right: 140px solid #f9dbdf;
-    border-bottom: 90px solid #f7cbd2; border-radius: 0 0 12px 12px; z-index: 2;
-}
-/* الورقة اللي جوه الجواب */
-.letter {
-    position: absolute; bottom: 10px; left: 20px; width: 240px; height: 140px;
-    background: #fff; border-radius: 8px; padding: 20px; text-align: center;
-    color: #333; font-weight: bold; font-size: 1.1rem;
-    transition: transform 0.4s ease; z-index: 1;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-/* ختم القلب */
-.hearts-seal {
-    position: absolute; top: 85px; left: 50%; transform: translateX(-50%);
-    width: 40px; height: 40px; background: #ff4a75; text-align: center;
-    line-height: 40px; border-radius: 50%; font-size: 1.3rem; z-index: 4;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: 0.3s ease;
+.retro-tv-container {
+    display: flex; flex-direction: column; align-items: center; gap: 25px;
+    width: 95vw; max-width: 800px;
 }
 
-/* أنيميشن فتح الجواب الفعلي */
-.envelope.open .front-flap { transform: rotateX(180deg); z-index: 1; }
-.envelope.open .letter { transform: translateY(-70px); z-index: 2; }
-.envelope.open .hearts-seal { opacity: 0; transform: translateX(-50%) scale(0); }
-
-/* 👑 شاشة العرض السينمائية 👑 */
-.cinema-container { 
-    width: 95vw; max-width: 1000px; height: 80vh; 
-    display: flex; flex-direction: column; align-items: center; justify-content: center; 
-    transition: 1s ease;
+/* جسم التلفزيون الكلاسيكي */
+.retro-tv {
+    display: flex; background: #1c1a17; /* لون خشبي داكن ومطفي */
+    border: 12px solid #282521; border-radius: 20px;
+    width: 100%; height: 50vh; min-height: 350px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.8); position: relative;
 }
-.cinema-screen { 
-    position: relative; width: 100%; height: 100%; 
-    background: #000; border-radius: 16px; 
-    box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 35px rgba(255, 74, 117, 0.15); 
-    overflow: hidden; border: 1px solid #1a1a1a; 
-}
-.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-.slide video { width: 100%; height: 100%; object-fit: contain; }
 
-.caption { 
-    position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px 30px 25px; 
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, transparent 100%); 
-    text-align: center; pointer-events: none; z-index: 5;
+/* شاشة العرض الداخلية */
+.tv-inner-screen {
+    position: relative; flex: 4; background: #000;
+    border-radius: 10px; margin: 5px; overflow: hidden;
+    border: 4px solid #111;
 }
-.caption h2 { font-family: 'Aref Ruqaa', serif; color: #ffde6a; font-size: 2.2em; margin-bottom: 8px; }
-.caption p { color: #eee; font-size: 1.15em; font-weight: bold; max-width: 750px; margin: 0 auto; line-height: 1.6; }
 
-/* تأثير طيران القلوب عند فتح الجواب */
-.flying-heart { position: fixed; pointer-events: none; z-index: 99; animation: flyUp 1.5s ease-out forwards; }
-@keyframes flyUp {
-    0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-100vh) scale(1.5) rotate(var(--r)); opacity: 0; }
+.tv-channel {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; visibility: hidden; transition: opacity 0.5s ease;
+}
+.tv-channel.active { opacity: 1; visibility: visible; }
+.tv-channel video { width: 100%; height: 100%; object-fit: contain; }
+
+/* 👑 تأثير وشيش الفضائيات الحقيقي 👑 */
+.tv-static-effect {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px),
+                url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Static_noise_flicker_slow.gif');
+    background-size: cover; opacity: 0; z-index: 5; pointer-events: none;
+}
+.tv-static-effect.show { opacity: 0.4; } /* وشيش هادي مش فاقع */
+
+/* لوحة الأزرار الجانبية للملف القديم */
+.tv-controls-panel {
+    flex: 1; background: #181614; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 20px; border-left: 2px solid #111;
+    padding: 10px;
+}
+.tv-dial {
+    width: 55px; height: 55px; background: #2a2723; border: 3px dashed #111;
+    border-radius: 50%; cursor: pointer; transition: 0.3s;
+}
+.tv-dial:hover { transform: rotate(30deg); }
+.tv-btn {
+    background: #222; border: 1px solid #333; color: #888; padding: 6px 12px;
+    font-size: 0.8rem; border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+.tv-btn:hover { color: #fff; background: #333; }
+.tv-power-light { width: 8px; height: 8px; background: #ff3333; border-radius: 50%; box-shadow: 0 0 8px #ff3333; }
+
+/* 👑 خط الترجمة السينمائي المريح جداً للعين 👑 */
+.movie-subtitles {
+    width: 100%; min-height: 60px; text-align: center; padding: 0 20px;
+}
+#subtitle-text {
+    color: #e0e0e0; font-size: 1.15rem; line-height: 1.7;
+    font-weight: 400; text-shadow: 1px 1px 2px #000;
+}
+
+/* الريموت كنترول السفلي التفاعلي */
+.remote-control { display: flex; gap: 15px; margin-top: 5px; }
+.remote-btn {
+    background: #161616; color: #aaa; border: 1px solid #252525;
+    padding: 10px 22px; font-family: 'Cairo', sans-serif; font-size: 0.95rem;
+    border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: bold;
+}
+.remote-btn:hover { background: #252525; color: #fff; border-color: #444; }
+.play-btn { border-color: #333; color: #e0e0e0; }
+
+@media (max-width: 768px) {
+    .retro-tv { height: 38vh; flex-direction: column; }
+    .tv-controls-panel { flex-direction: row; height: 60px; width: 100%; border-left: none; border-top: 2px solid #111; gap: 15px; }
+    .tv-dial { width: 35px; height: 35px; }
+    #subtitle-text { font-size: 1rem; }
+    .remote-btn { padding: 8px 14px; font-size: 0.85rem; }
 }
