@@ -1,15 +1,16 @@
 const bgMusic = document.getElementById('bg-music');
 
-// استرجاع الأغنية وتكملتها تلقائياً
+// مزامنة أغنية الخلفية
 window.addEventListener('load', () => {
     const savedTime = sessionStorage.getItem('musicTime');
     if (savedTime && bgMusic) {
         bgMusic.currentTime = parseFloat(savedTime);
         bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
+    // تشغيل أول فيديو تلقائياً بصوت صامت عشان المتصفح ميعلقش
+    playCurrentVideo();
 });
 
-// حفظ ثواني الموسيقى
 setInterval(() => {
     if (bgMusic && !bgMusic.paused) {
         sessionStorage.setItem('musicTime', bgMusic.currentTime);
@@ -21,51 +22,65 @@ function goBackHome() {
     window.location.href = 'index.html';
 }
 
-// 👑 دالة فتح الجواب وطيران القلوب وظهور شاشة العرض 👑
-function openEnvelope() {
-    const envelope = document.querySelector('.envelope');
-    const envelopeStage = document.getElementById('envelope-stage');
-    const cinemaStage = document.getElementById('cinema-stage');
-    
-    if (envelope.classList.contains('open')) return;
-    
-    // 1. تفعيل حركات فتح الجواب بالـ CSS
-    envelope.classList.add('open');
-    
-    // 2. تفجير قلوب طايرة من نص الشاشة لفوق
-    for (let i = 0; i < 25; i++) {
-        setTimeout(createFlyingHeart, i * 40);
-    }
-    
-    // 3. إخفاء الجواب بنعومة بعد ما يتفتح.. وظهور شاشة السينما فجأة بالأنيميشن الفخم
+// 👑 داتا قنوات التلفزيون ورسائل الترجمة الخاصة بيك 👑
+const tvData = [
+    "المشهد الأول: هنا بتكتب الكلام الكتير الرايق بتاع الفيديو الأول، هيظهر سطر تحت سطر زي ترجمة الأفلام الأجنبية الفخمة تماماً بدون زحمة ألوان.",
+    "المشهد الثاني: اكتب هنا ذكريات الفيديو التاني وتفاصيله.. الخط مريح للعين والخلفية مظلمة ومفيش أي قلوب أو إيموجيز تضايق النظر.",
+    "المشهد الثالث: اكتب هنا وعدك وكلامك الحلو للفيديو الثالث يا بطل."
+];
+
+let currentChannel = 0;
+const channels = document.querySelectorAll('.tv-channel');
+const videos = document.querySelectorAll('.tv-channel video');
+const tvStatic = document.getElementById('tv-static');
+const subtitleText = document.getElementById('subtitle-text');
+
+function changeChannel(index) {
+    if (tvStatic) tvStatic.classList.add('show'); // تشغيل الوشيش ثانية
+
+    // إيقاف جميع الفيديوهات فوراً
+    videos.forEach(vid => vid.pause());
+
     setTimeout(() => {
-        envelopeStage.style.opacity = '0';
-        envelopeStage.style.transform = 'scale(0.5)';
+        channels.forEach(ch => ch.classList.remove('active'));
+        channels[index].classList.add('active');
         
-        setTimeout(() => {
-            envelopeStage.style.display = 'none';
-            
-            // إظهار مسرح السينما
-            cinemaStage.style.display = 'flex';
-            setTimeout(() => {
-                cinemaStage.style.opacity = '1';
-                // لو حابب الفيديو الأول يشتغل لوحده أول ما السينما تفتح فك السطر ده:
-                // document.getElementById('main-video').play();
-            }, 50);
-            
-        }, 800);
-    }, 1800); // الجواب بيفضل مفتوح ثانيتين والورقة طالعة قبل ما السينما تفتح
+        // تحديث نص الترجمة الهادي
+        if (subtitleText) subtitleText.innerText = tvData[index];
+        
+        if (tvStatic) tvStatic.classList.remove('show'); // إيقاف الوشيش
+        
+        playCurrentVideo();
+    }, 400); // مدة تأثير الوشيش 400 مللي ثانية
 }
 
-// دالة تخليق القلوب الطايرة العشوائية
-function createFlyingHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('flying-heart');
-    heart.innerText = ['❤️', '💖', '💕', '🥰', '✨'][Math.floor(Math.random() * 5)];
-    heart.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 150) + 'px';
-    heart.style.top = (window.innerHeight / 2) + 'px';
-    heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
-    heart.style.setProperty('--r', (Math.random() - 0.5) * 360 + 'deg');
-    document.body.appendChild(heart);
-    setTimeout(() => { heart.remove(); }, 1500);
+function playCurrentVideo() {
+    const activeVideo = videos[currentChannel];
+    if (activeVideo) {
+        activeVideo.currentTime = 0;
+        // بنشغله بصوت عادي، ولو شهد عايزة تسمعه بتعلي الموبايل
+        activeVideo.play().catch(e => console.log("Video auto-play prevented:", e));
+    }
+}
+
+function nextChannel() {
+    currentChannel = (currentChannel + 1) % channels.length;
+    changeChannel(currentChannel);
+}
+
+function prevChannel() {
+    currentChannel = (currentChannel - 1 + channels.length) % channels.length;
+    changeChannel(currentChannel);
+}
+
+// زرار الريموت لتشغيل وإيقاف الفيديو مؤقتاً
+function togglePlayVideo() {
+    const activeVideo = videos[currentChannel];
+    if (activeVideo) {
+        if (activeVideo.paused) {
+            activeVideo.play();
+        } else {
+            activeVideo.pause();
+        }
+    }
 }
