@@ -7,8 +7,10 @@ window.addEventListener('load', () => {
         bgMusic.currentTime = parseFloat(savedTime);
         bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
-    // تشغيل أول فيديو تلقائياً بصوت صامت عشان المتصفح ميعلقش
-    playCurrentVideo();
+    // تحديث الترجمة لأول فيديو
+    weaveSubtitle(0);
+    // تشغيل خلفية الـ AI العصبية
+    initNeuralBackground();
 });
 
 setInterval(() => {
@@ -22,65 +24,99 @@ function goBackHome() {
     window.location.href = 'index.html';
 }
 
-// 👑 داتا قنوات التلفزيون ورسائل الترجمة الخاصة بيك 👑
-const tvData = [
-    "المشهد الأول: هنا بتكتب الكلام الكتير الرايق بتاع الفيديو الأول، هيظهر سطر تحت سطر زي ترجمة الأفلام الأجنبية الفخمة تماماً بدون زحمة ألوان.",
-    "المشهد الثاني: اكتب هنا ذكريات الفيديو التاني وتفاصيله.. الخط مريح للعين والخلفية مظلمة ومفيش أي قلوب أو إيموجيز تضايق النظر.",
-    "المشهد الثالث: اكتب هنا وعدك وكلامك الحلو للفيديو الثالث يا بطل."
+// 👑 نصوص الترجمة السينمائية (اكتب الكلام الكتير بتاعك هنا يا بطل) 👑
+const cinematicTexts = [
+    "المشهد الأول: اكتب هنا الذكرى الكتيرة والرسالة الرومانسية الرايقة بتاعة الفيديو الأول.. الكلام هيظهر كلمة بكلمة كأنه بيتنّسج، مريح جداً للنظر.",
+    "المشهد الثاني: اكتب هنا كلام الفيديو التاني وتفاصيله الممتعة.. التصميم وقور وهادي وبيجبر العين تركز في ملامحكم في الفيديو وبس.",
+    "المشهد الثالث: اكتب هنا وعدك وكلامك الحلو للفيديو الثالث، يا رب نفضل سوا لآخر العمر."
 ];
 
-let currentChannel = 0;
-const channels = document.querySelectorAll('.tv-channel');
-const videos = document.querySelectorAll('.tv-channel video');
-const tvStatic = document.getElementById('tv-static');
+let currentSlide = 0;
+const slides = document.querySelectorAll('.video-slide');
+const videos = document.querySelectorAll('.video-slide video');
 const subtitleText = document.getElementById('subtitle-text');
+const tvStatic = document.getElementById('tv-static');
 
-function changeChannel(index) {
-    if (tvStatic) tvStatic.classList.add('show'); // تشغيل الوشيش ثانية
-
-    // إيقاف جميع الفيديوهات فوراً
+function changeScene(direction) {
+    // إيقاف الفيديوهات الحالية
     videos.forEach(vid => vid.pause());
 
+    // حجب النص القديم لعمل تأثير النسج الجديد
+    if (subtitleText) subtitleText.classList.add('text-hidden');
+    // تشغيل الوشيش السريع
+    if (tvStatic) tvStatic.classList.add('show');
+
     setTimeout(() => {
-        channels.forEach(ch => ch.classList.remove('active'));
-        channels[index].classList.add('active');
+        slides[currentSlide].classList.remove('active');
         
-        // تحديث نص الترجمة الهادي
-        if (subtitleText) subtitleText.innerText = tvData[index];
+        // حساب المشهد الجديد
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        
+        slides[currentSlide].classList.add('active');
+        
+        // تحديث النص بنسج جديد
+        weaveSubtitle(currentSlide);
         
         if (tvStatic) tvStatic.classList.remove('show'); // إيقاف الوشيش
-        
-        playCurrentVideo();
-    }, 400); // مدة تأثير الوشيش 400 مللي ثانية
-}
 
-function playCurrentVideo() {
-    const activeVideo = videos[currentChannel];
-    if (activeVideo) {
-        activeVideo.currentTime = 0;
-        // بنشغله بصوت عادي، ولو شهد عايزة تسمعه بتعلي الموبايل
-        activeVideo.play().catch(e => console.log("Video auto-play prevented:", e));
-    }
-}
-
-function nextChannel() {
-    currentChannel = (currentChannel + 1) % channels.length;
-    changeChannel(currentChannel);
-}
-
-function prevChannel() {
-    currentChannel = (currentChannel - 1 + channels.length) % channels.length;
-    changeChannel(currentChannel);
-}
-
-// زرار الريموت لتشغيل وإيقاف الفيديو مؤقتاً
-function togglePlayVideo() {
-    const activeVideo = videos[currentChannel];
-    if (activeVideo) {
-        if (activeVideo.paused) {
-            activeVideo.play();
-        } else {
-            activeVideo.pause();
+        // تشغيل الفيديو الجديد تلقائياً
+        const activeVid = videos[currentSlide];
+        if (activeVid) {
+            activeVid.currentTime = 0;
+            activeVid.play().catch(e => console.log("Auto-play click required"));
         }
+    }, 400); // تأثير وشيش سريع
+}
+
+// 👑 دالة الـ AI الخاصة لنسج النص كلمة بكلمة بنعومة 👑
+function weaveSubtitle(index) {
+    if (!subtitleText) return;
+    
+    // إزالة النص المخفي
+    subtitleText.classList.remove('text-hidden');
+    subtitleText.innerHTML = ''; // تفريغ الصندوق
+    
+    const words = cinematicTexts[index].split(' ');
+    let currentWordIndex = 0;
+    
+    const weaveInterval = setInterval(() => {
+        if (currentWordIndex < words.length) {
+            const wordSpan = document.createElement('span');
+            wordSpan.innerText = words[currentWordIndex] + ' ';
+            wordSpan.style.opacity = '0';
+            wordSpan.style.transition = 'opacity 0.3s ease';
+            
+            subtitleText.appendChild(wordSpan);
+            
+            // جعل الكلمة تظهر بنعومة (fade-in)
+            setTimeout(() => {
+                wordSpan.style.opacity = '1';
+            }, 50);
+            
+            currentWordIndex++;
+        } else {
+            clearInterval(weaveInterval); // نهاية النسج
+        }
+    }, 150); // سرعة النسج (150 مللي ثانية بين كل كلمة)
+}
+
+// تخليق تأثير الخلفية العصبية العائمة (Procedural Art)
+function initNeuralBackground() {
+    const container = document.getElementById('ai-neural-bg');
+    if (!container) return;
+    
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('neural-node');
+        
+        const size = Math.random() * 4 + 2; // جزيئات صغيرة غير مزعجة
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.animationDuration = (Math.random() * 8 + 8) + 's'; // حركة بطيئة جداً
+        particle.style.animationDelay = (Math.random() * 5) + 's';
+        
+        container.appendChild(particle);
     }
 }
