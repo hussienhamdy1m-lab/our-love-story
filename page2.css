@@ -2,7 +2,7 @@
 
 body { 
     font-family: 'Cairo', sans-serif; 
-    background: #030303; /* أسود معتم تماماً ومريح للعين */
+    background: #040404; /* أسود مطفي معتم تماماً ومريح جداً للعين */
     color: #fff; 
     display: flex; align-items: center; justify-content: center; 
     min-height: 100vh; overflow: hidden; position: relative; padding: 20px;
@@ -10,53 +10,41 @@ body {
 
 .back-home-btn { 
     position: absolute; top: 20px; right: 20px; 
-    padding: 8px 18px; background: rgba(255,255,255,0.01); 
+    padding: 8px 18px; background: rgba(255,255,255,0.02); 
     color: #666; border: 1px solid #111; border-radius: 30px; 
     cursor: pointer; z-index: 100; transition: 0.3s; font-size: 0.85rem; font-weight: bold;
 }
 .back-home-btn:hover { background: #ff4a75; color: #fff; border-color: transparent; }
 
-/* الخلفية الرقمية الهادئة */
-#ai-matrix-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.15; }
-.matrix-line { position: absolute; width: 1px; height: 80px; background: linear-gradient(to bottom, transparent, #ff4a75, transparent); animation: dropDown 4s linear infinite; }
-@keyframes dropDown { from { top: -100px; } to { top: 100vh; } }
-
 .ai-interface-container { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 850px; z-index: 5; }
 
-/* 👑 لوحة تحكم الـ AI المريحة الفخمة 👑 */
+/* تصميم لوحة الكونسول الفخمة الهادئة */
 .ai-console-box {
-    background: rgba(15, 15, 15, 0.6); border: 1px solid #222; border-radius: 16px;
-    padding: 30px; width: 100%; max-width: 500px; text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    animation: consolePulse 2s infinite alternate; transition: 0.5s ease;
+    background: rgba(12, 12, 12, 0.7); border: 1px solid #1c1c1c; border-radius: 16px;
+    padding: 35px 25px; width: 100%; max-width: 480px; text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8); transition: 0.4s ease;
 }
-@keyframes consolePulse { from { border-color: #222; } to { border-color: rgba(255, 74, 117, 0.3); } }
+.console-hint { color: #777; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.6; }
 
-.console-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px; }
-.status-dot { width: 8px; height: 8px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66; }
-.console-title { font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; color: #ff4a75; letter-spacing: 2px; }
-.console-hint { color: #888; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.6; }
-
-.ai-commands-list { display: flex; flex-direction: column; gap: 15px; }
+.ai-commands-list { display: flex; flex-direction: column; gap: 12px; }
 .ai-cmd-btn {
-    background: #0d0d0d; color: #aaa; border: 1px solid #222; padding: 14px 20px;
-    border-radius: 8px; font-family: 'Share Tech Mono', 'Cairo', sans-serif;
-    font-size: 0.95rem; text-align: left; direction: ltr; cursor: pointer; transition: 0.3s;
+    background: #0a0a0a; color: #999; border: 1px solid #1a1a1a; padding: 14px 20px;
+    border-radius: 10px; font-size: 0.95rem; font-weight: 600; text-align: right; cursor: pointer; transition: 0.3s;
 }
-.ai-cmd-btn:hover { background: #ff4a75; color: #fff; border-color: transparent; transform: translateX(5px); box-shadow: 0 5px 15px rgba(255, 74, 117, 0.2); }
+.ai-cmd-btn:hover { background: #ff4a75; color: #fff; border-color: transparent; transform: scale(1.02); }
 
-/* مسرح العرض والـ Frame السينمائي */
-.theater-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; transition: 0.6s ease; }
+/* مسرح الشاشة السينمائية المحمية الأبعاد */
+.theater-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; transition: 0.5s ease; }
 .cinematic-frame {
     position: relative; width: 100%; aspect-ratio: 16/9; background: #000;
     border-radius: 16px; overflow: hidden; border: 1px solid #111; box-shadow: 0 30px 80px rgba(0,0,0,0.9);
 }
 
-/* أنيميشن الدخول السريع للصدمة التكنولوجية */
-.cinematic-frame.ai-impact { animation: aiImpactEffect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2); }
+/* 👑 حركة هزة وزوم الشاشة السينمائية بالـ AI عند النقلة 👑 */
+.cinematic-frame.ai-impact { animation: aiImpactEffect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.25); }
 @keyframes aiImpactEffect {
-    0% { transform: scale(0.9) rotate(-1deg); filter: contrast(2); }
-    50% { transform: scale(1.03) rotate(1deg); filter: contrast(1.5); }
+    0% { transform: scale(0.95) rotate(-0.5deg); filter: contrast(1.5); }
+    50% { transform: scale(1.04) rotate(0.5deg); filter: contrast(1.2); }
     100% { transform: scale(1) rotate(0deg); filter: contrast(1); }
 }
 
@@ -64,32 +52,32 @@ body {
 .video-slide.active { opacity: 1; visibility: visible; z-index: 5; }
 .video-slide video { width: 100%; height: 100%; object-fit: contain; background: #000; }
 
-/* أوفرلايز النقلات المتقدمة للـ AI */
-.ai-glitch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05) 1px, transparent 1px, transparent 2px), url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Static_noise_flicker_slow.gif'); background-size: cover; opacity: 0; z-index: 20; pointer-events: none; }
+/* 👑 أوفرلايز نقلات الـ AI الرقمية 👑 */
+.ai-glitch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 1px, transparent 1px, transparent 2px), url('https://upload.wikimedia.org/wikipedia/commons/5/5a/Static_noise_flicker_slow.gif'); background-size: cover; opacity: 0; z-index: 20; pointer-events: none; }
 .ai-glitch-overlay.active { animation: glitchFlash 0.3s steps(2) forwards; }
-@keyframes glitchFlash { 0% { opacity: 0.2; filter: hue-rotate(90deg); } 50% { opacity: 0.3; filter: hue-rotate(180deg) scale(1.01); } 100% { opacity: 0; filter: hue-rotate(0deg); } }
+@keyframes glitchFlash { 0% { opacity: 0.25; filter: hue-rotate(90deg); } 50% { opacity: 0.35; filter: hue-rotate(180deg); } 100% { opacity: 0; filter: hue-rotate(0deg); } }
 
 .ai-blur-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); z-index: 19; pointer-events: none; }
 .ai-blur-overlay.active { animation: blurImpact 0.4s ease-in-out; }
-@keyframes blurImpact { 0% { backdrop-filter: blur(0px); } 40% { backdrop-filter: blur(12px); } 100% { backdrop-filter: blur(0px); } }
+@keyframes blurImpact { 0% { backdrop-filter: blur(0px); } 40% { backdrop-filter: blur(15px); } 100% { backdrop-filter: blur(0px); } }
 
-.light-leak-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,74,117,0.3) 0%, transparent 60%); opacity: 0; z-index: 21; pointer-events: none; }
+.light-leak-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,74,117,0.35) 0%, transparent 65%); opacity: 0; z-index: 21; pointer-events: none; }
 .light-leak-overlay.active { animation: leakFlash 0.4s ease-out; }
-@keyframes leakFlash { 0% { opacity: 0; } 30% { opacity: 0.7; } 100% { opacity: 0; } }
+@keyframes leakFlash { 0% { opacity: 0; } 40% { opacity: 0.75; } 100% { opacity: 0; } }
 
-/* صندوق الترجمة العصبية المريحة */
+/* صندوق الترجمة المنسوجة الرايق */
 .subtitle-box { width: 100%; min-height: 70px; display: flex; align-items: center; justify-content: center; padding: 0 10px; }
-#subtitle-text { color: #e0e0e0; font-size: 1.1rem; line-height: 1.7; text-align: center; font-weight: 400; max-width: 750px; }
+#subtitle-text { color: #dbdbdb; font-size: 1.1rem; line-height: 1.7; text-align: center; font-weight: 400; max-width: 750px; }
 
 .return-console-btn {
-    background: transparent; color: #555; border: 1px dashed #222; padding: 8px 20px;
-    font-family: 'Cairo', sans-serif; font-size: 0.85rem; border-radius: 20px; cursor: pointer; transition: 0.3s;
+    background: transparent; color: #444; border: 1px dashed #1a1a1a; padding: 8px 22px;
+    font-family: 'Cairo', sans-serif; font-size: 0.85rem; border-radius: 20px; cursor: pointer; transition: 0.3s; margin-top: 5px;
 }
 .return-console-btn:hover { color: #ff4a75; border-color: #ff4a75; }
 
 @media (max-width: 600px) {
     .cinematic-frame { border-radius: 8px; }
-    .ai-console-box { padding: 20px; width: 95%; }
-    .ai-cmd-btn { font-size: 0.8rem; padding: 12px 15px; }
+    .ai-console-box { padding: 25px 15px; width: 95%; }
+    .ai-cmd-btn { font-size: 0.85rem; padding: 12px 15px; }
     #subtitle-text { font-size: 0.95rem; }
 }
