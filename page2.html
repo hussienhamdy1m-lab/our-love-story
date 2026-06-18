@@ -2,21 +2,28 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>مصفوفة شهد السينمائية 🧠🎬</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>شريط حكاياتنا 🎬</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2.css">
 </head>
 <body>
 
+    <!-- 🎵 تراك 22 الجديد الخاص بالصفحة الثانية 🎵 -->
     <audio id="bg-music" loop preload="metadata">
         <source src="22.mp3" type="audio/mpeg">
     </audio>
 
-    <button class="back-home-btn" onclick="goBackHome()">⬅️ الرئيسية</button>
+    <button class="back-home-btn" onclick="goBackHome()">⬅️ الرجوع</button>
 
-    <div class="mesh-gradient-bg"></div>
+    <!-- 🌌 محرك الخلفية الرومانسية السائلة والقلب النابض الخافت 🌌 -->
+    <div class="luxury-fluid-bg">
+        <div class="ambient-nebula-1"></div>
+        <div class="ambient-nebula-2"></div>
+        <div class="giant-pulse-heart">❤️</div>
+    </div>
 
+    <!-- 🌟 المرحلة الأولى: الدخلة الوهمية لاسم شهد (محفوظة بالملي بنسج الليزر) 🌟 -->
     <div id="ai-quantum-intro" class="intro-fullscreen-overlay">
         <div class="interactive-dark-core" onclick="triggerCorePulse()">
             <div class="core-plasma-glow"></div>
@@ -25,65 +32,78 @@
         <div class="shimmer-name-container">
             <h1 class="premium-shimmer-name">SHAHD</h1>
         </div>
-        <p class="core-hint-text">المسي النواة لتوليد المصفوفة السائلة</p>
+        <p class="core-hint-text">المسي هنا عشان تفتحي بوابتنا الرقمية..</p>
     </div>
 
     <div class="ai-universe-container">
         
-        <div id="cinema-auth-portal" class="energy-ring-card" style="display: none; opacity: 0;">
-            <div class="ring-glow-core"></div>
-            <h1 class="portal-main-title">بوابة العشق السرية 🔐</h1>
-            <p class="portal-subtitle">مين بيحب التاني أكتر؟ 😉</p>
+        <!-- 🔒 المرحلة الثانية: بوابة الباسورد البلورية المتوهجة بالكامل 🔒 -->
+        <div id="cinema-auth-portal" class="premium-neon-card" style="display: none; opacity: 0;">
+            <div class="neon-shine-line"></div>
+            <h1 class="portal-main-title">مكاننا السري الهادي 🔐</h1>
+            <p class="portal-subtitle">عشان تشوفي الفيديوهات، قوليلي الأول.. مين بيحب التاني أكتر؟ 😉</p>
             
-            <div class="input-capsule-glow">
-                <input type="text" id="cinema-password-input" placeholder="اكتبي الإجابة السرية..." autocomplete="off">
+            <div class="input-wrapper-glow">
+                <input type="text" id="cinema-password-input" placeholder="اكتبي كلمتنا السرية هنا..." autocomplete="off">
             </div>
             
-            <button class="ai-submit-btn" onclick="unlockAiCinema()">فتح المصفوفة ✨</button>
-            <p id="cinema-error-message" class="error-msg-style">الباسورد غلط ركزي! 🥺❤️</p>
+            <button class="ai-submit-btn" onclick="unlockAiCinema()">ادخلي لقلبي ✨</button>
+            <p id="cinema-error-message" class="error-msg-style">لأ ركزي يا شهودتي.. الإجابة هي (بحبك اكتر) 🥺❤️</p>
         </div>
 
+        <!-- 🤖 المرحلة الثالثة: ألبوم الحكايات ثلاثي الأبعاد المطور (كروت مدمج بها تأثير نيون متحرك) 🤖 -->
         <div id="ai-console-dashboard" class="slider-wrapper-layout" style="display: none; opacity: 0;">
-            <h2 class="slider-main-title">ألبوم حكاياتنا المشفرة 🎬</h2>
-            <p class="slider-subtitle">اسحبي الكروت يمين وشمال واضغطي على المشهد لتوليده..</p>
+            <h2 class="slider-main-title">شريط ذكرياتنا سوا 🎬</h2>
+            <p class="slider-subtitle">اسحبي الحكايات يمين وشمال واختاري اللحظة اللي وحشاكي..</p>
             
             <div class="coverflow-container" id="coverflow-mesh">
                 
                 <div class="coverflow-card active" data-index="1" onclick="selectCard(this, 1)">
                     <div class="card-neon-edge"></div>
-                    <div class="card-meta">SEQUENCE_01</div>
-                    <h3>المشهد الأول ⚡</h3>
+                    <div class="card-cyber-strips"></div>
+                    <div class="card-meta">CHAPTER _ 01</div>
+                    <div class="card-icon">🎥</div>
+                    <h3>حكايتنا الأولى ⏳</h3>
                 </div>
 
                 <div class="coverflow-card" data-index="2" onclick="selectCard(this, 2)">
                     <div class="card-neon-edge"></div>
-                    <div class="card-meta">SEQUENCE_02</div>
-                    <h3>المشهد الثاني ⚡</h3>
+                    <div class="card-cyber-strips"></div>
+                    <div class="card-meta">CHAPTER _ 02</div>
+                    <div class="card-icon">✨</div>
+                    <h3>ضحكتنا سوا 🌸</h3>
                 </div>
 
                 <div class="coverflow-card" data-index="3" onclick="selectCard(this, 3)">
                     <div class="card-neon-edge"></div>
-                    <div class="card-meta">SEQUENCE_03</div>
-                    <h3>المشهد الثالث ⚡</h3>
+                    <div class="card-cyber-strips"></div>
+                    <div class="card-meta">CHAPTER _ 03</div>
+                    <div class="card-icon">💖</div>
+                    <h3>أجمل يوم لِينا 🥰</h3>
                 </div>
 
                 <div class="coverflow-card" data-index="4" onclick="selectCard(this, 4)">
                     <div class="card-neon-edge"></div>
-                    <div class="card-meta">SEQUENCE_04</div>
-                    <h3>المشهد الرابع ⚡</h3>
+                    <div class="card-cyber-strips"></div>
+                    <div class="card-meta">CHAPTER _ 04</div>
+                    <div class="card-icon">🍃</div>
+                    <h3>تفاصيلنا الصغيرة 🔮</h3>
                 </div>
 
                 <div class="coverflow-card" data-index="5" onclick="selectCard(this, 5)">
                     <div class="card-neon-edge"></div>
-                    <div class="card-meta">SEQUENCE_05</div>
-                    <h3>المشهد الخامس ⚡</h3>
+                    <div class="card-cyber-strips"></div>
+                    <div class="card-meta">CHAPTER _ 05</div>
+                    <div class="card-icon">🔒</div>
+                    <h3>الوعد الأبدي لآخر العمر 💍</h3>
                 </div>
 
             </div>
 
-            <button id="trigger-compile-btn" class="quantum-compile-btn" onclick="compileSelectedScene()">🤖 تفعيل المسار وتوليد الفيديو</button>
+            <button id="trigger-compile-btn" class="quantum-compile-btn" onclick="compileSelectedScene()">🎬 افتحي الذكرى دي حالاّ</button>
         </div>
 
+        <!-- 🎬 المرحلة الرابعة: مسرح العرض الطافي بنقلة السيلان + أزرار التنقل الفورية 🎬 -->
         <div id="cinema-theater-stage" class="theater-wrapper-layout" style="display: none; opacity: 0;">
             <div class="cinematic-canvas-frame" id="cinema-frame">
                 <div id="ai-liquid-overlay" class="liquid-ripple-layer"></div>
@@ -96,15 +116,23 @@
                 <div class="video-slide" id="slide-5"><video id="vid5" playsinline controls loop><source src="vid5.mp4" type="video/mp4"></video></div>
             </div>
 
+            <!-- شريط الترجمة العصبية المنسوجة بخط بريميوم -->
             <div class="ai-subtitles-container">
                 <p id="subtitle-text-field"></p>
             </div>
 
-            <button class="return-system-btn" onclick="returnToAiConsole()">⚙️ العودة للألبوم الرقمي</button>
+            <!-- 👑 أزرار التنقل السريعة بين الفيديوهات جوه نفس الشاشة 👑 -->
+            <div class="theater-inline-navigation">
+                <button class="inline-nav-btn" onclick="navigateInlineScene(-1)">⏮️ الحكاية اللي قبلها</button>
+                <button class="inline-nav-btn next-glow-btn" onclick="navigateInlineScene(1)">الحكاية اللي بعدها ⏭️</button>
+            </div>
+
+            <button class="return-system-btn" onclick="returnToAiConsole()">⚙️ ارجعي للألبوم الرئيسي</button>
         </div>
 
     </div>
 
+    <!-- فلتر السيلان والـ Liquid Morph المطور -->
     <svg style="display: none;">
         <defs>
             <filter id="liquid-blur-filter">
