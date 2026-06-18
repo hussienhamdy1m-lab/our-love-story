@@ -7,7 +7,7 @@ html, body {
     overflow: hidden;
     position: relative;
     -webkit-text-size-adjust: 100%;
-    background: #040108;
+    background: #06020c;
     font-family: 'Cairo', sans-serif;
     color: #fff;
     display: flex;
@@ -20,22 +20,20 @@ html, body {
 .back-home-btn { 
     position: absolute; top: calc(20px + env(safe-area-inset-top)); right: 20px; 
     padding: 8px 18px; background: rgba(255, 74, 117, 0.08); 
-    color: #ff4a75; border: 1px solid rgba(255, 74, 117, 0.2); border-radius: 30px; 
+    color: #ff4a75; border: 1px solid rgba(255, 74, 117, 0.15); border-radius: 30px; 
     cursor: pointer; z-index: 150; font-size: 0.85rem; font-weight: bold; transition: 0.3s;
 }
 .back-home-btn:hover { background: #ff4a75; color: #fff; box-shadow: 0 0 15px #ff4a75; }
 
-/* الخلفية الرومانسية المخملية السائلة */
+/* 🌌 الخلفية المخملية السائلة الناعمة 🌌 */
 .luxury-fluid-bg { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; overflow: hidden; }
-.ambient-nebula-1 { position: absolute; top: -10%; left: -20%; width: 80vw; height: 80vh; background: radial-gradient(circle, rgba(116, 42, 185, 0.15) 0%, transparent 70%); animation: nebulaMove1 15s infinite alternate ease-in-out; }
-.ambient-nebula-2 { position: absolute; bottom: -10%; right: -20%; width: 80vw; height: 80vh; background: radial-gradient(circle, rgba(255, 74, 117, 0.12) 0%, transparent 70%); animation: nebulaMove2 18s infinite alternate ease-in-out; }
-@keyframes nebulaMove1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(80px, 50px) scale(1.2); } }
-@keyframes nebulaMove2 { 0% { transform: translate(0, 0) scale(1.2); } 100% { transform: translate(-60px, -70px) scale(0.9); } }
-.giant-pulse-heart { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 25vw; opacity: 0.02; filter: blur(5px); animation: heartGlobalPulse 2s infinite alternate ease-in-out; }
-@keyframes heartGlobalPulse { from { transform: translate(-50%, -50%) scale(0.9); } to { transform: translate(-50%, -50%) scale(1.1); } }
+.ambient-nebula-1 { position: absolute; top: -10%; left: -10%; width: 90vw; height: 70vh; background: radial-gradient(circle, rgba(116, 42, 185, 0.12) 0%, transparent 70%); animation: nebulaMove1 15s infinite alternate ease-in-out; }
+.ambient-nebula-2 { position: absolute; bottom: -10%; right: -10%; width: 90vw; height: 70vh; background: radial-gradient(circle, rgba(255, 74, 117, 0.1) 0%, transparent 70%); animation: nebulaMove2 18s infinite alternate ease-in-out; }
+@keyframes nebulaMove1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 30px) scale(1.1); } }
+@keyframes nebulaMove2 { 0% { transform: translate(0, 0) scale(1.1); } 100% { transform: translate(-40px, -40px) scale(0.95); } }
 
 /* شاشة الـ Intro لاسم شهد */
-.intro-fullscreen-overlay { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background: #020105; z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+.intro-fullscreen-overlay { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background: #030107; z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
 .interactive-dark-core { position: relative; width: 100px; height: 100px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .core-plasma-glow { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle, rgba(255,74,117,0.35) 0%, transparent 70%); animation: plasmaBreathe 1.8s infinite alternate ease-in-out; }
 @keyframes plasmaBreathe { from { transform: scale(0.9); opacity: 0.5; filter: blur(5px); } to { transform: scale(1.7); opacity: 1; filter: blur(15px); } }
@@ -53,80 +51,73 @@ html, body {
 .core-hint-text { font-size: 0.85rem; color: #555; letter-spacing: 1px; }
 .intro-fullscreen-overlay.core-shattered { opacity: 0; transform: scale(1.2); filter: blur(25px); pointer-events: none; }
 
-.ai-universe-container { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100vw; height: 100vh; z-index: 5; padding: 20px; }
+.ai-universe-container { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100vw; height: 100vh; z-index: 5; padding: 25px; }
 
-/* كود كارت الباسورد الزجاجي البريميوم المطور */
-.premium-neon-card {
+/* 🔒 كارت الباسورد النظيف النقي الفخم 🔒 */
+.premium-clean-card {
     position: relative; background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 74, 117, 0.25); border-radius: 28px; padding: 45px 30px;
-    width: 100%; max-width: 440px; text-align: center;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 0 20px rgba(255, 74, 117, 0.05); overflow: hidden;
+    border: 1px solid rgba(255, 74, 117, 0.2); border-radius: 28px; padding: 45px 30px;
+    width: 100%; max-width: 420px; text-align: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4); animation: cardSoftIn 0.5s ease-out;
 }
-.neon-shine-line { position: absolute; top: 0; left: -100%; width: 40%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 74, 117, 0.25), transparent); transform: skewX(-20deg); animation: neonScanEffect 4s infinite cubic-bezier(0.4, 0, 0.2, 1); }
-@keyframes neonScanEffect { 0% { left: -150%; } 100% { left: 150%; } }
+@keyframes cardSoftIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-.portal-main-title { font-size: 1.8rem; color: #fff; font-weight: 700; margin-bottom: 10px; text-shadow: 0 0 15px rgba(255,74,117,0.2); }
-.portal-subtitle { color: #aaa; font-size: 1rem; margin-bottom: 35px; line-height: 1.6; }
+.portal-main-title { font-size: 1.7rem; color: #fff; font-weight: 700; margin-bottom: 10px; }
+.portal-subtitle { color: #999; font-size: 0.95rem; margin-bottom: 35px; line-height: 1.6; }
 
-.input-wrapper-glow { position: relative; width: 100%; max-width: 350px; margin: 0 auto 30px auto; }
+.input-wrapper-glow { position: relative; width: 100%; max-width: 340px; margin: 0 auto 30px auto; }
 #cinema-password-input {
-    width: 100%; padding: 16px 25px; border: 1px solid rgba(255, 74, 117, 0.3); border-radius: 30px;
-    text-align: center; font-size: 1.15rem; background: rgba(10, 5, 20, 0.85); color: #fff; outline: none;
-    transition: 0.4s ease; box-shadow: 0 0 15px rgba(255, 74, 117, 0.05); font-family: 'Cairo', sans-serif;
+    width: 100%; padding: 15px 25px; border: 1px solid rgba(255, 74, 117, 0.2); border-radius: 30px;
+    text-align: center; font-size: 1.12rem; background: rgba(10, 5, 20, 0.8); color: #fff; outline: none;
+    transition: 0.4s ease; font-family: 'Cairo', sans-serif;
 }
-#cinema-password-input:focus { border-color: #ff4a75; background: #000; box-shadow: 0 0 30px rgba(255, 74, 117, 0.4), inset 0 0 15px rgba(255, 74, 117, 0.15); }
+#cinema-password-input:focus { border-color: #ff4a75; background: #000; box-shadow: 0 0 25px rgba(255, 74, 117, 0.3); }
 
-.ai-submit-btn { background: linear-gradient(135deg, #ff4a75 0%, #742ab9 100%); color: #fff; border: none; padding: 14px 50px; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 10px 25px rgba(255, 74, 117, 0.3); font-family: 'Cairo', sans-serif; }
-.ai-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(255, 74, 117, 0.5); }
+.ai-submit-btn { background: linear-gradient(135deg, #ff4a75 0%, #742ab9 100%); color: #fff; border: none; padding: 14px 45px; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: 0.3s; font-family: 'Cairo', sans-serif; }
+.ai-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255, 74, 117, 0.4); }
+.error-msg-style { font-size: 0.95rem; margin-top: 15px; font-weight: bold; color: #ff4a4a; display: none; }
 .shake-box-anim { animation: consoleShake 0.4s ease-in-out; }
 @keyframes consoleShake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-8px); } 50% { transform: translateX(8px); } }
 
-/* 🤖 هندسة الكروت والألبوم السينمائي الأفقي الممتاز 🤖 */
-.slider-wrapper-layout { width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 20px 0; }
-.slider-main-title { font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 8px; text-shadow: 0 0 20px rgba(255,74,117,0.4); }
-.slider-subtitle { color: #888; font-size: 0.9rem; margin-bottom: 40px; text-align: center; padding: 0 20px; }
+/* 🤖 هندسة الشبكة السينمائية العنقودية (The Mesh Grid) 🤖 */
+.grid-wrapper-layout { width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.grid-main-title { font-size: 1.7rem; font-weight: 700; color: #fff; margin-bottom: 8px; text-shadow: 0 0 15px rgba(255,74,117,0.3); }
+.grid-subtitle { color: #777; font-size: 0.9rem; margin-bottom: 40px; text-align: center; padding: 0 10px; }
 
-.coverflow-container { display: flex; gap: 20px; width: 100%; max-width: 600px; padding: 20px 60px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-.coverflow-container::-webkit-scrollbar { display: none; }
-
-/* 👑 كروت البوسترات المشحونة بنبضات النيون المضيئة (مستحيل تطلع فاضية) 👑 */
-.coverflow-card {
-    flex: 0 0 200px; height: 290px; background: rgba(15, 8, 25, 0.45);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px;
-    display: flex; flex-direction: column; justify-content: space-between; padding: 25px;
-    scroll-snap-align: center; cursor: pointer; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.4); position: relative; overflow: hidden;
+/* حاوية الشبكة المترابطة التفاعلية */
+.memories-mesh-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; width: 100%; padding: 10px;
 }
 
-/* طبقة أشرطة النيون المتحركة رأسياً لتزيين خلفية الكارت */
-.card-cyber-strips {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.03; pointer-events: none;
-    background: linear-gradient(rgba(255, 74, 117, 0.5) 2px, transparent 2px); background-size: 100% 6px;
-    animation: cyberScanMove 4s infinite linear;
+/* الكبسولات الهندسية الراقية للشبكة */
+.mesh-node-capsule {
+    background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 22px 15px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
-@keyframes cyberScanMove { from { background-position: 0 0; } to { background-position: 0 100%; } }
+.capsule-num { font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; color: rgba(255, 74, 117, 0.4); align-self: flex-start; }
+.capsule-icon { font-size: 1.8rem; filter: drop-shadow(0 0 8px rgba(255,74,117,0.1)); }
+.mesh-node-capsule span { font-size: 1.05rem; font-weight: 600; color: #aaa; transition: 0.3s; }
 
-.card-neon-edge { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 24px; border: 1px solid transparent; pointer-events: none; transition: 0.3s; }
-.card-meta { font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: #555; letter-spacing: 1px; }
-.card-icon { font-size: 2.2rem; margin: 15px 0; text-align: center; filter: drop-shadow(0 0 10px rgba(255,74,117,0.2)); transition: 0.3s; }
-.coverflow-card h3 { font-size: 1.25rem; font-weight: 600; color: #666; text-align: center; transition: 0.3s; }
-
-/* تفاعل الكارت النشط البريميوم */
-.coverflow-card.active {
-    background: rgba(116, 42, 185, 0.1); border-color: rgba(255, 74, 117, 0.4);
-    transform: scale(1.1) translateY(-15px); box-shadow: 0 30px 60px rgba(255, 74, 117, 0.25);
+/* تفاعل اللمس للكبسولة */
+.mesh-node-capsule:hover {
+    background: rgba(116, 42, 185, 0.08); border-color: rgba(255, 74, 117, 0.4);
+    transform: translateY(-5px); box-shadow: 0 15px 35px rgba(255, 74, 117, 0.15);
 }
-.coverflow-card.active h3 { color: #fff; text-shadow: 0 0 15px rgba(255,74,117,0.6); }
-.coverflow-card.active .card-icon { transform: scale(1.15); filter: drop-shadow(0 0 15px #ff4a75); }
-.coverflow-card.active .card-neon-edge { border-color: #ff4a75; filter: drop-shadow(0 0 10px #ff4a75); }
+.mesh-node-capsule:hover span { color: #fff; text-shadow: 0 0 10px rgba(255,74,117,0.3); }
 
-.quantum-compile-btn { margin-top: 45px; background: linear-gradient(135deg, #ff4a75 0%, #742ab9 100%); color: #fff; border: none; padding: 16px 45px; border-radius: 30px; font-weight: bold; font-size: 1.1rem; cursor: pointer; box-shadow: 0 10px 30px rgba(255, 74, 117, 0.35); transition: 0.3s ease; font-family: 'Cairo', sans-serif; }
+/* كبسولة الوعد الكبرى في منتصف أسفل الشبكة */
+.collective-center-node {
+    grid-column: span 2; flex-direction: row; justify-content: center; gap: 15px; padding: 18px;
+    border-color: rgba(116, 42, 185, 0.2);
+}
+.collective-center-node .capsule-num { align-self: center; }
 
-/* 🎬 مسرح العرض الطافي الفخم 🎬 */
+/* 🎬 مسرح الشاشة السينمائية 🎬 */
 .theater-wrapper-layout { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; width: 100%; height: 100%; transition: 0.5s ease; }
-.cinematic-canvas-frame { position: relative; width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 74, 117, 0.25); box-shadow: 0 40px 100px rgba(0,0,0,0.95); }
+.cinematic-canvas-frame { position: relative; width: 100%; max-width: 800px; aspect-ratio: 16/9; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 74, 117, 0.2); box-shadow: 0 40px 100px rgba(0,0,0,0.95); }
 .cinematic-canvas-frame.liquid-morphing { filter: url(#liquid-blur-filter); }
 .video-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden; transition: opacity 0.4s ease; }
 .video-slide.active { opacity: 1; visibility: visible; z-index: 5; }
@@ -135,30 +126,30 @@ html, body {
 .ai-subtitles-container { width: 100%; min-height: 70px; display: flex; align-items: center; justify-content: center; padding: 0 10px; }
 #subtitle-text-field { color: #e0e0e0; font-size: 1.15rem; line-height: 1.7; text-align: center; font-weight: 400; max-width: 750px; }
 
-/* 👑 أزرار التنقل الفورية السلسة تحت الفيديو جوه الشاشة 👑 */
+/* 👑 أزرار التنقل الفورية المترابطة تحت الفيديو جوه الشاشة 👑 */
 .theater-inline-navigation {
-    display: flex; gap: 15px; width: 100%; max-width: 450px; justify-content: space-between; margin-top: 5px;
+    display: flex; gap: 15px; width: 100%; max-width: 440px; justify-content: space-between; margin-top: 5px;
 }
 .inline-nav-btn {
-    flex: 1; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
+    flex: 1; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06);
     color: #999; padding: 12px 15px; border-radius: 30px; font-family: 'Cairo', sans-serif;
-    font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: 0.3s ease;
 }
 .inline-nav-btn:active { transform: scale(0.97); }
-.inline-nav-btn:hover { background: rgba(255,255,255,0.06); color: #fff; border-color: #fff; }
-.next-glow-btn { border-color: rgba(255, 74, 117, 0.3); color: #ff4a75; background: rgba(255, 74, 117, 0.02); }
-.next-glow-btn:hover { background: #ff4a75; color: #fff; border-color: transparent; box-shadow: 0 0 15px rgba(255, 74, 117, 0.4); }
+.inline-nav-btn:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: #fff; }
+.next-glow-btn { border-color: rgba(255, 74, 117, 0.25); color: #ff4a75; }
+.next-glow-btn:hover { background: #ff4a75; color: #fff; border-color: transparent; box-shadow: 0 0 15px rgba(255, 74, 117, 0.3); }
 
 .return-system-btn { background: transparent; color: #ff4a75; opacity: 0.4; border: 1px dashed rgba(255,74,117,0.2); padding: 8px 22px; font-family: 'Cairo', sans-serif; font-size: 0.85rem; border-radius: 20px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
 .return-system-btn:hover { opacity: 1; border-color: #ff4a75; }
 
 @media (max-width: 600px) {
     .cinematic-canvas-frame { border-radius: 12px; }
-    .coverflow-card { flex: 0 0 165px; height: 245px; padding: 18px; border-radius: 20px; }
-    .card-icon { font-size: 1.8rem; margin: 8px 0; }
-    .coverflow-card h3 { font-size: 1.1rem; }
+    .memories-mesh-grid { gap: 12px; }
+    .mesh-node-capsule { padding: 18px 10px; border-radius: 16px; }
+    .mesh-node-capsule span { font-size: 0.95rem; }
     .premium-shimmer-name { font-size: 2.5rem; letter-spacing: 12px; }
-    .premium-neon-card { padding: 35px 20px; width: 92%; }
+    .premium-clean-card { padding: 35px 20px; width: 92%; }
     .inline-nav-btn { font-size: 0.85rem; padding: 10px 10px; }
     #subtitle-text-field { font-size: 1rem; }
 }
