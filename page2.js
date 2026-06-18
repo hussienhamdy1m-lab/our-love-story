@@ -2,12 +2,11 @@ const bgMusic = document.getElementById('bg-music');
 const CINEMA_SECRET_KEY = 'بحبك اكتر';
 
 window.addEventListener('load', () => {
-    // تشغيل الأغنية 22 فوراً عند التحميل
     if (bgMusic) {
         bgMusic.currentTime = 0;
-        bgMusic.play().catch(e => console.log("Audio play handle:", e));
+        bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
-    setupCoverflowScroll(); // تشغيل مستشعر التقليب الأفقي
+    setupCoverflowScroll(); 
 });
 
 function goBackHome() {
@@ -71,8 +70,14 @@ function unlockAiCinema() {
     }
 }
 
-// 👑 نظام تتبع التقليب الأفقي للكروت بصباعها على الموبايل 👑
-let selectedSceneNum = 1; // الافتراضي أول كارت
+setTimeout(() => {
+    const passInput = document.getElementById('cinema-password-input');
+    if (passInput) {
+        passInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') unlockAiCinema(); });
+    }
+}, 500);
+
+let selectedSceneNum = 1; 
 
 function setupCoverflowScroll() {
     const container = document.getElementById('coverflow-mesh');
@@ -106,17 +111,16 @@ function selectCard(element, num) {
     cards.forEach(c => c.classList.remove('active'));
     element.classList.add('active');
     selectedSceneNum = num;
-    // سحب الكارت أوتوماتيك لمنتصف شاشة الموبايل عند الضغط
     element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
-// رسايل الـ 5 فيديوهات كاملة
+// رسايل الـ 5 فيديوهات بالعامية الرومانسية الدافية
 const cinematicTexts = {
-    1: "المشهد الأول: تم توليد حزمة البيانات بنجاح.. اكتب هنا ذكريات وتفاصيل الفيديو الأول بالكامل لشهد، الكلام بيتنّسج بنعومة بالغة ومريحة للنظر.",
-    2: "المشهد الثاني: معالجة القطاع الثاني.. اكتب هنا تفاصيل كلام الفيديو التاني ورسالتك الرومانسية اللي من القلب.",
-    3: "المشهد الثالث: اكتب هنا كلامك الحلو وعبر عن اللي جواك في الفيديو الثالث يا بطل.. الخط رايق ومريح للعين.",
-    4: "المشهد الرابع: هنا بتكتب تفاصيل وذكرى المقابلة أو الفيديو الرابع بالتفصيل الممتع.",
-    5: "المشهد الخامس: نهاية مصفوفة الحكايات.. اكتب هنا وعدك الأخير وكلامك الأبدي لشهودتي لآخر العمر."
+    1: "هنا بتكتب كلامك الحلو والذكرى بتاعة أول فيديو ليكم سوا.. الكلام هيظهر كلمة كلمة بنعومة مريحة جداً للعين والخلفية مفيهاش أي كآبة.",
+    2: "حكايتنا التانية.. اكتب هنا التفاصيل والضحكة واليوم الجميل اللي كان بينكم في الفيديو التاني.",
+    3: "كل يوم معاكي هو أجمل يوم في عمري.. هنا رسايل الفيديو الثالث اللي من قلبك لشهد.",
+    4: "التفاصيل الصغيرة دي هي اللي مخلية حياتي منورة.. هنا كلام وتفاصيل الفيديو الرابع.",
+    5: "لآخر العمر وجنبك ومعاكي دايماً.. دي الرسالة الأخيرة والوعد الأبدي لشهودتي في الفيديو الخامس."
 };
 
 const consoleDashboard = document.getElementById('ai-console-dashboard');
@@ -129,11 +133,8 @@ const displacementMap = document.getElementById('liquid-displacement');
 let activeVideoId = null;
 let weaveInterval = null;
 
-// 👑 دالة التوليد بنقلة السيلان المائي 👑
 function compileSelectedScene() {
-    if (consoleDashboard) {
-        consoleDashboard.style.opacity = '0';
-    }
+    if (consoleDashboard) { consoleDashboard.style.opacity = '0'; }
     
     setTimeout(() => {
         if (consoleDashboard) consoleDashboard.style.display = 'none';
@@ -141,46 +142,70 @@ function compileSelectedScene() {
             theaterStage.style.display = 'flex';
             setTimeout(() => theaterStage.style.opacity = '1', 50);
         }
-        
-        if (lightLeak) { lightLeak.classList.add('active'); setTimeout(() => lightLeak.classList.remove('active'), 500); }
-        
-        if (cinemaFrame && displacementMap) {
-            cinemaFrame.classList.add('liquid-morphing');
-            let scaleVal = 0;
-            let interval = setInterval(() => {
-                scaleVal += 8;
-                displacementMap.setAttribute('scale', scaleVal);
-                if(scaleVal >= 45) {
-                    clearInterval(interval);
-                    document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
-                    const targetSlide = document.getElementById(`slide-${selectedSceneNum}`);
-                    if (targetSlide) targetSlide.classList.add('active');
-                    
-                    let reverseInterval = setInterval(() => {
-                        scaleVal -= 8;
-                        displacementMap.setAttribute('scale', scaleVal);
-                        if(scaleVal <= 0) {
-                            clearInterval(reverseInterval);
-                            cinemaFrame.classList.remove('liquid-morphing');
-                        }
-                    }, 40);
-                }
-            }, 55);
-        } else {
-            document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
-            const targetSlide = document.getElementById(`slide-${selectedSceneNum}`);
-            if (targetSlide) targetSlide.classList.add('active');
-        }
-        
-        weaveSubtitle(selectedSceneNum);
-        
-        const targetVid = document.getElementById(`vid${selectedSceneNum}`);
-        if (targetVid) {
-            targetVid.currentTime = 0;
-            targetVid.play().catch(e => console.log("Auto-play handling"));
-            activeVideoId = `vid${selectedSceneNum}`;
-        }
+        executeLiquidTransition(selectedSceneNum);
     }, 350);
+}
+
+// 👑 دالة الانتقال السريع بين الفيديوهات بأزرار "التالي" و "السابق" الفورية 👑
+function navigateInlineScene(direction) {
+    // حساب رقم الفيديو الجديد بالدوران حول الـ 5 فيديوهات
+    selectedSceneNum = selectedSceneNum + direction;
+    if (selectedSceneNum > 5) selectedSceneNum = 1;
+    if (selectedSceneNum < 1) selectedSceneNum = 5;
+    
+    // تنفيذ نقلة السيلان والتشغيل الفوري من جوة المسرح
+    executeLiquidTransition(selectedSceneNum);
+}
+
+// المحرك الموحد لنقلة السيلان والتشغيل
+function executeLiquidTransition(sceneNum) {
+    if (activeVideoId) {
+        const prevVid = document.getElementById(activeVideoId);
+        if (prevVid) prevVid.pause();
+    }
+
+    if (lightLeak) { lightLeak.classList.add('active'); setTimeout(() => lightLeak.classList.remove('active'), 500); }
+    
+    if (cinemaFrame && displacementMap) {
+        cinemaFrame.classList.add('liquid-morphing');
+        let scaleVal = 0;
+        let interval = setInterval(() => {
+            scaleVal += 10;
+            displacementMap.setAttribute('scale', scaleVal);
+            if(scaleVal >= 50) {
+                clearInterval(interval);
+                
+                // قلب الفيديو
+                document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
+                const targetSlide = document.getElementById(`slide-${sceneNum}`);
+                if (targetSlide) targetSlide.classList.add('active');
+                
+                // إرجاع الفلتر لوضعه الطبيعي بنعومة
+                let reverseInterval = setInterval(() => {
+                    scaleVal -= 10;
+                    displacementMap.setAttribute('scale', scaleVal);
+                    if(scaleVal <= 0) {
+                        clearInterval(reverseInterval);
+                        cinemaFrame.classList.remove('liquid-morphing');
+                    }
+                }, 35);
+            }
+        }, 40);
+    } else {
+        document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
+        const targetSlide = document.getElementById(`slide-${sceneNum}`);
+        if (targetSlide) targetSlide.classList.add('active');
+    }
+    
+    // إعادة نسج التراك النصي الجديد كلمة كلمة
+    weaveSubtitle(sceneNum);
+    
+    const targetVid = document.getElementById(`vid${sceneNum}`);
+    if (targetVid) {
+        targetVid.currentTime = 0;
+        targetVid.play().catch(e => console.log("Auto-play handling"));
+        activeVideoId = `vid${sceneNum}`;
+    }
 }
 
 function returnToAiConsole() {
