@@ -6,7 +6,6 @@ window.addEventListener('load', () => {
         bgMusic.currentTime = 0;
         bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
-    setupCoverflowScroll(); 
 });
 
 function goBackHome() {
@@ -55,7 +54,7 @@ function unlockAiCinema() {
         setTimeout(() => {
             if (authPortal) authPortal.style.display = 'none';
             if (consoleDashboard) {
-                consoleDashboard.style.display = 'flex';
+                consoleDashboard.style.display = 'block';
                 setTimeout(() => { consoleDashboard.style.opacity = '1'; }, 50);
             }
         }, 500);
@@ -77,44 +76,7 @@ setTimeout(() => {
     }
 }, 500);
 
-let selectedSceneNum = 1; 
-
-function setupCoverflowScroll() {
-    const container = document.getElementById('coverflow-mesh');
-    if (!container) return;
-    
-    container.addEventListener('scroll', () => {
-        const cards = document.querySelectorAll('.coverflow-card');
-        let closestCard = null;
-        let minDistance = Infinity;
-        const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
-        
-        cards.forEach(card => {
-            const cardCenter = card.getBoundingClientRect().left + card.offsetWidth / 2;
-            const distance = Math.abs(containerCenter - cardCenter);
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestCard = card;
-            }
-        });
-        
-        if (closestCard) {
-            cards.forEach(c => c.classList.remove('active'));
-            closestCard.classList.add('active');
-            selectedSceneNum = parseInt(closestCard.getAttribute('data-index'));
-        }
-    });
-}
-
-function selectCard(element, num) {
-    const cards = document.querySelectorAll('.coverflow-card');
-    cards.forEach(c => c.classList.remove('active'));
-    element.classList.add('active');
-    selectedSceneNum = num;
-    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-}
-
-// رسايل الـ 5 فيديوهات بالعامية الرومانسية الدافية
+// 👑 الرسايل الـ 5 كاملة بالعامية الرومانسية الدافية 👑
 const cinematicTexts = {
     1: "هنا بتكتب كلامك الحلو والذكرى بتاعة أول فيديو ليكم سوا.. الكلام هيظهر كلمة كلمة بنعومة مريحة جداً للعين والخلفية مفيهاش أي كآبة.",
     2: "حكايتنا التانية.. اكتب هنا التفاصيل والضحكة واليوم الجميل اللي كان بينكم في الفيديو التاني.",
@@ -123,17 +85,19 @@ const cinematicTexts = {
     5: "لآخر العمر وجنبك ومعاكي دايماً.. دي الرسالة الأخيرة والوعد الأبدي لشهودتي في الفيديو الخامس."
 };
 
+let currentSceneNum = 1; 
 const consoleDashboard = document.getElementById('ai-console-dashboard');
 const theaterStage = document.getElementById('cinema-theater-stage');
 const subtitleTextField = document.getElementById('subtitle-text-field');
-const lightLeak = document.getElementById('ai-light-leak');
 const cinemaFrame = document.getElementById('cinema-frame');
 const displacementMap = document.getElementById('liquid-displacement');
 
 let activeVideoId = null;
 let weaveInterval = null;
 
-function compileSelectedScene() {
+// تشغيل المشهد مباشرة عند اللمس من الشبكة العنقودية
+function playSceneFromGrid(num) {
+    currentSceneNum = num;
     if (consoleDashboard) { consoleDashboard.style.opacity = '0'; }
     
     setTimeout(() => {
@@ -142,29 +106,25 @@ function compileSelectedScene() {
             theaterStage.style.display = 'flex';
             setTimeout(() => theaterStage.style.opacity = '1', 50);
         }
-        executeLiquidTransition(selectedSceneNum);
+        executeLiquidTransition(currentSceneNum);
     }, 350);
 }
 
-// 👑 دالة الانتقال السريع بين الفيديوهات بأزرار "التالي" و "السابق" الفورية 👑
+// دالة الانتقال السريع بأزرار "اللي بعده" و "اللي قبله" الفورية
 function navigateInlineScene(direction) {
-    // حساب رقم الفيديو الجديد بالدوران حول الـ 5 فيديوهات
-    selectedSceneNum = selectedSceneNum + direction;
-    if (selectedSceneNum > 5) selectedSceneNum = 1;
-    if (selectedSceneNum < 1) selectedSceneNum = 5;
+    currentSceneNum = currentSceneNum + direction;
+    if (currentSceneNum > 5) currentSceneNum = 1;
+    if (currentSceneNum < 1) currentSceneNum = 5;
     
-    // تنفيذ نقلة السيلان والتشغيل الفوري من جوة المسرح
-    executeLiquidTransition(selectedSceneNum);
+    executeLiquidTransition(currentSceneNum);
 }
 
-// المحرك الموحد لنقلة السيلان والتشغيل
+// محرك نقلة السيلان المائي ومزامنة الفيديو والترجمة المنسوجة
 function executeLiquidTransition(sceneNum) {
     if (activeVideoId) {
         const prevVid = document.getElementById(activeVideoId);
         if (prevVid) prevVid.pause();
     }
-
-    if (lightLeak) { lightLeak.classList.add('active'); setTimeout(() => lightLeak.classList.remove('active'), 500); }
     
     if (cinemaFrame && displacementMap) {
         cinemaFrame.classList.add('liquid-morphing');
@@ -175,12 +135,10 @@ function executeLiquidTransition(sceneNum) {
             if(scaleVal >= 50) {
                 clearInterval(interval);
                 
-                // قلب الفيديو
                 document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
                 const targetSlide = document.getElementById(`slide-${sceneNum}`);
                 if (targetSlide) targetSlide.classList.add('active');
                 
-                // إرجاع الفلتر لوضعه الطبيعي بنعومة
                 let reverseInterval = setInterval(() => {
                     scaleVal -= 10;
                     displacementMap.setAttribute('scale', scaleVal);
@@ -197,7 +155,6 @@ function executeLiquidTransition(sceneNum) {
         if (targetSlide) targetSlide.classList.add('active');
     }
     
-    // إعادة نسج التراك النصي الجديد كلمة كلمة
     weaveSubtitle(sceneNum);
     
     const targetVid = document.getElementById(`vid${sceneNum}`);
@@ -217,7 +174,7 @@ function returnToAiConsole() {
     setTimeout(() => {
         if (theaterStage) theaterStage.style.display = 'none';
         if (consoleDashboard) {
-            consoleDashboard.style.display = 'flex';
+            consoleDashboard.style.display = 'block';
             setTimeout(() => { consoleDashboard.style.opacity = '1'; }, 50);
         }
     }, 350);
