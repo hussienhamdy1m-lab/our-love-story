@@ -1,36 +1,28 @@
 const bgMusic = document.getElementById('bg-music');
-const CINEMA_SECRET_KEY = 'بحبك اكتر'; // الباسورد التاني السري المظبوط بالملي
+const CINEMA_SECRET_KEY = 'بحبك اكتر';
 
 window.addEventListener('load', () => {
-    const savedTime = sessionStorage.getItem('musicTime');
-    if (savedTime && bgMusic) {
-        bgMusic.currentTime = parseFloat(savedTime);
-        bgMusic.play().catch(e => console.log("Audio play deferred:", e));
+    // تشغيل الأغنية الجديدة فوراً عند فتح الصفحة الثانية تلقائياً
+    if (bgMusic) {
+        bgMusic.currentTime = 0;
+        bgMusic.play().catch(e => console.log("Audio autoplay block handled:", e));
     }
     initAiNeuralNodes();
     initMagneticButtons();
-    init3DTiltEffect();
+    initUltimate3DMatrix(); 
 });
 
-setInterval(() => {
-    if (bgMusic && !bgMusic.paused) {
-        sessionStorage.setItem('musicTime', bgMusic.currentTime);
-    }
-}, 200);
-
 function goBackHome() {
-    if (bgMusic) sessionStorage.setItem('musicTime', bgMusic.currentTime);
     window.location.href = 'index.html';
 }
 
-// 🌟 تأثير انفجار النواة وتحول الـ UI السائل 🌟
 function triggerCorePulse() {
     const introScreen = document.getElementById('ai-quantum-intro');
     const authPortal = document.getElementById('cinema-auth-portal');
     const coreNucleus = document.querySelector('.core-inner-nucleus');
     
     if (coreNucleus) {
-        coreNucleus.style.transform = 'scale(50)';
+        coreNucleus.style.transform = 'scale(60)';
         coreNucleus.style.background = '#ff4a75';
         coreNucleus.style.opacity = '0';
     }
@@ -49,7 +41,6 @@ function triggerCorePulse() {
     }, 300);
 }
 
-// 🔒 فحص الباسورد الثاني والتحول الذكي للوحة التحكم 🔒
 function unlockAiCinema() {
     const passInput = document.getElementById('cinema-password-input');
     const errorMessage = document.getElementById('cinema-error-message');
@@ -62,7 +53,7 @@ function unlockAiCinema() {
         if (authPortal) {
             authPortal.style.transition = '0.5s cubic-bezier(0.4, 0, 0.2, 1)';
             authPortal.style.opacity = '0';
-            authPortal.style.transform = 'scale(0.92) translateY(-15px)';
+            authPortal.style.transform = 'scale(0.88) translateY(-15px) translateZ(0px)';
         }
         setTimeout(() => {
             if (authPortal) authPortal.style.display = 'none';
@@ -82,7 +73,6 @@ function unlockAiCinema() {
     }
 }
 
-// ربط Enter للباسورد الثاني
 setTimeout(() => {
     const passInput = document.getElementById('cinema-password-input');
     if (passInput) {
@@ -90,7 +80,7 @@ setTimeout(() => {
     }
 }, 500);
 
-// 👑 نصوص الترجمة المنسوجة للفيديوهات الـ 5 كاملة بتوعك يا حسين 👑
+// 👑 اكتب الرسايل بتاعتك للـ 5 فيديوهات هنا يا بطل 👑
 const cinematicTexts = {
     1: "المشهد الأول: تم توليد حزمة البيانات بنجاح.. اكتب هنا ذكريات وتفاصيل الفيديو الأول بالكامل لشهد، الكلام بيتنّسج بنعومة بالغة ومريحة للنظر.",
     2: "المشهد الثاني: معالجة القطاع الثاني.. اكتب هنا تفاصيل كلام الفيديو التاني ورسالتك الرومانسية اللي من القلب.",
@@ -109,7 +99,6 @@ const displacementMap = document.getElementById('liquid-displacement');
 let activeVideoId = null;
 let weaveInterval = null;
 
-// 👑 دالة تشغيل المشهد بنقلة السيلان المائي الرياضي الفاخر 👑
 function compileAndPlayScene(num) {
     if (consoleDashboard) {
         consoleDashboard.style.opacity = '0';
@@ -123,24 +112,20 @@ function compileAndPlayScene(num) {
             setTimeout(() => theaterStage.style.opacity = '1', 50);
         }
         
-        // قدح ومضة الضوء الدافئة
         if (lightLeak) { lightLeak.classList.add('active'); setTimeout(() => lightLeak.classList.remove('active'), 500); }
         
-        // قدح أنيميشن السيلان المائي (Liquid Morph) عن طريق تحريك فلتر الـ SVG
         if (cinemaFrame && displacementMap) {
             cinemaFrame.classList.add('liquid-morphing');
             let scaleVal = 0;
             let interval = setInterval(() => {
                 scaleVal += 8;
                 displacementMap.setAttribute('scale', scaleVal);
-                if(scaleVal >= 40) {
+                if(scaleVal >= 45) {
                     clearInterval(interval);
-                    // في قمة السيلان بنقلب الفيديوهات
                     document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
                     const targetSlide = document.getElementById(`slide-${num}`);
                     if (targetSlide) targetSlide.classList.add('active');
                     
-                    // العودة للوضع الطبيعي بنعومة
                     let reverseInterval = setInterval(() => {
                         scaleVal -= 8;
                         displacementMap.setAttribute('scale', scaleVal);
@@ -150,7 +135,7 @@ function compileAndPlayScene(num) {
                         }
                     }, 40);
                 }
-            }, 300 / 5);
+            }, 55);
         } else {
             document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
             const targetSlide = document.getElementById(`slide-${num}`);
@@ -208,7 +193,6 @@ function weaveSubtitle(num) {
     }, 130); 
 }
 
-// 👑 برمجة نظام الأزرار المغناطيسية (تنجذب وتقفز لصباعها عند اللمس) 👑
 function initMagneticButtons() {
     const buttons = document.querySelectorAll('.magnetic-button');
     buttons.forEach(btn => {
@@ -216,24 +200,37 @@ function initMagneticButtons() {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px) scale(1.02)`;
+            btn.style.transform = `translate3d(${x * 0.35}px, ${y * 0.35}px, 25px) scale(1.02)`;
         });
         btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0px, 0px) scale(1)';
+            btn.style.transform = 'translate3d(0px, 0px, 20px) scale(1)';
         });
     });
 }
 
-// 👑 برمجة تأثير مسرح العرض الطافي ثلاثي الأبعاد (3D Tilt Effect) 👑
-function init3DTiltEffect() {
-    const frame = document.getElementById('cinema-frame');
-    if (!frame) return;
-    window.addEventListener('deviceorientation', (e) => {
-        // مخصص للموبايل واللمس الطافي
-        const tiltX = Math.min(Math.max(e.gamma, -15), 15) * 0.4;
-        const tiltY = Math.min(Math.max(e.beta, -15), 15) * 0.4;
-        frame.style.transform = `rotateY(${tiltX}px) rotateX(${-tiltY}px)`;
-    }, true);
+function initUltimate3DMatrix() {
+    const mesh = document.getElementById('magnetic-mesh');
+    if (!mesh) return;
+    
+    window.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 768) return;
+        const xAxis = (window.innerWidth / 2 - e.clientX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.clientY) / 25;
+        mesh.style.transform = `rotateY(${-xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+    
+    window.addEventListener('mouseleave', () => {
+        mesh.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    });
+
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', (e) => {
+            if (window.innerWidth >= 768) return;
+            const tiltX = Math.min(Math.max(e.gamma, -20), 20) * 0.6;
+            const tiltY = Math.min(Math.max(e.beta, -20), 20) * 0.6;
+            mesh.style.transform = `rotateY(${tiltX}deg) rotateX(${-tiltY}deg)`;
+        }, true);
+    }
 }
 
 function initAiNeuralNodes() {
