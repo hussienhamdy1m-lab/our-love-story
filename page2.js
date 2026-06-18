@@ -8,6 +8,8 @@ window.addEventListener('load', () => {
         bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
     initAiNeuralNodes();
+    initMagneticButtons();
+    init3DTiltEffect();
 });
 
 setInterval(() => {
@@ -19,6 +21,32 @@ setInterval(() => {
 function goBackHome() {
     if (bgMusic) sessionStorage.setItem('musicTime', bgMusic.currentTime);
     window.location.href = 'index.html';
+}
+
+// 🌟 تأثير انفجار النواة وتحول الـ UI السائل 🌟
+function triggerCorePulse() {
+    const introScreen = document.getElementById('ai-quantum-intro');
+    const authPortal = document.getElementById('cinema-auth-portal');
+    const coreNucleus = document.querySelector('.core-inner-nucleus');
+    
+    if (coreNucleus) {
+        coreNucleus.style.transform = 'scale(50)';
+        coreNucleus.style.background = '#ff4a75';
+        coreNucleus.style.opacity = '0';
+    }
+    
+    setTimeout(() => {
+        if (introScreen) {
+            introScreen.classList.add('core-shattered');
+            setTimeout(() => {
+                introScreen.style.display = 'none';
+                if (authPortal) {
+                    authPortal.style.display = 'block';
+                    setTimeout(() => { authPortal.style.opacity = '1'; }, 50);
+                }
+            }, 800);
+        }
+    }, 300);
 }
 
 // 🔒 فحص الباسورد الثاني والتحول الذكي للوحة التحكم 🔒
@@ -34,7 +62,7 @@ function unlockAiCinema() {
         if (authPortal) {
             authPortal.style.transition = '0.5s cubic-bezier(0.4, 0, 0.2, 1)';
             authPortal.style.opacity = '0';
-            authPortal.style.transform = 'scale(0.95) translateY(-15px)';
+            authPortal.style.transform = 'scale(0.92) translateY(-15px)';
         }
         setTimeout(() => {
             if (authPortal) authPortal.style.display = 'none';
@@ -62,7 +90,7 @@ setTimeout(() => {
     }
 }, 500);
 
-// 👑 داتا الرسايل والترجمة الـ 5 كاملين بتوعك يا حسين 👑
+// 👑 نصوص الترجمة المنسوجة للفيديوهات الـ 5 كاملة بتوعك يا حسين 👑
 const cinematicTexts = {
     1: "المشهد الأول: تم توليد حزمة البيانات بنجاح.. اكتب هنا ذكريات وتفاصيل الفيديو الأول بالكامل لشهد، الكلام بيتنّسج بنعومة بالغة ومريحة للنظر.",
     2: "المشهد الثاني: معالجة القطاع الثاني.. اكتب هنا تفاصيل كلام الفيديو التاني ورسالتك الرومانسية اللي من القلب.",
@@ -74,16 +102,14 @@ const cinematicTexts = {
 const consoleDashboard = document.getElementById('ai-console-dashboard');
 const theaterStage = document.getElementById('cinema-theater-stage');
 const subtitleTextField = document.getElementById('subtitle-text-field');
-
-const glitchLayer = document.getElementById('ai-glitch-layer');
-const blurLayer = document.getElementById('ai-blur-layer');
 const lightLeak = document.getElementById('ai-light-leak');
 const cinemaFrame = document.getElementById('cinema-frame');
+const displacementMap = document.getElementById('liquid-displacement');
 
 let activeVideoId = null;
 let weaveInterval = null;
 
-// 👑 دالة الـ AI القوية لتوليد المشهد وإشعال النقلات السينمائية 👑
+// 👑 دالة تشغيل المشهد بنقلة السيلان المائي الرياضي الفاخر 👑
 function compileAndPlayScene(num) {
     if (consoleDashboard) {
         consoleDashboard.style.opacity = '0';
@@ -97,21 +123,42 @@ function compileAndPlayScene(num) {
             setTimeout(() => theaterStage.style.opacity = '1', 50);
         }
         
-        // قدح التأثيرات الأربعة المتزامنة (هزة + ومضة ضوء + غليتش تفكيك + بلور عصبى)
-        if (glitchLayer) { glitchLayer.classList.add('active'); setTimeout(() => glitchLayer.classList.remove('active'), 350); }
-        if (blurLayer) { blurLayer.classList.add('active'); setTimeout(() => blurLayer.classList.remove('active'), 400); }
-        if (lightLeak) { lightLeak.classList.add('active'); setTimeout(() => lightLeak.classList.remove('active'), 400); }
-        if (cinemaFrame) { cinemaFrame.classList.add('ai-jump-active'); setTimeout(() => cinemaFrame.classList.remove('ai-jump-active'), 500); }
+        // قدح ومضة الضوء الدافئة
+        if (lightLeak) { lightLeak.classList.add('active'); setTimeout(() => lightLeak.classList.remove('active'), 500); }
         
-        // إخفاء الشرائح وعرض الشريحة المطلوبة بالملي
-        document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
-        const targetSlide = document.getElementById(`slide-${num}`);
-        if (targetSlide) targetSlide.classList.add('active');
+        // قدح أنيميشن السيلان المائي (Liquid Morph) عن طريق تحريك فلتر الـ SVG
+        if (cinemaFrame && displacementMap) {
+            cinemaFrame.classList.add('liquid-morphing');
+            let scaleVal = 0;
+            let interval = setInterval(() => {
+                scaleVal += 8;
+                displacementMap.setAttribute('scale', scaleVal);
+                if(scaleVal >= 40) {
+                    clearInterval(interval);
+                    // في قمة السيلان بنقلب الفيديوهات
+                    document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
+                    const targetSlide = document.getElementById(`slide-${num}`);
+                    if (targetSlide) targetSlide.classList.add('active');
+                    
+                    // العودة للوضع الطبيعي بنعومة
+                    let reverseInterval = setInterval(() => {
+                        scaleVal -= 8;
+                        displacementMap.setAttribute('scale', scaleVal);
+                        if(scaleVal <= 0) {
+                            clearInterval(reverseInterval);
+                            cinemaFrame.classList.remove('liquid-morphing');
+                        }
+                    }, 40);
+                }
+            }, 300 / 5);
+        } else {
+            document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
+            const targetSlide = document.getElementById(`slide-${num}`);
+            if (targetSlide) targetSlide.classList.add('active');
+        }
         
-        // نسج الترجمة كلمة كلمة
         weaveSubtitle(num);
         
-        // تشغيل الفيديو الجديد
         const targetVid = document.getElementById(`vid${num}`);
         if (targetVid) {
             targetVid.currentTime = 0;
@@ -121,8 +168,7 @@ function compileAndPlayScene(num) {
     }, 350);
 }
 
-// العودة للوحة الـ AI
-function returnToConsole() {
+function returnToAiConsole() {
     if (activeVideoId) {
         const currentVid = document.getElementById(activeVideoId);
         if (currentVid) currentVid.pause();
@@ -137,7 +183,6 @@ function returnToConsole() {
     }, 350);
 }
 
-// دالة نسج الكلام كلمة كلمة بنعومة متناهية
 function weaveSubtitle(num) {
     if (!subtitleTextField) return;
     clearInterval(weaveInterval);
@@ -152,7 +197,7 @@ function weaveSubtitle(num) {
             const wordSpan = document.createElement('span');
             wordSpan.innerText = words[currentWordIndex] + ' ';
             wordSpan.style.opacity = '0';
-            wordSpan.style.transition = 'opacity 0.2s ease';
+            wordSpan.style.transition = 'opacity 0.25s ease';
             subtitleTextField.appendChild(wordSpan);
             
             setTimeout(() => { wordSpan.style.opacity = '1'; }, 20);
@@ -160,10 +205,37 @@ function weaveSubtitle(num) {
         } else {
             clearInterval(weaveInterval);
         }
-    }, 120); 
+    }, 130); 
 }
 
-// توليد نقاط الـ AI العائمة في الخلفية بنعومة فائقة
+// 👑 برمجة نظام الأزرار المغناطيسية (تنجذب وتقفز لصباعها عند اللمس) 👑
+function initMagneticButtons() {
+    const buttons = document.querySelectorAll('.magnetic-button');
+    buttons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px) scale(1.02)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0px, 0px) scale(1)';
+        });
+    });
+}
+
+// 👑 برمجة تأثير مسرح العرض الطافي ثلاثي الأبعاد (3D Tilt Effect) 👑
+function init3DTiltEffect() {
+    const frame = document.getElementById('cinema-frame');
+    if (!frame) return;
+    window.addEventListener('deviceorientation', (e) => {
+        // مخصص للموبايل واللمس الطافي
+        const tiltX = Math.min(Math.max(e.gamma, -15), 15) * 0.4;
+        const tiltY = Math.min(Math.max(e.beta, -15), 15) * 0.4;
+        frame.style.transform = `rotateY(${tiltX}px) rotateX(${-tiltY}px)`;
+    }, true);
+}
+
 function initAiNeuralNodes() {
     const container = document.getElementById('ai-neural-canvas');
     if (!container) return;
