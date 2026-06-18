@@ -6,6 +6,8 @@ window.addEventListener('load', () => {
         bgMusic.currentTime = 0;
         bgMusic.play().catch(e => console.log("Audio play deferred:", e));
     }
+    // 🌌 إشعال محرك الغبار الكوني وجزيئات النجوم 🌌
+    generateCosmicDustParticles();
 });
 
 function goBackHome() {
@@ -76,7 +78,7 @@ setTimeout(() => {
     }
 }, 500);
 
-// 👑 الرسايل الـ 5 كاملة بالعامية الرومانسية الدافية 👑
+// رسايل الفيديوهات الـ 5 بالعامية الرومانسية الدافية
 const cinematicTexts = {
     1: "هنا بتكتب كلامك الحلو والذكرى بتاعة أول فيديو ليكم سوا.. الكلام هيظهر كلمة كلمة بنعومة مريحة جداً للعين والخلفية مفيهاش أي كآبة.",
     2: "حكايتنا التانية.. اكتب هنا التفاصيل والضحكة واليوم الجميل اللي كان بينكم في الفيديو التاني.",
@@ -95,7 +97,6 @@ const displacementMap = document.getElementById('liquid-displacement');
 let activeVideoId = null;
 let weaveInterval = null;
 
-// تشغيل المشهد مباشرة عند اللمس من الشبكة العنقودية
 function playSceneFromGrid(num) {
     currentSceneNum = num;
     if (consoleDashboard) { consoleDashboard.style.opacity = '0'; }
@@ -110,7 +111,6 @@ function playSceneFromGrid(num) {
     }, 350);
 }
 
-// دالة الانتقال السريع بأزرار "اللي بعده" و "اللي قبله" الفورية
 function navigateInlineScene(direction) {
     currentSceneNum = currentSceneNum + direction;
     if (currentSceneNum > 5) currentSceneNum = 1;
@@ -119,7 +119,6 @@ function navigateInlineScene(direction) {
     executeLiquidTransition(currentSceneNum);
 }
 
-// محرك نقلة السيلان المائي ومزامنة الفيديو والترجمة المنسوجة
 function executeLiquidTransition(sceneNum) {
     if (activeVideoId) {
         const prevVid = document.getElementById(activeVideoId);
@@ -203,4 +202,28 @@ function weaveSubtitle(num) {
             clearInterval(weaveInterval);
         }
     }, 130); 
+}
+
+// 👑 دالة توليد الغبار الكوني وجزيئات النجوم اللامعة المستمرة 👑
+function generateCosmicDustParticles() {
+    const container = document.getElementById('cosmic-dust-container');
+    if (!container) return;
+    
+    const particleCount = 25; // عدد الجزيئات المثالي للأداء العالي على الموبايل
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('cosmic-particle');
+        
+        // توزيع الأحجام والأماكن العشوائية
+        const size = Math.random() * 3 + 1.5; // أحجام دقيقة جداً وشيك
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + 'vw';
+        
+        // توزيع مدد الأنيميشن والتأخير عشان ميتطلعوش كلهم في نفس اللحظة
+        particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+        particle.style.animationDelay = (Math.random() * 8) + 's';
+        
+        container.appendChild(particle);
+    }
 }
