@@ -2,14 +2,12 @@ const bgMusic = document.getElementById('bg-music');
 const CINEMA_SECRET_KEY = 'بحبك اكتر';
 
 window.addEventListener('load', () => {
-    // تشغيل الأغنية الجديدة فوراً عند فتح الصفحة الثانية تلقائياً
+    // تشغيل الأغنية 22 فوراً عند التحميل
     if (bgMusic) {
         bgMusic.currentTime = 0;
-        bgMusic.play().catch(e => console.log("Audio autoplay block handled:", e));
+        bgMusic.play().catch(e => console.log("Audio play handle:", e));
     }
-    initAiNeuralNodes();
-    initMagneticButtons();
-    initUltimate3DMatrix(); 
+    setupCoverflowScroll(); // تشغيل مستشعر التقليب الأفقي
 });
 
 function goBackHome() {
@@ -51,19 +49,19 @@ function unlockAiCinema() {
     
     if (passInput.value.trim() === CINEMA_SECRET_KEY) {
         if (authPortal) {
-            authPortal.style.transition = '0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            authPortal.style.transition = '0.5s ease';
             authPortal.style.opacity = '0';
-            authPortal.style.transform = 'scale(0.88) translateY(-15px) translateZ(0px)';
+            authPortal.style.transform = 'scale(0.92) translateY(-15px)';
         }
         setTimeout(() => {
             if (authPortal) authPortal.style.display = 'none';
             if (consoleDashboard) {
-                consoleDashboard.style.display = 'block';
+                consoleDashboard.style.display = 'flex';
                 setTimeout(() => { consoleDashboard.style.opacity = '1'; }, 50);
             }
         }, 500);
     } else {
-        if (errorMessage) errorMessage.style.display = 'block';
+        if (errorMessage) { errorMessage.style.display = 'block'; }
         if (authPortal) {
             authPortal.classList.remove('shake-box-anim');
             void authPortal.offsetWidth; 
@@ -73,14 +71,46 @@ function unlockAiCinema() {
     }
 }
 
-setTimeout(() => {
-    const passInput = document.getElementById('cinema-password-input');
-    if (passInput) {
-        passInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') unlockAiCinema(); });
-    }
-}, 500);
+// 👑 نظام تتبع التقليب الأفقي للكروت بصباعها على الموبايل 👑
+let selectedSceneNum = 1; // الافتراضي أول كارت
 
-// 👑 اكتب الرسايل بتاعتك للـ 5 فيديوهات هنا يا بطل 👑
+function setupCoverflowScroll() {
+    const container = document.getElementById('coverflow-mesh');
+    if (!container) return;
+    
+    container.addEventListener('scroll', () => {
+        const cards = document.querySelectorAll('.coverflow-card');
+        let closestCard = null;
+        let minDistance = Infinity;
+        const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
+        
+        cards.forEach(card => {
+            const cardCenter = card.getBoundingClientRect().left + card.offsetWidth / 2;
+            const distance = Math.abs(containerCenter - cardCenter);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestCard = card;
+            }
+        });
+        
+        if (closestCard) {
+            cards.forEach(c => c.classList.remove('active'));
+            closestCard.classList.add('active');
+            selectedSceneNum = parseInt(closestCard.getAttribute('data-index'));
+        }
+    });
+}
+
+function selectCard(element, num) {
+    const cards = document.querySelectorAll('.coverflow-card');
+    cards.forEach(c => c.classList.remove('active'));
+    element.classList.add('active');
+    selectedSceneNum = num;
+    // سحب الكارت أوتوماتيك لمنتصف شاشة الموبايل عند الضغط
+    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+}
+
+// رسايل الـ 5 فيديوهات كاملة
 const cinematicTexts = {
     1: "المشهد الأول: تم توليد حزمة البيانات بنجاح.. اكتب هنا ذكريات وتفاصيل الفيديو الأول بالكامل لشهد، الكلام بيتنّسج بنعومة بالغة ومريحة للنظر.",
     2: "المشهد الثاني: معالجة القطاع الثاني.. اكتب هنا تفاصيل كلام الفيديو التاني ورسالتك الرومانسية اللي من القلب.",
@@ -99,10 +129,10 @@ const displacementMap = document.getElementById('liquid-displacement');
 let activeVideoId = null;
 let weaveInterval = null;
 
-function compileAndPlayScene(num) {
+// 👑 دالة التوليد بنقلة السيلان المائي 👑
+function compileSelectedScene() {
     if (consoleDashboard) {
         consoleDashboard.style.opacity = '0';
-        consoleDashboard.style.transform = 'scale(0.96)';
     }
     
     setTimeout(() => {
@@ -123,7 +153,7 @@ function compileAndPlayScene(num) {
                 if(scaleVal >= 45) {
                     clearInterval(interval);
                     document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
-                    const targetSlide = document.getElementById(`slide-${num}`);
+                    const targetSlide = document.getElementById(`slide-${selectedSceneNum}`);
                     if (targetSlide) targetSlide.classList.add('active');
                     
                     let reverseInterval = setInterval(() => {
@@ -138,17 +168,17 @@ function compileAndPlayScene(num) {
             }, 55);
         } else {
             document.querySelectorAll('.video-slide').forEach(sl => sl.classList.remove('active'));
-            const targetSlide = document.getElementById(`slide-${num}`);
+            const targetSlide = document.getElementById(`slide-${selectedSceneNum}`);
             if (targetSlide) targetSlide.classList.add('active');
         }
         
-        weaveSubtitle(num);
+        weaveSubtitle(selectedSceneNum);
         
-        const targetVid = document.getElementById(`vid${num}`);
+        const targetVid = document.getElementById(`vid${selectedSceneNum}`);
         if (targetVid) {
             targetVid.currentTime = 0;
-            targetVid.play().catch(e => console.log("Auto-play deferred"));
-            activeVideoId = `vid${num}`;
+            targetVid.play().catch(e => console.log("Auto-play handling"));
+            activeVideoId = `vid${selectedSceneNum}`;
         }
     }, 350);
 }
@@ -162,8 +192,8 @@ function returnToAiConsole() {
     setTimeout(() => {
         if (theaterStage) theaterStage.style.display = 'none';
         if (consoleDashboard) {
-            consoleDashboard.style.display = 'block';
-            setTimeout(() => { consoleDashboard.style.opacity = '1'; consoleDashboard.style.transform = 'scale(1)'; }, 50);
+            consoleDashboard.style.display = 'flex';
+            setTimeout(() => { consoleDashboard.style.opacity = '1'; }, 50);
         }
     }, 350);
 }
@@ -191,59 +221,4 @@ function weaveSubtitle(num) {
             clearInterval(weaveInterval);
         }
     }, 130); 
-}
-
-function initMagneticButtons() {
-    const buttons = document.querySelectorAll('.magnetic-button');
-    buttons.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate3d(${x * 0.35}px, ${y * 0.35}px, 25px) scale(1.02)`;
-        });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate3d(0px, 0px, 20px) scale(1)';
-        });
-    });
-}
-
-function initUltimate3DMatrix() {
-    const mesh = document.getElementById('magnetic-mesh');
-    if (!mesh) return;
-    
-    window.addEventListener('mousemove', (e) => {
-        if (window.innerWidth < 768) return;
-        const xAxis = (window.innerWidth / 2 - e.clientX) / 25;
-        const yAxis = (window.innerHeight / 2 - e.clientY) / 25;
-        mesh.style.transform = `rotateY(${-xAxis}deg) rotateX(${yAxis}deg)`;
-    });
-    
-    window.addEventListener('mouseleave', () => {
-        mesh.style.transform = `rotateY(0deg) rotateX(0deg)`;
-    });
-
-    if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', (e) => {
-            if (window.innerWidth >= 768) return;
-            const tiltX = Math.min(Math.max(e.gamma, -20), 20) * 0.6;
-            const tiltY = Math.min(Math.max(e.beta, -20), 20) * 0.6;
-            mesh.style.transform = `rotateY(${tiltX}deg) rotateX(${-tiltY}deg)`;
-        }, true);
-    }
-}
-
-function initAiNeuralNodes() {
-    const container = document.getElementById('ai-neural-canvas');
-    if (!container) return;
-    for (let i = 0; i < 15; i++) {
-        const node = document.createElement('div');
-        node.classList.add('neural-point');
-        const size = Math.random() * 3 + 2;
-        node.style.width = size + 'px'; node.style.height = size + 'px';
-        node.style.left = Math.random() * 100 + 'vw';
-        node.style.animationDuration = (Math.random() * 8 + 8) + 's';
-        node.style.animationDelay = (Math.random() * 5) + 's';
-        container.appendChild(node);
-    }
 }
