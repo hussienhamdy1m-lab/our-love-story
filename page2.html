@@ -9,17 +9,19 @@
 </head>
 <body>
 
+    <!-- 🎵 تراك 22 الخاص بالصفحة الثانية 🎵 -->
     <audio id="bg-music" loop preload="metadata">
         <source src="22.mp3" type="audio/mpeg">
     </audio>
 
     <button class="back-home-btn" onclick="goBackHome()">⬅️ الرجوع</button>
 
-    <div class="luxury-fluid-bg">
-        <div class="ambient-nebula-1"></div>
-        <div class="ambient-nebula-2"></div>
+    <!-- 🌌 محرك الغبار الكوني المتوهج والجزيئات العائمة 🌌 -->
+    <div class="cosmic-dust-bg" id="cosmic-dust-container">
+        <div class="ambient-nebula-glow"></div>
     </div>
 
+    <!-- 🌟 المرحلة الأولى: الدخلة اللامعة لاسم شهد 🌟 -->
     <div id="ai-quantum-intro" class="intro-fullscreen-overlay">
         <div class="interactive-dark-core" onclick="triggerCorePulse()">
             <div class="core-plasma-glow"></div>
@@ -33,6 +35,7 @@
 
     <div class="ai-universe-container">
         
+        <!-- 🔒 المرحلة الثانية: بوابة الباسورد النضيفة 🔒 -->
         <div id="cinema-auth-portal" class="premium-clean-card" style="display: none; opacity: 0;">
             <h1 class="portal-main-title">مكاننا السري الهادي 🔐</h1>
             <p class="portal-subtitle">عشان تشوفي الفيديوهات، قوليلي الأول.. مين بيحب التاني أكتر؟ 😉</p>
@@ -45,12 +48,12 @@
             <p id="cinema-error-message" class="error-msg-style">لأ ركزي يا شهودتي مش دي الإجابة! 🥺❤️</p>
         </div>
 
+        <!-- 🤖 المرحلة الثالثة: الشبكة السينمائية العنقودية 🤖 -->
         <div id="ai-console-dashboard" class="grid-wrapper-layout" style="display: none; opacity: 0;">
             <h2 class="grid-main-title">شريط ذكرياتنا سوا 🎬</h2>
             <p class="grid-subtitle">ذكرياتنا متصلة ببعضها.. اختاري المسار اللي عايزة تشوفيه</p>
             
             <div class="memories-mesh-grid">
-                
                 <div class="mesh-node-capsule" onclick="playSceneFromGrid(1)">
                     <div class="capsule-num">01</div>
                     <div class="capsule-icon">⏳</div>
@@ -80,10 +83,10 @@
                     <div class="capsule-icon">💍</div>
                     <span class="capsule-title">الوعد الأبدي</span>
                 </div>
-
             </div>
         </div>
 
+        <!-- 🎬 المرحلة الرابعة: مسرح العرض الطافي بنقلة السيلان 🎬 -->
         <div id="cinema-theater-stage" class="theater-wrapper-layout" style="display: none; opacity: 0;">
             <div class="cinematic-canvas-frame" id="cinema-frame">
                 <div id="ai-liquid-overlay" class="liquid-ripple-layer"></div>
@@ -110,6 +113,7 @@
 
     </div>
 
+    <!-- فلتر السيلان -->
     <svg style="display: none;">
         <defs>
             <filter id="liquid-blur-filter">
